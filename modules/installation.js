@@ -1,10 +1,10 @@
-const INSTALLATION = (function() {
-  const installationLog = LOGGER.getNamedLogger('INSTALLATION', 'blue');
+const INSTALLATION = (function () {
+  const installationLog = LOGGER.getNamedLogger('INSTALLATION', 'blue')
 
   const settingsProduction = {
     targetEnv: 'production',
     extensionSettings: {
-    	removeDelay: (60 * 30),  // 30 minutes
+    	removeDelay: (60 * 30), // 30 minutes
       validators: {
         activeTask: {
           minValue: 3,
@@ -54,13 +54,13 @@ const INSTALLATION = (function() {
         default: 50
       }
     }
-  };
+  }
 
   const settingsDevelopment = {
     targetEnv: 'development',
     extensionSettings: {
-			removeDelay: 10,
-			validators: {
+      removeDelay: 10,
+      validators: {
         activeTask: {
           minValue: 3,
           maxValue: 70
@@ -86,11 +86,11 @@ const INSTALLATION = (function() {
       },
       blockedDomains: {
         value: null,
-				default: [
-					{ name: 'twitter.com', removeTimestamp: null },
-					{ name: 'facebook.com', removeTimestamp: null },
-					{ name: 'youtube.com', removeTimestamp: null }
-				]
+        default: [
+          { name: 'twitter.com', removeTimestamp: null },
+          { name: 'facebook.com', removeTimestamp: null },
+          { name: 'youtube.com', removeTimestamp: null }
+        ]
       },
       soundsAllowed: {
         value: null,
@@ -113,29 +113,29 @@ const INSTALLATION = (function() {
         default: 10
       }
     }
-  };
-
-  function _withDefaults(settings) {
-    for (let key of Object.keys(settings.userSettings)) {
-      settings.userSettings[key].value = settings.userSettings[key].default;
-    }
-
-    return settings;
   }
 
-  function install(initialSettings, callback) {
+  function _withDefaults (settings) {
+    for (const key of Object.keys(settings.userSettings)) {
+      settings.userSettings[key].value = settings.userSettings[key].default
+    }
+
+    return settings
+  }
+
+  function install (initialSettings, callback) {
     chrome.storage.sync.set(_withDefaults(initialSettings), () => {
-      installationLog.log(`Installed with ${initialSettings.targetEnv} settings.`);
+      installationLog.log(`Installed with ${initialSettings.targetEnv} settings.`)
 
       if (callback) {
-        callback();
+        callback()
       }
-    });
+    })
   }
 
   return {
     settingsProduction,
     settingsDevelopment,
     install
-  };
-})();
+  }
+})()
