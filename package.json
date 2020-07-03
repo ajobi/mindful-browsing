@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "prettier": "^1.19.1"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 100
+  }
+}
