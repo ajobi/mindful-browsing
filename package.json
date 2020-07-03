@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint --fix ./"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
