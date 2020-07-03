@@ -1,0 +1,19 @@
+:root {
+  --col-primary-100: rgba(71, 72, 129, 1);
+  --col-primary-90: rgba(71, 72, 129, 0.9);
+  --col-primary-80: rgba(71, 72, 129, 0.8);
+  --col-primary-70: rgba(71, 72, 129, 0.7);
+  --col-primary-50: rgba(71, 72, 129, 0.5);
+  --col-primary-20: rgba(71, 72, 129, 0.2);
+  --col-white: #FFFFFF;
+
+  /* font sizes */
+  --font-12: 12px;
+  --font-14: 14px;
+  --font-16: 16px;
+  --font-18: 18px;
+  --font-20: 20px;
+  --font-24: 24px;
+  --font-32: 32px;
+  --font-36: 36px;
+}

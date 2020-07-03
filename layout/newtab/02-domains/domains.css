@@ -1,0 +1,36 @@
+#settings_domains {
+  display: none;
+}
+
+.domains-list {
+  padding: 0;
+  margin: 25px auto 0 auto;
+  width: 500px;
+  list-style: none;
+}
+
+.domains-list li {
+  margin-top: 10px;
+  text-align: right;
+  position: relative;
+  font-size: var(--font-18);
+  margin-right: 80px;
+}
+
+.domains-list p {
+  font-size: var(--font-16);
+}
+
+input[type="button"] {
+  margin-left: 24px;
+  width: 160px;
+}
+
+.domains-list span.removal-countdown {
+  position: absolute;
+  left: 100%;
+  margin-left: 15px;
+  line-height: 35px;
+  text-align: left;
+  min-width: 500px;
+}
