@@ -13,7 +13,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'layout', to: 'layout' },
-        { from: 'package.json', to: 'package.json' }
+        { from: 'assets', to: 'assets' },
+        { from: 'modules', to: 'modules' },
+        { from: 'manifest.json', to: 'manifest.json' }
       ]
     })
   ]
