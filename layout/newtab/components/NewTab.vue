@@ -62,26 +62,21 @@
         }
       })
 
-      // TASK_REMINDER.addEventListener('click', nextLayout)
-      // document.addEventListener('keydown', onKeyDown)
-      //
-      // let SETTINGS_DISPLAY = DISP_0
+      document.addEventListener('keydown', (event) => {
+        const TAB_KEY_CODE = 9
+        const ESC_KEY_CODE = 27
 
-      // function onKeyDown (event) {
-      //   const TAB_KEY_CODE = 9
-      //   const ESC_KEY_CODE = 27
-      //
-      //   if (event.keyCode === TAB_KEY_CODE) {
-      //     if (SETTINGS_DISPLAY !== DISP_4) {
-      //       event.preventDefault()
-      //     }
-      //     nextLayout()
-      //   }
-      //
-      //   if (event.keyCode === ESC_KEY_CODE) {
-      //     displayLayout(DISP_0)
-      //   }
-      // }
+        if (event.keyCode === TAB_KEY_CODE) {
+          if (this.activeView !== 4) {
+            event.preventDefault()
+          }
+          this.nextView()
+        }
+
+        if (event.keyCode === ESC_KEY_CODE) {
+          this.activeView = 0
+        }
+      })
     }
   }
 </script>
