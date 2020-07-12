@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.runtime.min.js'
-import NewTab from './NewTab.vue'
+import NewTab from './components/NewTab.vue'
 
 new Vue({
   render: h => h(NewTab)

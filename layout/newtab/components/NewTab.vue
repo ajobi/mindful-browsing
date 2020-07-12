@@ -13,11 +13,11 @@
 </template>
 
 <script>
-  import NewTabLogo from './components/NewTabLogo.vue';
-  import NewTabSettingsTask from './components/NewTabSettingsTask.vue'
-  import NewTabSettingsDomains from './components/NewTabSettingsDomains.vue'
-  import NewTabSettingsMechanism from './components/NewTabSettingsMechanism.vue'
-  import NewTabSettingsNotifications from './components/NewTabSettingsNotifications.vue'
+  import NewTabLogo from './NewTabLogo.vue';
+  import NewTabSettingsTask from './NewTabSettingsTask.vue'
+  import NewTabSettingsDomains from './NewTabSettingsDomains.vue'
+  import NewTabSettingsMechanism from './NewTabSettingsMechanism.vue'
+  import NewTabSettingsNotifications from './NewTabSettingsNotifications.vue'
 
   export default {
     components: {
@@ -39,9 +39,11 @@
       }
     },
     mounted() {
-      const initiateNewtab = () => {
-        loadSettings()
+      const loadSettings = () => {
+        console.log('On Settings changed')
+      }
 
+      const initiateNewtab = () => {
         this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
         window.addEventListener('unload', () => {
           this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
@@ -85,7 +87,7 @@
 </script>
 
 <style>
-  @import "../../assets/css/main.css";
+  @import "../../../assets/css/main.css";
 
   #task_reminder {
     user-select: none;
