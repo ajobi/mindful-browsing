@@ -69,6 +69,8 @@
 </template>
 
 <style>
+  @import "../../assets/css/main.css";
+
   #task_reminder {
     user-select: none;
     cursor: pointer;
