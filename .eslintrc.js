@@ -1,5 +1,8 @@
 module.exports = {
-  extends: 'standard',
+  extends: [
+    'standard',
+    'plugin:vue/recommended'
+  ],
   env: {
     browser: true,
     webextensions: true
