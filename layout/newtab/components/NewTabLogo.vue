@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import quotes from '../../assets/quotes.js'
+  import quotes from '../../../assets/quotes.js'
 
   let interval
 

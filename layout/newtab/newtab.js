@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.runtime.min.js'
-import PageNewtab from './PageNewtab.vue'
+import NewTab from './NewTab.vue'
 
 new Vue({
-  render: h => h(PageNewtab)
+  render: h => h(NewTab)
 }).$mount('#app')

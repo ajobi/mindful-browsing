@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1 id="task_reminder" @click="nextView">fsafsaf</h1>
-    <PageNewtabLogo v-if="activeView === 0"/>
-    <PageNewtabSettingsTask v-if="activeView === 1" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsDomains v-if="activeView === 2" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsMechanism v-if="activeView === 3" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsNotifications v-if="activeView === 4" :backgroundAPI="backgroundAPI" />
+    <NewTabLogo v-if="activeView === 0"/>
+    <NewTabSettingsTask v-if="activeView === 1" :backgroundAPI="backgroundAPI" />
+    <NewTabSettingsDomains v-if="activeView === 2" :backgroundAPI="backgroundAPI" />
+    <NewTabSettingsMechanism v-if="activeView === 3" :backgroundAPI="backgroundAPI" />
+    <NewTabSettingsNotifications v-if="activeView === 4" :backgroundAPI="backgroundAPI" />
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
     <span id="focus_anchor" tabindex="1"></span>
@@ -13,19 +13,19 @@
 </template>
 
 <script>
-  import PageNewtabLogo from './PageNewtabLogo.vue';
-  import PageNewtabSettingsTask from './PageNewtabSettingsTask.vue'
-  import PageNewtabSettingsDomains from './PageNewtabSettingsDomains.vue'
-  import PageNewtabSettingsMechanism from './PageNewtabSettingsMechanism.vue'
-  import PageNewtabSettingsNotifications from './PageNewtabSettingsNotifications.vue'
+  import NewTabLogo from './components/NewTabLogo.vue';
+  import NewTabSettingsTask from './components/NewTabSettingsTask.vue'
+  import NewTabSettingsDomains from './components/NewTabSettingsDomains.vue'
+  import NewTabSettingsMechanism from './components/NewTabSettingsMechanism.vue'
+  import NewTabSettingsNotifications from './components/NewTabSettingsNotifications.vue'
 
   export default {
     components: {
-      PageNewtabLogo,
-      PageNewtabSettingsTask,
-      PageNewtabSettingsDomains,
-      PageNewtabSettingsMechanism,
-      PageNewtabSettingsNotifications
+      NewTabLogo,
+      NewTabSettingsTask,
+      NewTabSettingsDomains,
+      NewTabSettingsMechanism,
+      NewTabSettingsNotifications
     },
     data () {
       return {
@@ -59,13 +59,6 @@
           initiateNewtab()
         }
       })
-
-      function loadSettings () {
-        // loadTaskReminder()
-        // loadBlockedDomains()
-        // loadNotificationSettings()
-        // loadMechanismSettings()
-      }
 
       // TASK_REMINDER.addEventListener('click', nextLayout)
       // document.addEventListener('keydown', onKeyDown)
