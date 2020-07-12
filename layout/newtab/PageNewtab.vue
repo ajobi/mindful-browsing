@@ -18,6 +18,11 @@
       </div>
     </div>
 
+    <PageNewtabTask />
+    <PageNewtabDomains />
+    <PageNewtabMechanism />
+    <PageNewtabNotifications />
+
     <div>
       <form id="settings_task">
         <h2> Current task: </h2>
@@ -69,9 +74,19 @@
 </template>
 
 <script>
+  import PageNewtabTask from './PageNewtabTask.vue'
+  import PageNewtabDomains from './PageNewtabDomains.vue'
+  import PageNewtabMechanism from './PageNewtabMechanism.vue'
+  import PageNewtabNotifications from './PageNewtabNotifications.vue'
   import quotes from '../../assets/quotes.js'
 
   export default {
+    components: {
+      PageNewtabTask,
+      PageNewtabDomains,
+      PageNewtabMechanism,
+      PageNewtabNotifications
+    },
     data () {
       return {
         backgroundAPI: null
