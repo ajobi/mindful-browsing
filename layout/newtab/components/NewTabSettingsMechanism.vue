@@ -2,106 +2,118 @@
   <div id="settings_mechanism">
     <h2> Your mindfulness approach: </h2>
     <div class="available-mechanisms">
-      <div id="mechanism_breathing" class="mechanism" ref="mechanismBreathing">
+      <div
+        id="mechanism_breathing"
+        ref="mechanismBreathing"
+        class="mechanism"
+      >
         <h3>Mindful breathing</h3>
-        <p>You will be asked to take <strong> <span></span> breaths</strong> before you will be allowed to visit distracting content. </p>
-        <button class="button--primary">Customize</button>
+        <p>You will be asked to take <strong> <span /> breaths</strong> before you will be allowed to visit distracting content. </p>
+        <button class="button--primary">
+          Customize
+        </button>
       </div>
-      <div id="mechanism_challenge" class="mechanism mechanism--recommended" ref="mechanismChallenge">
+      <div
+        id="mechanism_challenge"
+        ref="mechanismChallenge"
+        class="mechanism mechanism--recommended"
+      >
         <h3>Small challenge</h3>
-        <p>You will be asked to re-type <strong> <span></span> characters </strong> of random text before you will be allowed to visit distracting content. </p>
-        <button class="button--primary">Customize</button>
+        <p>You will be asked to re-type <strong> <span /> characters </strong> of random text before you will be allowed to visit distracting content. </p>
+        <button class="button--primary">
+          Customize
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      backgroundAPI: {
-        type: Object,
-        required: true
-      }
-    },
-    mounted() {
-      const MECHANISM_BREATHING = this.$refs.mechanismBreathing
-      const MECHANISM_CHALLENGE = this.$refs.mechanismChallenge
-
-      const activeMechanism = this.backgroundAPI.SETTINGS.getters.getActiveMechanism()
-
-      switch (activeMechanism) {
-        case 'breathing':
-          setActiveMechanism('mechanism_breathing')
-          break
-        case 'challenge':
-          setActiveMechanism('mechanism_challenge')
-          break
-      }
-
-      MECHANISM_BREATHING.querySelector(
-        'span'
-      ).innerText = this.backgroundAPI.SETTINGS.getters.getBreathCount()
-      MECHANISM_CHALLENGE.querySelector(
-        'span'
-      ).innerText = this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
-
-      function setActiveMechanism (mechanismId) {
-        MECHANISM_BREATHING.classList.remove('mechanism--active')
-        MECHANISM_CHALLENGE.classList.remove('mechanism--active')
-
-        if (MECHANISM_BREATHING.id === mechanismId) {
-          MECHANISM_BREATHING.classList.add('mechanism--active')
-        }
-
-        if (MECHANISM_CHALLENGE.id === mechanismId) {
-          MECHANISM_CHALLENGE.classList.add('mechanism--active')
-        }
-      }
-
-      MECHANISM_BREATHING.addEventListener('click', () => {
-        if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'breathing') {
-          this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('breathing')
-        }
-      })
-
-      MECHANISM_CHALLENGE.addEventListener('click', () => {
-        if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'challenge') {
-          this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('challenge')
-        }
-      })
-
-      MECHANISM_BREATHING.querySelector('button').addEventListener('click', () => {
-        const breathCount = prompt('Enter the number of breaths:')
-
-        if (breathCount === null) {
-          return
-        }
-
-        if (!this.backgroundAPI.VALIDATORS.validators.validateBreathCount(breathCount)) {
-          alert(this.backgroundAPI.VALIDATORS.errorMessages.errorBreathCount(breathCount))
-          return
-        }
-
-        this.backgroundAPI.SETTINGS.mutations.setBreathCount(breathCount)
-      })
-
-      MECHANISM_CHALLENGE.querySelector('button').addEventListener('click', () => {
-        const challengeDifficulty = prompt('Enter the number of characters:')
-
-        if (challengeDifficulty === null) {
-          return
-        }
-
-        if (!this.backgroundAPI.VALIDATORS.validators.validateChallengeDifficulty(challengeDifficulty)) {
-          alert(this.backgroundAPI.VALIDATORS.errorMessages.errorChallengeDifficulty(challengeDifficulty))
-          return
-        }
-
-        this.backgroundAPI.SETTINGS.mutations.setChallengeDifficulty(challengeDifficulty)
-      })
+export default {
+  props: {
+    backgroundAPI: {
+      type: Object,
+      required: true
     }
+  },
+  mounted () {
+    const MECHANISM_BREATHING = this.$refs.mechanismBreathing
+    const MECHANISM_CHALLENGE = this.$refs.mechanismChallenge
+
+    const activeMechanism = this.backgroundAPI.SETTINGS.getters.getActiveMechanism()
+
+    switch (activeMechanism) {
+      case 'breathing':
+        setActiveMechanism('mechanism_breathing')
+        break
+      case 'challenge':
+        setActiveMechanism('mechanism_challenge')
+        break
+    }
+
+    MECHANISM_BREATHING.querySelector(
+      'span'
+    ).innerText = this.backgroundAPI.SETTINGS.getters.getBreathCount()
+    MECHANISM_CHALLENGE.querySelector(
+      'span'
+    ).innerText = this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
+
+    function setActiveMechanism (mechanismId) {
+      MECHANISM_BREATHING.classList.remove('mechanism--active')
+      MECHANISM_CHALLENGE.classList.remove('mechanism--active')
+
+      if (MECHANISM_BREATHING.id === mechanismId) {
+        MECHANISM_BREATHING.classList.add('mechanism--active')
+      }
+
+      if (MECHANISM_CHALLENGE.id === mechanismId) {
+        MECHANISM_CHALLENGE.classList.add('mechanism--active')
+      }
+    }
+
+    MECHANISM_BREATHING.addEventListener('click', () => {
+      if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'breathing') {
+        this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('breathing')
+      }
+    })
+
+    MECHANISM_CHALLENGE.addEventListener('click', () => {
+      if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'challenge') {
+        this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('challenge')
+      }
+    })
+
+    MECHANISM_BREATHING.querySelector('button').addEventListener('click', () => {
+      const breathCount = prompt('Enter the number of breaths:')
+
+      if (breathCount === null) {
+        return
+      }
+
+      if (!this.backgroundAPI.VALIDATORS.validators.validateBreathCount(breathCount)) {
+        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorBreathCount(breathCount))
+        return
+      }
+
+      this.backgroundAPI.SETTINGS.mutations.setBreathCount(breathCount)
+    })
+
+    MECHANISM_CHALLENGE.querySelector('button').addEventListener('click', () => {
+      const challengeDifficulty = prompt('Enter the number of characters:')
+
+      if (challengeDifficulty === null) {
+        return
+      }
+
+      if (!this.backgroundAPI.VALIDATORS.validators.validateChallengeDifficulty(challengeDifficulty)) {
+        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorChallengeDifficulty(challengeDifficulty))
+        return
+      }
+
+      this.backgroundAPI.SETTINGS.mutations.setChallengeDifficulty(challengeDifficulty)
+    })
   }
+}
 </script>
 
 <style>

@@ -1,59 +1,74 @@
 <template>
   <li>
     <span>{{ domain.name }}</span>
-    <input v-if="!domain.removeTimestamp" type="button" value="remove" class="button--secondary" @click="onRemove(domain.name)"/>
-    <input v-else type="button" value="cancel" class="button--primary" @click="onCancelRemove(domain.name)"/>
-    <span class="removal-countdown" v-if="domain.removeTimestamp">{{ removalCountdown }}</span>
+    <input
+      v-if="!domain.removeTimestamp"
+      type="button"
+      value="remove"
+      class="button--secondary"
+      @click="onRemove(domain.name)"
+    >
+    <input
+      v-else
+      type="button"
+      value="cancel"
+      class="button--primary"
+      @click="onCancelRemove(domain.name)"
+    >
+    <span
+      v-if="domain.removeTimestamp"
+      class="removal-countdown"
+    >{{ removalCountdown }}</span>
   </li>
 </template>
 
 <script>
 
-  let removeInterval = null
+let removeInterval = null
 
-  export default {
-    props: {
-      domain: {
-        type: Object,
-        required: true
-      },
-      backgroundAPI: {
-        type: Object,
-        required: true
-      }
+export default {
+  props: {
+    domain: {
+      type: Object,
+      required: true
     },
-    data () {
-      return {
-        removalCountdown: ''
-      }
-    },
-    mounted() {
-      if (this.domain.removeTimestamp) {
+    backgroundAPI: {
+      type: Object,
+      required: true
+    }
+  },
+  data () {
+    return {
+      removalCountdown: ''
+    }
+  },
+  mounted () {
+    if (this.domain.removeTimestamp) {
+      const currentTime = new Date().valueOf()
+      const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+      this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+
+      removeInterval = setInterval(() => {
         const currentTime = new Date().valueOf()
         const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
-        this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
 
-        removeInterval = setInterval(() => {
-          const currentTime = new Date().valueOf()
-          const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
-
-          if (timeDifferenceInSeconds > 1) {
-            this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
-          } else {
-            this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
-          }
-        }, 1000)
-      }
-    },
-    methods: {
-      onRemove(domain) {
-        this.backgroundAPI.SETTINGS.mutations.removeBlockedDomain(domain)
-      },
-      onCancelRemove(domain) {
-        this.backgroundAPI.SETTINGS.mutations.cancelRemoval(domain)
-      }
+        if (timeDifferenceInSeconds > 1) {
+          this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+        } else {
+          this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
+        }
+      }, 1000)
     }
-  };
+  },
+  methods: {
+    onRemove (domain) {
+      this.backgroundAPI.SETTINGS.mutations.removeBlockedDomain(domain)
+    },
+    onCancelRemove (domain) {
+      this.backgroundAPI.SETTINGS.mutations.cancelRemoval(domain)
+    }
+  }
+}
 </script>
 
 <style>
