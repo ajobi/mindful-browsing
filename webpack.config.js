@@ -22,7 +22,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: 'layout', to: 'layout' },
+        { from: 'layout/warning', to: 'layout/warning' },
+        { from: 'layout/newtab', to: 'layout/newtab' },
         { from: 'assets', to: 'assets' },
         { from: 'modules', to: 'modules' },
         { from: 'manifest.json', to: 'manifest.json' }
