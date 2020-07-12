@@ -1,5 +1,59 @@
 <template>
-  <div>Warning</div>
+  <div>
+    <header id="warning_panel">
+      <h1>This domain has been blocked for a good reason.</h1>
+      <h2>Please, pause and reconsider whether you really need to visit this site.</h2>
+    </header>
+
+    <button
+      id="visit_button"
+      class="button--secondary"
+    >
+      I need to visit this site
+    </button>
+
+    <h3 id="try_again">
+      You did not focus, let's try once again?
+    </h3>
+    <h2 id="breath_guide">
+      Take a deep breath
+    </h2>
+
+    <div id="challenge_task">
+      <h2>Type in the following text:</h2>
+      <div id="challenge_string_wrapper">
+        <p id="challenge_string" />
+        <p id="correct_input" />
+      </div> <br>
+      <input
+        id="challenge_input"
+        class="input-text"
+        type="text"
+        size="80"
+      >
+    </div>
+
+    <button
+      id="proceed_button"
+      class="button--secondary"
+    >
+      I really have to visit this site
+    </button>
+    <button
+      id="cancel_button"
+      class="button--primary"
+    >
+      I have changed my mind
+    </button>
+
+    <p id="support_us">
+      <a
+        href="https://www.paypal.me/andrejbilec/5"
+        target="_blank"
+        tabindex="-1"
+      > BUY ME A COFFEE </a>
+    </p>
+  </div>
 </template>
 
 <style>
