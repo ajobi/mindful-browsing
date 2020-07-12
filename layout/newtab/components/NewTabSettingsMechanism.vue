@@ -1,14 +1,13 @@
 <template>
   <div id="settings_mechanism">
     <h2> Your mindfulness approach: </h2>
-
     <div class="available-mechanisms">
-      <div id="mechanism_breathing" class="mechanism">
+      <div id="mechanism_breathing" class="mechanism" ref="mechanismBreathing">
         <h3>Mindful breathing</h3>
         <p>You will be asked to take <strong> <span></span> breaths</strong> before you will be allowed to visit distracting content. </p>
         <button class="button--primary">Customize</button>
       </div>
-      <div id="mechanism_challenge" class="mechanism mechanism--recommended">
+      <div id="mechanism_challenge" class="mechanism mechanism--recommended" ref="mechanismChallenge">
         <h3>Small challenge</h3>
         <p>You will be asked to re-type <strong> <span></span> characters </strong> of random text before you will be allowed to visit distracting content. </p>
         <button class="button--primary">Customize</button>
@@ -25,55 +24,40 @@
         required: true
       }
     },
-    watch: {
-      backgroundAPI: {
-        immediate: true,
-        handler(backgroundAPI) {
-          if (backgroundAPI === null) {
-            return
-          }
-
-          const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
-          const MECHANISM_BREATHING = SETTINGS_MECHANISM.querySelector('#mechanism_breathing')
-          const MECHANISM_CHALLENGE = SETTINGS_MECHANISM.querySelector('#mechanism_challenge')
-
-          const activeMechanism = this.backgroundAPI.SETTINGS.getters.getActiveMechanism()
-
-          switch (activeMechanism) {
-            case 'breathing':
-              setActiveMechanism('mechanism_breathing')
-              break
-            case 'challenge':
-              setActiveMechanism('mechanism_challenge')
-              break
-          }
-
-          MECHANISM_BREATHING.querySelector(
-            'span'
-          ).innerText = this.backgroundAPI.SETTINGS.getters.getBreathCount()
-          MECHANISM_CHALLENGE.querySelector(
-            'span'
-          ).innerText = this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
-
-          function setActiveMechanism (mechanismId) {
-            MECHANISM_BREATHING.classList.remove('mechanism--active')
-            MECHANISM_CHALLENGE.classList.remove('mechanism--active')
-
-            if (MECHANISM_BREATHING.id === mechanismId) {
-              MECHANISM_BREATHING.classList.add('mechanism--active')
-            }
-
-            if (MECHANISM_CHALLENGE.id === mechanismId) {
-              MECHANISM_CHALLENGE.classList.add('mechanism--active')
-            }
-          }
-        }
-      },
-    },
     mounted() {
-      const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
-      const MECHANISM_BREATHING = SETTINGS_MECHANISM.querySelector('#mechanism_breathing')
-      const MECHANISM_CHALLENGE = SETTINGS_MECHANISM.querySelector('#mechanism_challenge')
+      const MECHANISM_BREATHING = this.$refs.mechanismBreathing
+      const MECHANISM_CHALLENGE = this.$refs.mechanismChallenge
+
+      const activeMechanism = this.backgroundAPI.SETTINGS.getters.getActiveMechanism()
+
+      switch (activeMechanism) {
+        case 'breathing':
+          setActiveMechanism('mechanism_breathing')
+          break
+        case 'challenge':
+          setActiveMechanism('mechanism_challenge')
+          break
+      }
+
+      MECHANISM_BREATHING.querySelector(
+        'span'
+      ).innerText = this.backgroundAPI.SETTINGS.getters.getBreathCount()
+      MECHANISM_CHALLENGE.querySelector(
+        'span'
+      ).innerText = this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
+
+      function setActiveMechanism (mechanismId) {
+        MECHANISM_BREATHING.classList.remove('mechanism--active')
+        MECHANISM_CHALLENGE.classList.remove('mechanism--active')
+
+        if (MECHANISM_BREATHING.id === mechanismId) {
+          MECHANISM_BREATHING.classList.add('mechanism--active')
+        }
+
+        if (MECHANISM_CHALLENGE.id === mechanismId) {
+          MECHANISM_CHALLENGE.classList.add('mechanism--active')
+        }
+      }
 
       MECHANISM_BREATHING.addEventListener('click', () => {
         if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'breathing') {
