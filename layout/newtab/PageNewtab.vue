@@ -2,10 +2,10 @@
   <div>
     <h1 id="task_reminder">fsafsaf</h1>
     <PageNewtabLogo />
-    <PageNewtabTask :backgroundAPI="backgroundAPI" />
-    <PageNewtabDomains :backgroundAPI="backgroundAPI" />
-    <PageNewtabMechanism :backgroundAPI="backgroundAPI" />
-    <PageNewtabNotifications :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsTask :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsDomains :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsMechanism :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsNotifications :backgroundAPI="backgroundAPI" />
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
     <span id="focus_anchor" tabindex="1"></span>
@@ -14,18 +14,18 @@
 
 <script>
   import PageNewtabLogo from './PageNewtabLogo.vue';
-  import PageNewtabTask from './PageNewtabTask.vue'
-  import PageNewtabDomains from './PageNewtabDomains.vue'
-  import PageNewtabMechanism from './PageNewtabMechanism.vue'
-  import PageNewtabNotifications from './PageNewtabNotifications.vue'
+  import PageNewtabSettingsTask from './PageNewtabSettingsTask.vue'
+  import PageNewtabSettingsDomains from './PageNewtabSettingsDomains.vue'
+  import PageNewtabSettingsMechanism from './PageNewtabSettingsMechanism.vue'
+  import PageNewtabSettingsNotifications from './PageNewtabSettingsNotifications.vue'
 
   export default {
     components: {
       PageNewtabLogo,
-      PageNewtabTask,
-      PageNewtabDomains,
-      PageNewtabMechanism,
-      PageNewtabNotifications
+      PageNewtabSettingsTask,
+      PageNewtabSettingsDomains,
+      PageNewtabSettingsMechanism,
+      PageNewtabSettingsNotifications
     },
     data () {
       return {
