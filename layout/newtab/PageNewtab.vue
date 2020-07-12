@@ -46,18 +46,6 @@
           </div>
         </div>
       </div>
-
-      <div id="settings_notifications">
-        <h2> Notifications: </h2>
-
-        <p>If you end up on a distracting website anyways, you will be reminded <strong>every <span></span> seconds</strong>. </p>
-
-        <label>
-          notification sounds <input type="checkbox">
-        </label>
-
-        <button class="button--primary">Change Interval</button>
-      </div>
     </div>
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
