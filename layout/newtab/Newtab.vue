@@ -72,34 +72,33 @@
   import quotes from '../../assets/quotes.js'
 
   export default {
-    mounted() {
-      document.addEventListener('DOMContentLoaded', onDOMContentLoaded)
-
-      let backgroundAPI
-
-      function onDOMContentLoaded () {
-        chrome.runtime.getBackgroundPage(backgroundGlobal => {
-          backgroundAPI = backgroundGlobal.backgroundAPI
-
-          if (!backgroundAPI.SETTINGS.getters.areSettingsLoaded()) {
-            backgroundAPI.SETTINGS.load().then(() => {
-              initiateNewtab()
-            })
-          } else {
-            initiateNewtab()
-          }
-        })
+    data () {
+      return {
+        backgroundAPI: null
       }
-
-      function initiateNewtab () {
+    },
+    mounted() {
+      const initiateNewtab = () => {
         loadSettings()
         startSlideShow()
 
-        backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
+        this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
         window.addEventListener('unload', () => {
-          backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
+          this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
         })
       }
+
+      chrome.runtime.getBackgroundPage(backgroundGlobal => {
+        this.backgroundAPI = backgroundGlobal.backgroundAPI
+
+        if (!this.backgroundAPI.SETTINGS.getters.areSettingsLoaded()) {
+          this.backgroundAPI.SETTINGS.load().then(() => {
+            initiateNewtab()
+          })
+        } else {
+          initiateNewtab()
+        }
+      })
 
       function loadSettings () {
         // loadTaskReminder()
