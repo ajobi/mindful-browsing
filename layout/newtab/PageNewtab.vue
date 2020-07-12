@@ -24,13 +24,6 @@
     <PageNewtabNotifications :backgroundAPI="backgroundAPI" />
 
     <div>
-      <form id="settings_task">
-        <h2> Current task: </h2>
-        <label>In the following time frame, you would like <br>
-        <input type="text" size="50" class="input-text">
-        </label>
-      </form>
-
       <form id="settings_domains">
         <h2> Distracting domains: </h2>
         <input type="text" size="40" class="input-text">
@@ -129,6 +122,7 @@
       const SETTINGS_DOMAINS = document.getElementById('settings_domains')
       const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
       const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
+      const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
 
       const EMERGE_ANIMATION = '8s linear infinite alternate emerge'
 
