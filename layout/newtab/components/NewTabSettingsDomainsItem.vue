@@ -3,11 +3,14 @@
     <span>{{ domain.name }}</span>
     <input v-if="!domain.removeTimestamp" type="button" value="remove" class="button--secondary" @click="onRemove(domain.name)"/>
     <input v-else type="button" value="cancel" class="button--primary" @click="onCancelRemove(domain.name)"/>
-    <span class="removal-countdown"></span>
+    <span class="removal-countdown" v-if="domain.removeTimestamp">{{ removalCountdown }}</span>
   </li>
 </template>
 
 <script>
+
+  let removeInterval = null
+
   export default {
     props: {
       domain: {
@@ -19,23 +22,28 @@
         required: true
       }
     },
+    data () {
+      return {
+        removalCountdown: ''
+      }
+    },
     mounted() {
-      // if (blockedDomain.removeTimestamp) {
-      //   const currentTime = new Date().valueOf()
-      //   const timeDifferenceInSeconds = (blockedDomain.removeTimestamp - currentTime) / 1000
-      //   removalCountdown.innerText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
-      //
-      //   removeTimeouts.push(setInterval(() => {
-      //     const currentTime = new Date().valueOf()
-      //     const timeDifferenceInSeconds = (blockedDomain.removeTimestamp - currentTime) / 1000
-      //
-      //     if (timeDifferenceInSeconds > 1) {
-      //       removalCountdown.innerText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
-      //     } else {
-      //       this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(blockedDomain.name)
-      //     }
-      //   }, 1000))
-      // }
+      if (this.domain.removeTimestamp) {
+        const currentTime = new Date().valueOf()
+        const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+        this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+
+        removeInterval = setInterval(() => {
+          const currentTime = new Date().valueOf()
+          const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+
+          if (timeDifferenceInSeconds > 1) {
+            this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+          } else {
+            this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
+          }
+        }, 1000)
+      }
     },
     methods: {
       onRemove(domain) {
