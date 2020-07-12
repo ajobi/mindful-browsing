@@ -18,10 +18,10 @@
       </div>
     </div>
 
-    <PageNewtabTask />
-    <PageNewtabDomains />
-    <PageNewtabMechanism />
-    <PageNewtabNotifications />
+    <PageNewtabTask :backgroundAPI="backgroundAPI" />
+    <PageNewtabDomains :backgroundAPI="backgroundAPI" />
+    <PageNewtabMechanism :backgroundAPI="backgroundAPI" />
+    <PageNewtabNotifications :backgroundAPI="backgroundAPI" />
 
     <div>
       <form id="settings_task">
