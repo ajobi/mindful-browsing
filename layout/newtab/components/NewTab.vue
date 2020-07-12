@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 id="task_reminder" @click="nextView">fsafsaf</h1>
+    <h1 id="task_reminder" v-if="taskReminder" @click="nextView">{{ taskReminder }}</h1>
     <NewTabLogo v-if="activeView === 0"/>
     <NewTabSettingsTask v-if="activeView === 1" :backgroundAPI="backgroundAPI" />
     <NewTabSettingsDomains v-if="activeView === 2" :backgroundAPI="backgroundAPI" />
@@ -30,6 +30,7 @@
     data () {
       return {
         backgroundAPI: null,
+        taskReminder: '',
         activeView: 0,
       }
     },
@@ -40,10 +41,12 @@
     },
     mounted() {
       const loadSettings = () => {
-        console.log('On Settings changed')
+        this.taskReminder = `You have promised ${this.backgroundAPI.SETTINGS.getters.getActiveTask()}`
       }
 
       const initiateNewtab = () => {
+        loadSettings()
+
         this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
         window.addEventListener('unload', () => {
           this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)

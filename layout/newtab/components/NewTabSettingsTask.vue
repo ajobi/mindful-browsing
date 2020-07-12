@@ -28,10 +28,6 @@
             return
           }
 
-          const TASK_REMINDER = document.getElementById('task_reminder')
-          TASK_REMINDER.innerText = `You have promised ${backgroundAPI.SETTINGS.getters.getActiveTask()}`
-          TASK_REMINDER.style.display = 'inline-flex'
-
           this.inputText = ''
         }
       }
