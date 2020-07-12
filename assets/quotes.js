@@ -1,4 +1,4 @@
-const quotes = [
+export default [
   {
     text: 'A wind that blows aimlessly is no good to anyone.',
     author: 'Rick Riordan'

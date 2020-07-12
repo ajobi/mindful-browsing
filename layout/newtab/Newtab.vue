@@ -69,6 +69,8 @@
 </template>
 
 <script>
+  import quotes from '../../assets/quotes.js'
+
   export default {
     mounted() {
       document.addEventListener('DOMContentLoaded', onDOMContentLoaded)
