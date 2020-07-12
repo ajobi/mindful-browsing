@@ -19,6 +19,8 @@
 <script>
   import quotes from '../../assets/quotes.js'
 
+  let interval
+
   export default {
     mounted() {
       const EMERGE_ANIMATION = '8s linear infinite alternate emerge'
@@ -44,8 +46,6 @@
         LOGO.style.animation = EMERGE_ANIMATION
       }
 
-      let interval
-
       const NUMBER_OF_QUOTES = 1
 
       let counter = 0
@@ -62,6 +62,9 @@
 
       showNextSlide()
       interval = setInterval(showNextSlide, 16000)
+    },
+    beforeDestroy() {
+      clearInterval(interval)
     }
   };
 </script>

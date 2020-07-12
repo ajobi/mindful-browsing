@@ -67,16 +67,6 @@
         // loadMechanismSettings()
       }
 
-      // const TASK_REMINDER = document.getElementById('task_reminder')
-      // const LOGO = document.getElementById('logo')
-      // const QUOTE = document.getElementById('quote')
-      // const SETTINGS_TASK = document.getElementById('settings_task')
-      // const SETTINGS_DOMAINS = document.getElementById('settings_domains')
-      // const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
-      // const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
-      // const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
-      // const ADD_DOMAIN_INPUT = SETTINGS_DOMAINS.querySelector('input[type="text"]')
-
       // TASK_REMINDER.addEventListener('click', nextLayout)
       // document.addEventListener('keydown', onKeyDown)
       //
@@ -96,90 +86,6 @@
       //   if (event.keyCode === ESC_KEY_CODE) {
       //     displayLayout(DISP_0)
       //   }
-      // }
-
-      // function nextLayout () {
-      //   switch (SETTINGS_DISPLAY) {
-      //     case DISP_0:
-      //       displayLayout(DISP_1)
-      //       break
-      //     case DISP_1:
-      //       displayLayout(DISP_2)
-      //       break
-      //     case DISP_2:
-      //       displayLayout(DISP_3)
-      //       break
-      //     case DISP_3:
-      //       displayLayout(DISP_4)
-      //       break
-      //     case DISP_4:
-      //       displayLayout(DISP_0)
-      //       break
-      //   }
-      // }
-
-      // function displayLayout (displaySetting) {
-      //   hideAllSettings()
-      //   switch (displaySetting) {
-      //     case DISP_0:
-      //       displayReminderOnly()
-      //       break
-      //     case DISP_1:
-      //       displaySettingsTask()
-      //       break
-      //     case DISP_2:
-      //       displaySettingsDomains()
-      //       break
-      //     case DISP_3:
-      //       displaySettingsMechanism()
-      //       break
-      //     case DISP_4:
-      //       displaySettingsNotifications()
-      //       break
-      //   }
-      // }
-
-      // function hideAllSettings () {
-      //   LOGO.style.display = 'none'
-      //   QUOTE.style.display = 'none'
-      //   SETTINGS_TASK.style.display = 'none'
-      //   SETTINGS_DOMAINS.style.display = 'none'
-      //   SETTINGS_NOTIFICATIONS.style.display = 'none'
-      //   SETTINGS_MECHANISM.style.display = 'none'
-      // }
-
-      // function stopSlideShow () {
-      //   clearInterval(interval)
-      //   LOGO.style.display = 'none'
-      //   QUOTE.style.display = 'none'
-      // }
-
-      // function displayReminderOnly () {
-      //   SETTINGS_DISPLAY = DISP_0
-      //   startSlideShow()
-      // }
-      //
-      // function displaySettingsTask () {
-      //   stopSlideShow()
-      //   SETTINGS_DISPLAY = DISP_1
-      //   SETTINGS_TASK.style.display = 'block'
-      //   CURRENT_TASK_INPUT.focus()
-      // }
-      //
-      // function displaySettingsDomains () {
-      //   SETTINGS_DISPLAY = DISP_2
-      //   SETTINGS_DOMAINS.style.display = 'block'
-      //   ADD_DOMAIN_INPUT.focus()
-      // }
-      //
-      // function displaySettingsMechanism () {
-      //   SETTINGS_DISPLAY = DISP_3
-      //   SETTINGS_MECHANISM.style.display = 'block'
-      // }
-      //
-      // function displaySettingsNotifications () {
-      //   SETTINGS_DISPLAY = DISP_4
-      //   SETTINGS_NOTIFICATIONS.style.display = 'block'
       // }
     }
   }
