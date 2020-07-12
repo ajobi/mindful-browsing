@@ -29,23 +29,6 @@
         <input type="text" size="40" class="input-text">
         <ul class="domains-list"></ul>
       </form>
-
-      <div id="settings_mechanism">
-        <h2> Your mindfulness approach: </h2>
-
-        <div class="available-mechanisms">
-          <div id="mechanism_breathing" class="mechanism">
-            <h3>Mindful breathing</h3>
-            <p>You will be asked to take <strong> <span></span> breaths</strong> before you will be allowed to visit distracting content. </p>
-            <button class="button--primary">Customize</button>
-          </div>
-          <div id="mechanism_challenge" class="mechanism mechanism--recommended">
-            <h3>Small challenge</h3>
-            <p>You will be asked to re-type <strong> <span></span> characters </strong> of random text before you will be allowed to visit distracting content. </p>
-            <button class="button--primary">Customize</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
