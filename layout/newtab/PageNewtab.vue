@@ -23,14 +23,6 @@
     <PageNewtabMechanism :backgroundAPI="backgroundAPI" />
     <PageNewtabNotifications :backgroundAPI="backgroundAPI" />
 
-    <div>
-      <form id="settings_domains">
-        <h2> Distracting domains: </h2>
-        <input type="text" size="40" class="input-text">
-        <ul class="domains-list"></ul>
-      </form>
-    </div>
-
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
 
     <span id="focus_anchor" tabindex="1"></span>
@@ -94,6 +86,7 @@
       const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
       const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
       const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
+      const ADD_DOMAIN_INPUT = SETTINGS_DOMAINS.querySelector('input[type="text"]')
 
       const EMERGE_ANIMATION = '8s linear infinite alternate emerge'
 
