@@ -1,8 +1,8 @@
 <template>
-  <form id="settings_task">
+  <form id="settings_task" @submit.prevent="onSubmit">
     <h2> Current task: </h2>
     <label>In the following time frame, you would like <br>
-      <input type="text" size="50" class="input-text" ref="input">
+      <input type="text" size="50" class="input-text" ref="input" v-model="inputText">
     </label>
   </form>
 </template>
@@ -15,6 +15,11 @@
         required: true
       }
     },
+    data() {
+      return {
+        inputText: ''
+      }
+    },
     watch: {
       backgroundAPI: {
         immediate: true,
@@ -23,33 +28,26 @@
             return
           }
 
-          const SETTINGS_TASK = document.getElementById('settings_task')
-          const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
           const TASK_REMINDER = document.getElementById('task_reminder')
-
           TASK_REMINDER.innerText = `You have promised ${backgroundAPI.SETTINGS.getters.getActiveTask()}`
           TASK_REMINDER.style.display = 'inline-flex'
-          CURRENT_TASK_INPUT.value = ''
+
+          this.inputText = ''
         }
       }
     },
     mounted() {
       this.$refs.input.focus()
-
-      const SETTINGS_TASK = document.getElementById('settings_task')
-      const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
-
-      SETTINGS_TASK.addEventListener('submit', event => {
-        event.preventDefault()
-        const userInput = CURRENT_TASK_INPUT.value
-
-        if (!this.backgroundAPI.VALIDATORS.validators.validateActiveTask(userInput)) {
+    },
+    methods: {
+      onSubmit() {
+        if (!this.backgroundAPI.VALIDATORS.validators.validateActiveTask(this.inputText)) {
           alert(this.backgroundAPI.VALIDATORS.errorMessages.errorActiveTask())
           return
         }
 
-        this.backgroundAPI.SETTINGS.mutations.setActiveTask(userInput)
-      })
+        this.backgroundAPI.SETTINGS.mutations.setActiveTask(this.inputText)
+      }
     }
   }
 </script>
