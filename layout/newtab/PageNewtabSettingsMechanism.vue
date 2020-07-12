@@ -121,10 +121,6 @@
 </script>
 
 <style>
-  #settings_mechanism {
-    display: none;
-  }
-
   .available-mechanisms {
     display: flex;
     justify-content: center;

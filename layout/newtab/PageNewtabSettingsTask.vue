@@ -53,10 +53,6 @@
 </script>
 
 <style>
-  #settings_task {
-    display: none;
-  }
-
   #settings_task input[type='text'] {
     margin-top: 15px;
   }

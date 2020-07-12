@@ -133,10 +133,6 @@
 </script>
 
 <style>
-  #settings_domains {
-    display: none;
-  }
-
   .domains-list {
     padding: 0;
     margin: 25px auto 0 auto;

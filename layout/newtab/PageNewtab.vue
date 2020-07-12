@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1 id="task_reminder">fsafsaf</h1>
-    <PageNewtabLogo />
-    <PageNewtabSettingsTask :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsDomains :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsMechanism :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsNotifications :backgroundAPI="backgroundAPI" />
+    <h1 id="task_reminder" @click="nextView">fsafsaf</h1>
+    <PageNewtabLogo v-show="activeView === 0"/>
+    <PageNewtabSettingsTask v-show="activeView === 1" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsDomains v-show="activeView === 2" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsMechanism v-show="activeView === 3" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsNotifications v-show="activeView === 4" :backgroundAPI="backgroundAPI" />
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
     <span id="focus_anchor" tabindex="1"></span>
@@ -29,7 +29,13 @@
     },
     data () {
       return {
-        backgroundAPI: null
+        backgroundAPI: null,
+        activeView: 0,
+      }
+    },
+    methods: {
+      nextView() {
+        this.activeView < 4 ? this.activeView++ : this.activeView = 0
       }
     },
     mounted() {
@@ -61,127 +67,120 @@
         // loadMechanismSettings()
       }
 
-      const TASK_REMINDER = document.getElementById('task_reminder')
-      const LOGO = document.getElementById('logo')
-      const QUOTE = document.getElementById('quote')
-      const SETTINGS_TASK = document.getElementById('settings_task')
-      const SETTINGS_DOMAINS = document.getElementById('settings_domains')
-      const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
-      const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
-      const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
-      const ADD_DOMAIN_INPUT = SETTINGS_DOMAINS.querySelector('input[type="text"]')
+      // const TASK_REMINDER = document.getElementById('task_reminder')
+      // const LOGO = document.getElementById('logo')
+      // const QUOTE = document.getElementById('quote')
+      // const SETTINGS_TASK = document.getElementById('settings_task')
+      // const SETTINGS_DOMAINS = document.getElementById('settings_domains')
+      // const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
+      // const SETTINGS_MECHANISM = document.getElementById('settings_mechanism')
+      // const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
+      // const ADD_DOMAIN_INPUT = SETTINGS_DOMAINS.querySelector('input[type="text"]')
 
-      TASK_REMINDER.addEventListener('click', nextLayout)
-      document.addEventListener('keydown', onKeyDown)
+      // TASK_REMINDER.addEventListener('click', nextLayout)
+      // document.addEventListener('keydown', onKeyDown)
+      //
+      // let SETTINGS_DISPLAY = DISP_0
 
-      const DISP_0 = 'DISP_0'
-      const DISP_1 = 'DISP_1'
-      const DISP_2 = 'DISP_2'
-      const DISP_3 = 'DISP_3'
-      const DISP_4 = 'DISP_4'
+      // function onKeyDown (event) {
+      //   const TAB_KEY_CODE = 9
+      //   const ESC_KEY_CODE = 27
+      //
+      //   if (event.keyCode === TAB_KEY_CODE) {
+      //     if (SETTINGS_DISPLAY !== DISP_4) {
+      //       event.preventDefault()
+      //     }
+      //     nextLayout()
+      //   }
+      //
+      //   if (event.keyCode === ESC_KEY_CODE) {
+      //     displayLayout(DISP_0)
+      //   }
+      // }
 
-      let SETTINGS_DISPLAY = DISP_0
+      // function nextLayout () {
+      //   switch (SETTINGS_DISPLAY) {
+      //     case DISP_0:
+      //       displayLayout(DISP_1)
+      //       break
+      //     case DISP_1:
+      //       displayLayout(DISP_2)
+      //       break
+      //     case DISP_2:
+      //       displayLayout(DISP_3)
+      //       break
+      //     case DISP_3:
+      //       displayLayout(DISP_4)
+      //       break
+      //     case DISP_4:
+      //       displayLayout(DISP_0)
+      //       break
+      //   }
+      // }
 
-      function onKeyDown (event) {
-        const TAB_KEY_CODE = 9
-        const ESC_KEY_CODE = 27
+      // function displayLayout (displaySetting) {
+      //   hideAllSettings()
+      //   switch (displaySetting) {
+      //     case DISP_0:
+      //       displayReminderOnly()
+      //       break
+      //     case DISP_1:
+      //       displaySettingsTask()
+      //       break
+      //     case DISP_2:
+      //       displaySettingsDomains()
+      //       break
+      //     case DISP_3:
+      //       displaySettingsMechanism()
+      //       break
+      //     case DISP_4:
+      //       displaySettingsNotifications()
+      //       break
+      //   }
+      // }
 
-        if (event.keyCode === TAB_KEY_CODE) {
-          if (SETTINGS_DISPLAY !== DISP_4) {
-            event.preventDefault()
-          }
-          nextLayout()
-        }
+      // function hideAllSettings () {
+      //   LOGO.style.display = 'none'
+      //   QUOTE.style.display = 'none'
+      //   SETTINGS_TASK.style.display = 'none'
+      //   SETTINGS_DOMAINS.style.display = 'none'
+      //   SETTINGS_NOTIFICATIONS.style.display = 'none'
+      //   SETTINGS_MECHANISM.style.display = 'none'
+      // }
 
-        if (event.keyCode === ESC_KEY_CODE) {
-          displayLayout(DISP_0)
-        }
-      }
+      // function stopSlideShow () {
+      //   clearInterval(interval)
+      //   LOGO.style.display = 'none'
+      //   QUOTE.style.display = 'none'
+      // }
 
-      function nextLayout () {
-        switch (SETTINGS_DISPLAY) {
-          case DISP_0:
-            displayLayout(DISP_1)
-            break
-          case DISP_1:
-            displayLayout(DISP_2)
-            break
-          case DISP_2:
-            displayLayout(DISP_3)
-            break
-          case DISP_3:
-            displayLayout(DISP_4)
-            break
-          case DISP_4:
-            displayLayout(DISP_0)
-            break
-        }
-      }
-
-      function displayLayout (displaySetting) {
-        hideAllSettings()
-        switch (displaySetting) {
-          case DISP_0:
-            displayReminderOnly()
-            break
-          case DISP_1:
-            displaySettingsTask()
-            break
-          case DISP_2:
-            displaySettingsDomains()
-            break
-          case DISP_3:
-            displaySettingsMechanism()
-            break
-          case DISP_4:
-            displaySettingsNotifications()
-            break
-        }
-      }
-
-      function hideAllSettings () {
-        LOGO.style.display = 'none'
-        QUOTE.style.display = 'none'
-        SETTINGS_TASK.style.display = 'none'
-        SETTINGS_DOMAINS.style.display = 'none'
-        SETTINGS_NOTIFICATIONS.style.display = 'none'
-        SETTINGS_MECHANISM.style.display = 'none'
-      }
-
-      function stopSlideShow () {
-        clearInterval(interval)
-        LOGO.style.display = 'none'
-        QUOTE.style.display = 'none'
-      }
-
-      function displayReminderOnly () {
-        SETTINGS_DISPLAY = DISP_0
-        startSlideShow()
-      }
-
-      function displaySettingsTask () {
-        stopSlideShow()
-        SETTINGS_DISPLAY = DISP_1
-        SETTINGS_TASK.style.display = 'block'
-        CURRENT_TASK_INPUT.focus()
-      }
-
-      function displaySettingsDomains () {
-        SETTINGS_DISPLAY = DISP_2
-        SETTINGS_DOMAINS.style.display = 'block'
-        ADD_DOMAIN_INPUT.focus()
-      }
-
-      function displaySettingsMechanism () {
-        SETTINGS_DISPLAY = DISP_3
-        SETTINGS_MECHANISM.style.display = 'block'
-      }
-
-      function displaySettingsNotifications () {
-        SETTINGS_DISPLAY = DISP_4
-        SETTINGS_NOTIFICATIONS.style.display = 'block'
-      }
-
+      // function displayReminderOnly () {
+      //   SETTINGS_DISPLAY = DISP_0
+      //   startSlideShow()
+      // }
+      //
+      // function displaySettingsTask () {
+      //   stopSlideShow()
+      //   SETTINGS_DISPLAY = DISP_1
+      //   SETTINGS_TASK.style.display = 'block'
+      //   CURRENT_TASK_INPUT.focus()
+      // }
+      //
+      // function displaySettingsDomains () {
+      //   SETTINGS_DISPLAY = DISP_2
+      //   SETTINGS_DOMAINS.style.display = 'block'
+      //   ADD_DOMAIN_INPUT.focus()
+      // }
+      //
+      // function displaySettingsMechanism () {
+      //   SETTINGS_DISPLAY = DISP_3
+      //   SETTINGS_MECHANISM.style.display = 'block'
+      // }
+      //
+      // function displaySettingsNotifications () {
+      //   SETTINGS_DISPLAY = DISP_4
+      //   SETTINGS_NOTIFICATIONS.style.display = 'block'
+      // }
     }
   }
 </script>

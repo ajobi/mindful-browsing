@@ -67,10 +67,6 @@
 </script>
 
 <style>
-  #settings_notifications {
-    display: none;
-  }
-
   #settings_notifications p {
     margin-bottom: 10px;
   }
