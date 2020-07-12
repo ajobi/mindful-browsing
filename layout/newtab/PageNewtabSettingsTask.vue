@@ -2,7 +2,7 @@
   <form id="settings_task">
     <h2> Current task: </h2>
     <label>In the following time frame, you would like <br>
-      <input type="text" size="50" class="input-text">
+      <input type="text" size="50" class="input-text" ref="input">
     </label>
   </form>
 </template>
@@ -34,6 +34,8 @@
       }
     },
     mounted() {
+      this.$refs.input.focus()
+
       const SETTINGS_TASK = document.getElementById('settings_task')
       const CURRENT_TASK_INPUT = SETTINGS_TASK.querySelector('input[type="text"]')
 

@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1 id="task_reminder" @click="nextView">fsafsaf</h1>
-    <PageNewtabLogo v-show="activeView === 0"/>
-    <PageNewtabSettingsTask v-show="activeView === 1" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsDomains v-show="activeView === 2" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsMechanism v-show="activeView === 3" :backgroundAPI="backgroundAPI" />
-    <PageNewtabSettingsNotifications v-show="activeView === 4" :backgroundAPI="backgroundAPI" />
+    <PageNewtabLogo v-if="activeView === 0"/>
+    <PageNewtabSettingsTask v-if="activeView === 1" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsDomains v-if="activeView === 2" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsMechanism v-if="activeView === 3" :backgroundAPI="backgroundAPI" />
+    <PageNewtabSettingsNotifications v-if="activeView === 4" :backgroundAPI="backgroundAPI" />
 
     <p id="support_us"><a href="https://www.paypal.me/andrejbilec/5" target="_blank" tabindex="-1"> BUY ME A COFFEE </a></p>
     <span id="focus_anchor" tabindex="1"></span>

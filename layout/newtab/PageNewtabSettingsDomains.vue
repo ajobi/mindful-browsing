@@ -1,7 +1,7 @@
 <template>
   <form id="settings_domains">
     <h2> Distracting domains: </h2>
-    <input type="text" size="40" class="input-text">
+    <input type="text" size="40" class="input-text" ref="input">
     <ul class="domains-list"></ul>
   </form>
 </template>
@@ -107,6 +107,8 @@
       },
     },
     mounted() {
+      this.$refs.input.focus()
+
       const SETTINGS_DOMAINS = document.getElementById('settings_domains')
       const ADD_DOMAIN_INPUT = SETTINGS_DOMAINS.querySelector('input[type="text"]')
 
