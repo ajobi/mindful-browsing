@@ -1,3 +1,96 @@
 <template>
   <div>Warning</div>
 </template>
+
+<style>
+  @import "../../../assets/css/main.css";
+
+  #warning_panel {
+    padding: 16vh 0 13vh;
+    margin-bottom: 5vh;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+
+  #warning_panel h1 {
+    margin-bottom: 10px;
+  }
+
+  #warning_panel h2 {
+    font-size: var(--font-20);
+  }
+
+  #try_again {
+    display: none;
+    cursor: pointer;
+  }
+
+  #breath_guide {
+    display: none;
+    line-height: 30px;
+    user-select: none;
+    font-size: var(--font-32);
+    animation: fontbulger 8s infinite;
+  }
+
+  #challenge_task {
+    display: none;
+  }
+
+  #challenge_task h2 {
+    margin-bottom: 25px;
+  }
+
+  #challenge_string_wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  #challenge_string {
+    user-select: none;
+    color: var(--col-primary-50);
+    margin-bottom: 15px;
+    font-size: var(--font-18);
+  }
+
+  #correct_input {
+    user-select: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: var(--font-18);
+  }
+
+  #proceed_button {
+    display: none;
+  }
+
+  #visit_button {
+    position: relative;
+  }
+
+  #proceed_button {
+    position: relative;
+  }
+
+  #challenge_input {
+    text-align: center;
+  }
+
+  button {
+    height: 36px;
+    width: 310px;
+    margin: 0 5px;
+  }
+
+  @keyframes fontbulger {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+  }
+</style>
