@@ -22,7 +22,10 @@
         :background-a-p-i="backgroundAPI"
       />
     </ul>
-    <p v-else>
+    <p
+      v-else
+      class="no-domains"
+    >
       No distracting domains yet!
     </p>
   </form>
@@ -95,5 +98,9 @@ export default {
     margin: 25px auto 0 auto;
     width: 500px;
     list-style: none;
+  }
+
+  .no-domains {
+    margin-top: 25px;
   }
 </style>
