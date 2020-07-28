@@ -22,6 +22,9 @@ const SETTINGS = (function () {
     areSettingsLoaded () {
       return !!settings
     },
+    getSettings () {
+      return settings
+    },
     getActiveTask () {
       return settings.userSettings.activeTask.value
     },

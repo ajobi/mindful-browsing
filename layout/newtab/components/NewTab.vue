@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1
-      v-if="taskReminder"
+      v-if="settings.userSettings.activeTask.value"
       id="task_reminder"
       @click="nextView"
     >
-      {{ taskReminder }}
+      {{ `You have promised ${settings.userSettings.activeTask.value}` }}
     </h1>
     <NewTabLogo v-if="activeView === 0" />
     <NewTabSettingsTask
@@ -56,14 +56,14 @@ export default {
   },
   data () {
     return {
+      settings: null,
       backgroundAPI: null,
-      taskReminder: '',
       activeView: 0
     }
   },
   mounted () {
     const loadSettings = () => {
-      this.taskReminder = `You have promised ${this.backgroundAPI.SETTINGS.getters.getActiveTask()}`
+      this.settings = this.backgroundAPI.SETTINGS.getters.getSettings()
     }
 
     const initiateNewtab = () => {
