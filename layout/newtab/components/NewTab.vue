@@ -1,12 +1,9 @@
 <template>
   <div>
-    <h1
-      v-if="settings.userSettings.activeTask.value"
-      id="task_reminder"
-      @click="nextView"
-    >
-      {{ `You have promised ${settings.userSettings.activeTask.value}` }}
-    </h1>
+    <NewTabTask
+      :settings="settings"
+      @click.native="nextView"
+    />
     <NewTabLogo v-if="activeView === 0" />
     <NewTabSettingsTask
       v-if="activeView === 1"
@@ -40,6 +37,7 @@
 </template>
 
 <script>
+import NewTabTask from './NewTabTask.vue'
 import NewTabLogo from './NewTabLogo.vue'
 import NewTabSettingsTask from './NewTabSettingsTask.vue'
 import NewTabSettingsDomains from './NewTabSettingsDomains.vue'
@@ -48,6 +46,7 @@ import NewTabSettingsNotifications from './NewTabSettingsNotifications.vue'
 
 export default {
   components: {
+    NewTabTask,
     NewTabLogo,
     NewTabSettingsTask,
     NewTabSettingsDomains,
@@ -113,12 +112,6 @@ export default {
 
 <style>
   @import "../../../assets/css/main.css";
-
-  #task_reminder {
-    user-select: none;
-    cursor: pointer;
-    padding: 13vh 40px 12vh;
-  }
 
   h2 {
     text-transform: uppercase;
