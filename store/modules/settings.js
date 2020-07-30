@@ -32,6 +32,15 @@ const getters = {
   },
   getBlockedDomains (state) {
     return state.settings && state.settings.userSettings.blockedDomains.value
+  },
+  getActiveMechanism (state) {
+    return state.settings && state.settings.userSettings.activeMechanism.value
+  },
+  getBreathCount (state) {
+    return state.settings && state.settings.userSettings.breathCount.value
+  },
+  getChallengeDifficulty (state) {
+    return state.settings && state.settings.userSettings.challengeDifficulty.value
   }
 }
 

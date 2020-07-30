@@ -6,9 +6,10 @@
         id="mechanism_breathing"
         ref="mechanismBreathing"
         class="mechanism"
+        :class="{'mechanism--active': activeMechanism === 'breathing'}"
       >
         <h3>Mindful breathing</h3>
-        <p>You will be asked to take <strong> <span /> breaths</strong> before you will be allowed to visit distracting content. </p>
+        <p>You will be asked to take <strong> {{ breathCount }} breaths</strong> before you will be allowed to visit distracting content. </p>
         <button class="button--primary">
           Customize
         </button>
@@ -17,9 +18,10 @@
         id="mechanism_challenge"
         ref="mechanismChallenge"
         class="mechanism mechanism--recommended"
+        :class="{'mechanism--active': activeMechanism === 'challenge'}"
       >
         <h3>Small challenge</h3>
-        <p>You will be asked to re-type <strong> <span /> characters </strong> of random text before you will be allowed to visit distracting content. </p>
+        <p>You will be asked to re-type <strong> {{ challengeDifficulty }} characters </strong> of random text before you will be allowed to visit distracting content. </p>
         <button class="button--primary">
           Customize
         </button>
@@ -36,49 +38,29 @@ export default {
       required: true
     }
   },
+  computed: {
+    activeMechanism () {
+      return this.$store.getters['settings/getActiveMechanism']
+    },
+    breathCount () {
+      return this.$store.getters['settings/getBreathCount']
+    },
+    challengeDifficulty () {
+      return this.$store.getters['settings/getChallengeDifficulty']
+    }
+  },
   mounted () {
     const MECHANISM_BREATHING = this.$refs.mechanismBreathing
     const MECHANISM_CHALLENGE = this.$refs.mechanismChallenge
 
-    const activeMechanism = this.backgroundAPI.SETTINGS.getters.getActiveMechanism()
-
-    switch (activeMechanism) {
-      case 'breathing':
-        setActiveMechanism('mechanism_breathing')
-        break
-      case 'challenge':
-        setActiveMechanism('mechanism_challenge')
-        break
-    }
-
-    MECHANISM_BREATHING.querySelector(
-      'span'
-    ).innerText = this.backgroundAPI.SETTINGS.getters.getBreathCount()
-    MECHANISM_CHALLENGE.querySelector(
-      'span'
-    ).innerText = this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
-
-    function setActiveMechanism (mechanismId) {
-      MECHANISM_BREATHING.classList.remove('mechanism--active')
-      MECHANISM_CHALLENGE.classList.remove('mechanism--active')
-
-      if (MECHANISM_BREATHING.id === mechanismId) {
-        MECHANISM_BREATHING.classList.add('mechanism--active')
-      }
-
-      if (MECHANISM_CHALLENGE.id === mechanismId) {
-        MECHANISM_CHALLENGE.classList.add('mechanism--active')
-      }
-    }
-
     MECHANISM_BREATHING.addEventListener('click', () => {
-      if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'breathing') {
+      if (this.activeMechanism !== 'breathing') {
         this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('breathing')
       }
     })
 
     MECHANISM_CHALLENGE.addEventListener('click', () => {
-      if (this.backgroundAPI.SETTINGS.getters.getActiveMechanism() !== 'challenge') {
+      if (this.activeMechanism !== 'challenge') {
         this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('challenge')
       }
     })
