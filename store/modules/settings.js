@@ -41,6 +41,12 @@ const getters = {
   },
   getChallengeDifficulty (state) {
     return state.settings && state.settings.userSettings.challengeDifficulty.value
+  },
+  getNotificationInterval (state) {
+    return state.settings && state.settings.userSettings.notificationInterval.value
+  },
+  getSoundsAllowed (state) {
+    return state.settings && state.settings.userSettings.soundsAllowed.value
   }
 }
 

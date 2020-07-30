@@ -2,10 +2,13 @@
   <div id="settings_notifications">
     <h2> Notifications: </h2>
 
-    <p>If you end up on a distracting website anyways, you will be reminded <strong>every <span /> seconds</strong>. </p>
+    <p>If you end up on a distracting website anyways, you will be reminded <strong>every {{ notificationInterval }} seconds</strong>. </p>
 
     <label>
-      notification sounds <input type="checkbox">
+      notification sounds <input
+        type="checkbox"
+        :checked="soundsAllowed"
+      >
     </label>
 
     <button class="button--primary">
@@ -22,15 +25,18 @@ export default {
       required: true
     }
   },
+  computed: {
+    notificationInterval () {
+      return this.$store.getters['settings/getNotificationInterval']
+    },
+    soundsAllowed () {
+      return this.$store.getters['settings/getSoundsAllowed']
+    }
+  },
   mounted () {
     const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
     const SOUNDS_ALLOWED_CHECKBOX = SETTINGS_NOTIFICATIONS.querySelector('input[type="checkbox"')
     const CUSTOMIZE_NOTIFICATIONS = SETTINGS_NOTIFICATIONS.querySelector('button')
-
-    SETTINGS_NOTIFICATIONS.querySelector(
-      'span'
-    ).innerText = this.backgroundAPI.SETTINGS.getters.getNotificationInterval()
-    SOUNDS_ALLOWED_CHECKBOX.checked = this.backgroundAPI.SETTINGS.getters.getSoundsAllowed()
 
     SOUNDS_ALLOWED_CHECKBOX.addEventListener('click', () => {
       this.backgroundAPI.SETTINGS.mutations.setSoundsAllowed(SOUNDS_ALLOWED_CHECKBOX.checked)
