@@ -1,18 +1,17 @@
 <template>
   <h1
-    v-if="settings.userSettings.activeTask.value"
+    v-if="activeTask"
     id="task_reminder"
   >
-    {{ `You have promised ${settings.userSettings.activeTask.value}` }}
+    {{ `You have promised ${activeTask}` }}
   </h1>
 </template>
 
 <script>
 export default {
-  props: {
-    settings: {
-      type: Object,
-      required: true
+  computed: {
+    activeTask () {
+      return this.$store.getters['settings/getActiveTask']
     }
   }
 }

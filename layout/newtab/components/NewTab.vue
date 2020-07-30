@@ -1,9 +1,6 @@
 <template>
   <div>
-    <NewTabTask
-      :settings="settings"
-      @click.native="nextView"
-    />
+    <NewTabTask @click.native="nextView" />
     <NewTabLogo v-if="activeView === 0" />
     <NewTabSettingsTask
       v-if="activeView === 1"
@@ -61,28 +58,28 @@ export default {
     }
   },
   mounted () {
-    const loadSettings = () => {
-      this.settings = this.backgroundAPI.SETTINGS.getters.getSettings()
-    }
+    // const loadSettings = () => {
+    //   this.settings = this.backgroundAPI.SETTINGS.getters.getSettings()
+    // }
 
-    const initiateNewtab = () => {
-      loadSettings()
-
-      this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
-      window.addEventListener('unload', () => {
-        this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
-      })
-    }
+    // const initiateNewtab = () => {
+    //   loadSettings()
+    //
+    //   this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
+    //   window.addEventListener('unload', () => {
+    //     this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
+    //   })
+    // }
 
     chrome.runtime.getBackgroundPage(backgroundGlobal => {
       this.backgroundAPI = backgroundGlobal.backgroundAPI
 
       if (!this.backgroundAPI.SETTINGS.getters.areSettingsLoaded()) {
         this.backgroundAPI.SETTINGS.load().then(() => {
-          initiateNewtab()
+          // initiateNewtab()
         })
       } else {
-        initiateNewtab()
+        // initiateNewtab()
       }
     })
 
