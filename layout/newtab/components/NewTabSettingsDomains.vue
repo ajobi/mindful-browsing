@@ -48,8 +48,12 @@ export default {
   },
   data () {
     return {
-      inputText: '',
-      blockedDomains: []
+      inputText: ''
+    }
+  },
+  computed: {
+    blockedDomains () {
+      return this.$store.getters['settings/getBlockedDomains']
     }
   },
   watch: {
@@ -65,9 +69,6 @@ export default {
         }
 
         removeTimeouts = []
-
-        this.inputText = ''
-        this.blockedDomains = this.backgroundAPI.SETTINGS.getters.getBlockedDomains()
       }
     }
   },
@@ -87,6 +88,7 @@ export default {
       }
 
       this.backgroundAPI.SETTINGS.mutations.addBlockedDomain(this.backgroundAPI.URL.domainNameFromUrl(this.inputText))
+      this.inputText = ''
     }
   }
 }

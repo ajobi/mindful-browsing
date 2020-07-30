@@ -29,6 +29,9 @@ const actions = {
 const getters = {
   getActiveTask (state) {
     return state.settings && state.settings.userSettings.activeTask.value
+  },
+  getBlockedDomains (state) {
+    return state.settings && state.settings.userSettings.blockedDomains.value
   }
 }
 
