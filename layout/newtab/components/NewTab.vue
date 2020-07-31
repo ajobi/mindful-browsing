@@ -58,50 +58,33 @@ export default {
     }
   },
   mounted () {
-    // const loadSettings = () => {
-    //   this.settings = this.backgroundAPI.SETTINGS.getters.getSettings()
-    // }
-
-    // const initiateNewtab = () => {
-    //   loadSettings()
-    //
-    //   this.backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
-    //   window.addEventListener('unload', () => {
-    //     this.backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
-    //   })
-    // }
-
-    chrome.runtime.getBackgroundPage(backgroundGlobal => {
-      this.backgroundAPI = backgroundGlobal.backgroundAPI
-
-      if (!this.backgroundAPI.SETTINGS.getters.areSettingsLoaded()) {
-        this.backgroundAPI.SETTINGS.load().then(() => {
-          // initiateNewtab()
-        })
-      } else {
-        // initiateNewtab()
-      }
-    })
-
-    document.addEventListener('keydown', (event) => {
-      const TAB_KEY_CODE = 9
-      const ESC_KEY_CODE = 27
-
-      if (event.keyCode === TAB_KEY_CODE) {
-        if (this.activeView !== 4) {
-          event.preventDefault()
-        }
-        this.nextView()
-      }
-
-      if (event.keyCode === ESC_KEY_CODE) {
-        this.activeView = 0
-      }
+    chrome.runtime.getBackgroundPage(backgroundGlobal => { this.backgroundAPI = backgroundGlobal.backgroundAPI })
+    window.addEventListener('keydown', this.onKeyDown)
+    this.$once('hook:destroy', () => {
+      window.removeEventListener('keydown', this.onKeyDown)
     })
   },
   methods: {
     nextView () {
-      this.activeView < 4 ? this.activeView++ : this.activeView = 0
+      this.activeView < 4 ? this.activeView++ : this.startView()
+    },
+    startView () {
+      this.activeView = 0
+    },
+    onKeyDown (event) {
+      const { keyCode } = event
+
+      // on tab pressed
+      if (keyCode === 9) {
+        event.preventDefault()
+        this.nextView()
+      }
+
+      // on esc pressed
+      if (keyCode === 27) {
+        event.preventDefault()
+        this.startView()
+      }
     }
   }
 }
