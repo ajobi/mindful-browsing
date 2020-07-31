@@ -12,6 +12,16 @@ const actions = {
   load ({ commit }, backgroundAPI) {
     commit('setSettings', backgroundAPI.SETTINGS.getters.getSettings())
   },
+  setActiveTask ({ rootState }, activeTask) {
+    const { VALIDATORS, SETTINGS } = rootState.backgroundAPI.backgroundAPI
+
+    if (!VALIDATORS.validators.validateActiveTask(activeTask)) {
+      alert(VALIDATORS.errorMessages.errorActiveTask())
+      return
+    }
+
+    SETTINGS.mutations.setActiveTask(activeTask)
+  },
   addBlockedDomain ({ rootState }, domainName) {
     const { VALIDATORS, SETTINGS, URL } = rootState.backgroundAPI.backgroundAPI
 

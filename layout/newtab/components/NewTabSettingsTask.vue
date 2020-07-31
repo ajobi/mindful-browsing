@@ -23,34 +23,13 @@ export default {
       inputText: ''
     }
   },
-  computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    }
-  },
-  watch: {
-    backgroundAPI: {
-      immediate: true,
-      handler (backgroundAPI) {
-        if (backgroundAPI === null) {
-          return
-        }
-
-        this.inputText = ''
-      }
-    }
-  },
   mounted () {
     this.$refs.input.focus()
   },
   methods: {
     onSubmit () {
-      if (!this.backgroundAPI.VALIDATORS.validators.validateActiveTask(this.inputText)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorActiveTask())
-        return
-      }
-
-      this.backgroundAPI.SETTINGS.mutations.setActiveTask(this.inputText)
+      this.$store.dispatch('settings/setActiveTask', this.inputText)
+      this.inputText = ''
     }
   }
 }
