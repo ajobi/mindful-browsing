@@ -33,9 +33,6 @@
 <script>
 export default {
   computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    },
     activeMechanism () {
       return this.$store.getters['settings/getActiveMechanism']
     },
