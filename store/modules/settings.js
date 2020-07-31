@@ -68,6 +68,19 @@ const actions = {
     }
 
     SETTINGS.mutations.setChallengeDifficulty(challengeDifficulty)
+  },
+  setSoundsAllowed ({ rootState }, soundsAllowed) {
+    rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.setSoundsAllowed(soundsAllowed)
+  },
+  setNotificationInterval ({ rootState }, notificationInterval) {
+    const { VALIDATORS, SETTINGS } = rootState.backgroundAPI.backgroundAPI
+
+    if (!VALIDATORS.validators.validateNotificationInterval(notificationInterval)) {
+      alert(VALIDATORS.errorMessages.errorNotificationInterval(notificationInterval))
+      return
+    }
+
+    SETTINGS.mutations.setNotificationInterval(notificationInterval)
   }
 }
 

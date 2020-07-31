@@ -32,11 +32,11 @@ export default {
   },
   mounted () {
     const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
-    const SOUNDS_ALLOWED_CHECKBOX = SETTINGS_NOTIFICATIONS.querySelector('input[type="checkbox"')
+    const SOUNDS_ALLOWED_CHECKBOX = SETTINGS_NOTIFICATIONS.querySelector('input[type="checkbox"]')
     const CUSTOMIZE_NOTIFICATIONS = SETTINGS_NOTIFICATIONS.querySelector('button')
 
     SOUNDS_ALLOWED_CHECKBOX.addEventListener('click', () => {
-      this.backgroundAPI.SETTINGS.mutations.setSoundsAllowed(SOUNDS_ALLOWED_CHECKBOX.checked)
+      this.$store.dispatch('settings/setSoundsAllowed', SOUNDS_ALLOWED_CHECKBOX.checked)
     })
 
     CUSTOMIZE_NOTIFICATIONS.addEventListener('click', () => {
@@ -46,12 +46,7 @@ export default {
         return
       }
 
-      if (!this.backgroundAPI.VALIDATORS.validators.validateNotificationInterval(interval)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorNotificationInterval(interval))
-        return
-      }
-
-      this.backgroundAPI.SETTINGS.mutations.setNotificationInterval(interval)
+      this.$store.dispatch('settings/setNotificationInterval', interval)
     })
   }
 }
