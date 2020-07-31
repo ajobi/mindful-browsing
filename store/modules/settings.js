@@ -36,6 +36,15 @@ const actions = {
     }
 
     SETTINGS.mutations.addBlockedDomain(URL.domainNameFromUrl(domainName))
+  },
+  removeBlockedDomain ({ rootState }, domainName) {
+    rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.removeBlockedDomain(domainName)
+  },
+  cancelRemoval ({ rootState }, domainName) {
+    rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.cancelRemoval(domainName)
+  },
+  deleteBlockedDomain ({ rootState }, domainName) {
+    rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(domainName)
   }
 }
 

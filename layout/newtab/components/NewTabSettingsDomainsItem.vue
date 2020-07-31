@@ -6,14 +6,14 @@
       type="button"
       value="remove"
       class="button--secondary"
-      @click="onRemove(domain.name)"
+      @click="onRemove"
     >
     <input
       v-else
       type="button"
       value="cancel"
       class="button--primary"
-      @click="onCancelRemove(domain.name)"
+      @click="onCancelRemove"
     >
     <span
       v-if="domain.removeTimestamp"
@@ -61,7 +61,7 @@ export default {
             if (timeDifferenceInSeconds > 1) {
               this.removalCountdownText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
             } else {
-              this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
+              this.$store.dispatch('settings/deleteBlockedDomain', this.domain.name)
             }
           }, 1000)
         }
@@ -72,11 +72,11 @@ export default {
     clearInterval(this.removeInterval)
   },
   methods: {
-    onRemove (domain) {
-      this.backgroundAPI.SETTINGS.mutations.removeBlockedDomain(domain)
+    onRemove () {
+      this.$store.dispatch('settings/removeBlockedDomain', this.domain.name)
     },
-    onCancelRemove (domain) {
-      this.backgroundAPI.SETTINGS.mutations.cancelRemoval(domain)
+    onCancelRemove () {
+      this.$store.dispatch('settings/cancelRemoval', this.domain.name)
     }
   }
 }
