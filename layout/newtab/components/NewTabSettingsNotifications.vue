@@ -4,14 +4,17 @@
 
     <p>If you end up on a distracting website anyways, you will be reminded <strong>every {{ notificationInterval }} seconds</strong>. </p>
 
-    <label>
+    <label @click="onSoundsAllowedClicked">
       notification sounds <input
         type="checkbox"
         :checked="soundsAllowed"
       >
     </label>
 
-    <button class="button--primary">
+    <button
+      class="button--primary"
+      @click="onEnterIntervalClicked"
+    >
       Change Interval
     </button>
   </div>
@@ -20,9 +23,6 @@
 <script>
 export default {
   computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    },
     notificationInterval () {
       return this.$store.getters['settings/getNotificationInterval']
     },
@@ -30,16 +30,11 @@ export default {
       return this.$store.getters['settings/getSoundsAllowed']
     }
   },
-  mounted () {
-    const SETTINGS_NOTIFICATIONS = document.getElementById('settings_notifications')
-    const SOUNDS_ALLOWED_CHECKBOX = SETTINGS_NOTIFICATIONS.querySelector('input[type="checkbox"]')
-    const CUSTOMIZE_NOTIFICATIONS = SETTINGS_NOTIFICATIONS.querySelector('button')
-
-    SOUNDS_ALLOWED_CHECKBOX.addEventListener('click', () => {
-      this.$store.dispatch('settings/setSoundsAllowed', SOUNDS_ALLOWED_CHECKBOX.checked)
-    })
-
-    CUSTOMIZE_NOTIFICATIONS.addEventListener('click', () => {
+  methods: {
+    onSoundsAllowedClicked () {
+      this.$store.dispatch('settings/setSoundsAllowed', !this.soundsAllowed)
+    },
+    onEnterIntervalClicked () {
       const interval = prompt('Enter the notification interval:')
 
       if (interval === null) {
@@ -47,7 +42,7 @@ export default {
       }
 
       this.$store.dispatch('settings/setNotificationInterval', interval)
-    })
+    }
   }
 }
 </script>
