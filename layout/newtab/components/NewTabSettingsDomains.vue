@@ -34,8 +34,6 @@
 <script>
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
 
-let removeTimeouts = []
-
 export default {
   components: {
     NewTabSettingsDomainsItem
@@ -51,22 +49,6 @@ export default {
     },
     blockedDomains () {
       return this.$store.getters['settings/getBlockedDomains']
-    }
-  },
-  watch: {
-    backgroundAPI: {
-      immediate: true,
-      handler (backgroundAPI) {
-        if (backgroundAPI === null) {
-          return
-        }
-
-        for (const interval of removeTimeouts) {
-          clearInterval(interval)
-        }
-
-        removeTimeouts = []
-      }
     }
   },
   mounted () {
