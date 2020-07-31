@@ -4,27 +4,31 @@
     <div class="available-mechanisms">
       <div
         id="mechanism_breathing"
-        ref="mechanismBreathing"
         class="mechanism"
         :class="{'mechanism--active': activeMechanism === 'breathing'}"
         @click="onBreathingSelected"
       >
         <h3>Mindful breathing</h3>
         <p>You will be asked to take <strong> {{ breathCount }} breaths</strong> before you will be allowed to visit distracting content. </p>
-        <button class="button--primary">
+        <button
+          class="button--primary"
+          @click="onBreathCountClicked"
+        >
           Customize
         </button>
       </div>
       <div
         id="mechanism_challenge"
-        ref="mechanismChallenge"
         class="mechanism mechanism--recommended"
         :class="{'mechanism--active': activeMechanism === 'challenge'}"
         @click="onChallengeSelected"
       >
         <h3>Small challenge</h3>
         <p>You will be asked to re-type <strong> {{ challengeDifficulty }} characters </strong> of random text before you will be allowed to visit distracting content. </p>
-        <button class="button--primary">
+        <button
+          class="button--primary"
+          @click="onChallengeDifficultyClicked"
+        >
           Customize
         </button>
       </div>
@@ -45,30 +49,6 @@ export default {
       return this.$store.getters['settings/getChallengeDifficulty']
     }
   },
-  mounted () {
-    const MECHANISM_BREATHING = this.$refs.mechanismBreathing
-    const MECHANISM_CHALLENGE = this.$refs.mechanismChallenge
-
-    MECHANISM_BREATHING.querySelector('button').addEventListener('click', () => {
-      const breathCount = prompt('Enter the number of breaths:')
-
-      if (breathCount === null) {
-        return
-      }
-
-      this.$store.dispatch('settings/setBreathCount', breathCount)
-    })
-
-    MECHANISM_CHALLENGE.querySelector('button').addEventListener('click', () => {
-      const challengeDifficulty = prompt('Enter the number of characters:')
-
-      if (challengeDifficulty === null) {
-        return
-      }
-
-      this.$store.dispatch('settings/setChallengeDifficulty', challengeDifficulty)
-    })
-  },
   methods: {
     onBreathingSelected () {
       if (this.activeMechanism !== 'breathing') {
@@ -79,6 +59,24 @@ export default {
       if (this.activeMechanism !== 'challenge') {
         this.$store.dispatch('settings/setActiveMechanism', 'challenge')
       }
+    },
+    onBreathCountClicked () {
+      const breathCount = prompt('Enter the number of breaths:')
+
+      if (breathCount === null) {
+        return
+      }
+
+      this.$store.dispatch('settings/setBreathCount', breathCount)
+    },
+    onChallengeDifficultyClicked () {
+      const challengeDifficulty = prompt('Enter the number of characters:')
+
+      if (challengeDifficulty === null) {
+        return
+      }
+
+      this.$store.dispatch('settings/setChallengeDifficulty', challengeDifficulty)
     }
   }
 }
