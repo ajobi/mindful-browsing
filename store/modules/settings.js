@@ -11,6 +11,21 @@ const mutations = {
 const actions = {
   load ({ commit }, backgroundAPI) {
     commit('setSettings', backgroundAPI.SETTINGS.getters.getSettings())
+  },
+  addBlockedDomain ({ rootState }, domainName) {
+    const { VALIDATORS, SETTINGS, URL } = rootState.backgroundAPI.backgroundAPI
+
+    if (!VALIDATORS.validators.validateDomainName(domainName)) {
+      alert(VALIDATORS.errorMessages.errorDomainName(domainName))
+      return
+    }
+
+    if (!VALIDATORS.validators.validateNewDomainName(domainName)) {
+      alert(VALIDATORS.errorMessages.errorExistingDomain(domainName))
+      return
+    }
+
+    SETTINGS.mutations.addBlockedDomain(URL.domainNameFromUrl(domainName))
   }
 }
 

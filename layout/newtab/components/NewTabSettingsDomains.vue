@@ -43,9 +43,6 @@ export default {
     }
   },
   computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    },
     blockedDomains () {
       return this.$store.getters['settings/getBlockedDomains']
     }
@@ -55,17 +52,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (!this.backgroundAPI.VALIDATORS.validators.validateDomainName(this.inputText)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorDomainName(this.inputText))
-        return
-      }
-
-      if (!this.backgroundAPI.VALIDATORS.validators.validateNewDomainName(this.inputText)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorExistingDomain(this.inputText))
-        return
-      }
-
-      this.backgroundAPI.SETTINGS.mutations.addBlockedDomain(this.backgroundAPI.URL.domainNameFromUrl(this.inputText))
+      this.$store.dispatch('settings/addBlockedDomain', this.inputText)
       this.inputText = ''
     }
   }
