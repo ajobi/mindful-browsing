@@ -1,3 +1,5 @@
 # mindful-browsing
 
-Chrome extension helping users minimize mindless browsing by interrupting their mindless habits and reminding them of their current goals.
+Chrome extension that saves your time and increases your productivity by interrupting your mindless browsing habits.
+
+Get Here: [Mindful Browsing](https://chrome.google.com/webstore/detail/mindful-browsing/cobldifbambmimppcfdgifkiccmdmakf)
