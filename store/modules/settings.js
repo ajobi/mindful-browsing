@@ -9,18 +9,6 @@ const mutations = {
 }
 
 const actions = {
-  init ({ dispatch }, backgroundAPI) {
-    const loadSettings = () => {
-      dispatch('load', backgroundAPI)
-    }
-
-    backgroundAPI.SETTINGS.onSettingsChanged.addListener(loadSettings)
-    window.addEventListener('unload', () => {
-      backgroundAPI.SETTINGS.onSettingsChanged.removeListener(loadSettings)
-    })
-
-    loadSettings()
-  },
   load ({ commit }, backgroundAPI) {
     commit('setSettings', backgroundAPI.SETTINGS.getters.getSettings())
   }
