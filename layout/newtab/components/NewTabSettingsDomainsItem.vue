@@ -18,13 +18,11 @@
     <span
       v-if="domain.removeTimestamp"
       class="removal-countdown"
-    >{{ removalCountdown }}</span>
+    >{{ removalCountdownText }}</span>
   </li>
 </template>
 
 <script>
-
-let removeInterval = null
 
 export default {
   props: {
@@ -35,7 +33,8 @@ export default {
   },
   data () {
     return {
-      removalCountdown: ''
+      removeInterval: null,
+      removalCountdownText: ''
     }
   },
   computed: {
@@ -43,23 +42,34 @@ export default {
       return this.$store.getters['backgroundAPI/getBackgroundAPI']
     }
   },
-  mounted () {
-    if (this.domain.removeTimestamp) {
-      const currentTime = new Date().valueOf()
-      const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
-      this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+  watch: {
+    domain: {
+      immediate: true,
+      deep: true,
+      handler (newValue) {
+        clearInterval(this.removeInterval)
 
-      removeInterval = setInterval(() => {
-        const currentTime = new Date().valueOf()
-        const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+        if (newValue.removeTimestamp) {
+          const currentTime = new Date().valueOf()
+          const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+          this.removalCountdownText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
 
-        if (timeDifferenceInSeconds > 1) {
-          this.removalCountdown = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
-        } else {
-          this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
+          this.removeInterval = setInterval(() => {
+            const currentTime = new Date().valueOf()
+            const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
+
+            if (timeDifferenceInSeconds > 1) {
+              this.removalCountdownText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+            } else {
+              this.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(this.domain.name)
+            }
+          }, 1000)
         }
-      }, 1000)
+      }
     }
+  },
+  beforeDestroy () {
+    clearInterval(this.removeInterval)
   },
   methods: {
     onRemove (domain) {
