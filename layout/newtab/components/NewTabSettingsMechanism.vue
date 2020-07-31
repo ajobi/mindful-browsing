@@ -52,13 +52,13 @@ export default {
 
     MECHANISM_BREATHING.addEventListener('click', () => {
       if (this.activeMechanism !== 'breathing') {
-        this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('breathing')
+        this.$store.dispatch('settings/setActiveMechanism', 'breathing')
       }
     })
 
     MECHANISM_CHALLENGE.addEventListener('click', () => {
       if (this.activeMechanism !== 'challenge') {
-        this.backgroundAPI.SETTINGS.mutations.setActiveMechanism('challenge')
+        this.$store.dispatch('settings/setActiveMechanism', 'challenge')
       }
     })
 
@@ -69,12 +69,7 @@ export default {
         return
       }
 
-      if (!this.backgroundAPI.VALIDATORS.validators.validateBreathCount(breathCount)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorBreathCount(breathCount))
-        return
-      }
-
-      this.backgroundAPI.SETTINGS.mutations.setBreathCount(breathCount)
+      this.$store.dispatch('settings/setBreathCount', breathCount)
     })
 
     MECHANISM_CHALLENGE.querySelector('button').addEventListener('click', () => {
@@ -84,12 +79,7 @@ export default {
         return
       }
 
-      if (!this.backgroundAPI.VALIDATORS.validators.validateChallengeDifficulty(challengeDifficulty)) {
-        alert(this.backgroundAPI.VALIDATORS.errorMessages.errorChallengeDifficulty(challengeDifficulty))
-        return
-      }
-
-      this.backgroundAPI.SETTINGS.mutations.setChallengeDifficulty(challengeDifficulty)
+      this.$store.dispatch('settings/setChallengeDifficulty', challengeDifficulty)
     })
   }
 }

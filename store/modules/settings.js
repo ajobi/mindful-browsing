@@ -45,6 +45,29 @@ const actions = {
   },
   deleteBlockedDomain ({ rootState }, domainName) {
     rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.deleteBlockedDomain(domainName)
+  },
+  setActiveMechanism ({ rootState }, activeMechanism) {
+    rootState.backgroundAPI.backgroundAPI.SETTINGS.mutations.setActiveMechanism(activeMechanism)
+  },
+  setBreathCount ({ rootState }, breathCount) {
+    const { VALIDATORS, SETTINGS } = rootState.backgroundAPI.backgroundAPI
+
+    if (!VALIDATORS.validators.validateBreathCount(breathCount)) {
+      alert(VALIDATORS.errorMessages.errorBreathCount(breathCount))
+      return
+    }
+
+    SETTINGS.mutations.setBreathCount(breathCount)
+  },
+  setChallengeDifficulty ({ rootState }, challengeDifficulty) {
+    const { VALIDATORS, SETTINGS } = rootState.backgroundAPI.backgroundAPI
+
+    if (!VALIDATORS.validators.validateChallengeDifficulty(challengeDifficulty)) {
+      alert(VALIDATORS.errorMessages.errorChallengeDifficulty(challengeDifficulty))
+      return
+    }
+
+    SETTINGS.mutations.setChallengeDifficulty(challengeDifficulty)
   }
 }
 
