@@ -2,22 +2,10 @@
   <div>
     <NewTabTask @click.native="nextView" />
     <NewTabLogo v-if="activeView === 0" />
-    <NewTabSettingsTask
-      v-if="activeView === 1"
-      :background-a-p-i="backgroundAPI"
-    />
-    <NewTabSettingsDomains
-      v-if="activeView === 2"
-      :background-a-p-i="backgroundAPI"
-    />
-    <NewTabSettingsMechanism
-      v-if="activeView === 3"
-      :background-a-p-i="backgroundAPI"
-    />
-    <NewTabSettingsNotifications
-      v-if="activeView === 4"
-      :background-a-p-i="backgroundAPI"
-    />
+    <NewTabSettingsTask v-if="activeView === 1" />
+    <NewTabSettingsDomains v-if="activeView === 2" />
+    <NewTabSettingsMechanism v-if="activeView === 3" />
+    <NewTabSettingsNotifications v-if="activeView === 4" />
 
     <p id="support_us">
       <a
@@ -52,13 +40,10 @@ export default {
   },
   data () {
     return {
-      settings: null,
-      backgroundAPI: null,
       activeView: 0
     }
   },
   mounted () {
-    chrome.runtime.getBackgroundPage(backgroundGlobal => { this.backgroundAPI = backgroundGlobal.backgroundAPI })
     window.addEventListener('keydown', this.onKeyDown)
     this.$once('hook:destroy', () => {
       window.removeEventListener('keydown', this.onKeyDown)

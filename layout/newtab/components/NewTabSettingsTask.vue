@@ -18,15 +18,14 @@
 
 <script>
 export default {
-  props: {
-    backgroundAPI: {
-      type: Object,
-      required: true
-    }
-  },
   data () {
     return {
       inputText: ''
+    }
+  },
+  computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
     }
   },
   watch: {

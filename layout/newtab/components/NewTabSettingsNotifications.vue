@@ -19,13 +19,10 @@
 
 <script>
 export default {
-  props: {
-    backgroundAPI: {
-      type: Object,
-      required: true
-    }
-  },
   computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    },
     notificationInterval () {
       return this.$store.getters['settings/getNotificationInterval']
     },

@@ -40,18 +40,15 @@ export default {
   components: {
     NewTabSettingsDomainsItem
   },
-  props: {
-    backgroundAPI: {
-      type: Object,
-      required: true
-    }
-  },
   data () {
     return {
       inputText: ''
     }
   },
   computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    },
     blockedDomains () {
       return this.$store.getters['settings/getBlockedDomains']
     }

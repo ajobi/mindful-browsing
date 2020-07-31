@@ -32,13 +32,10 @@
 
 <script>
 export default {
-  props: {
-    backgroundAPI: {
-      type: Object,
-      required: true
-    }
-  },
   computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    },
     activeMechanism () {
       return this.$store.getters['settings/getActiveMechanism']
     },
