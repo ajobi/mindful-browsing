@@ -58,20 +58,19 @@
 
 <script>
 export default {
+  computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    }
+  },
   mounted () {
-    chrome.runtime.onMessage.addListener(onMessage)
-    document.addEventListener('DOMContentLoaded', onDOMContentLoaded)
-
-    let myTabId
-    let myTargetUrl
-
-    function onMessage ({ id, data }) {
+    const onMessage = ({ id, data }) => {
       if (id === 'BLOCKED_TAB_FEED') {
         myTabId = data.tabId
         myTargetUrl = data.targetUrl
 
-        if (backgroundAPI.STORE.getters.getBreathingStatus(myTabId)) {
-          backgroundAPI.STORE.mutations.resetBreathing(myTabId)
+        if (this.backgroundAPI.STORE.getters.getBreathingStatus(myTabId)) {
+          this.backgroundAPI.STORE.mutations.resetBreathing(myTabId)
         }
 
         return
@@ -82,13 +81,10 @@ export default {
       }
     }
 
-    let backgroundAPI
+    chrome.runtime.onMessage.addListener(onMessage)
 
-    function onDOMContentLoaded () {
-      chrome.runtime.getBackgroundPage(backgroundGlobal => {
-        backgroundAPI = backgroundGlobal.backgroundAPI
-      })
-    }
+    let myTabId
+    let myTargetUrl
 
     const warningPanel = document.getElementById('warning_panel')
     const visitButton = document.getElementById('visit_button')
@@ -102,50 +98,50 @@ export default {
     const CORRECT_INPUT = document.getElementById('correct_input')
     const CHALLENGE_INPUT = document.getElementById('challenge_input')
 
-    visitButton.addEventListener('click', () => {
-      visitButton.style.display = 'none'
-      cancelButton.style.display = 'none'
-
-      switch (backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
-        case 'breathing':
-          return initiateBreathing()
-        case 'challenge':
-          return initiateChallenge()
-      }
-    })
-
     let breathingTimeout = null
 
-    function initiateBreathing () {
-      backgroundAPI.STORE.mutations.initiateBreathing(myTabId)
+    const initiateBreathing = () => {
+      this.backgroundAPI.STORE.mutations.initiateBreathing(myTabId)
 
       retryBreathing.style.display = 'none'
       BREATH_GUIDE.style.display = 'inline-flex'
 
       breathingTimeout = setTimeout(() => {
-        backgroundAPI.STORE.mutations.finishBreathing(myTabId)
+        this.backgroundAPI.STORE.mutations.finishBreathing(myTabId)
 
         proceedButton.style.display = 'initial'
         cancelButton.style.display = 'initial'
         BREATH_GUIDE.style.display = 'none'
-      }, 1000 * backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
+      }, 1000 * this.backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
     }
 
-    function interruptBreathing () {
-      backgroundAPI.STORE.mutations.interruptBreathing(myTabId)
+    const interruptBreathing = () => {
+      this.backgroundAPI.STORE.mutations.interruptBreathing(myTabId)
 
       retryBreathing.style.display = 'block'
       BREATH_GUIDE.style.display = 'none'
       clearTimeout(breathingTimeout)
     }
 
-    function initiateChallenge () {
+    const initiateChallenge = () => {
       CHALLENGE.style.display = 'block'
-      CHALLENGE_STRING.innerText = backgroundAPI.STRINGS.getChallengeString(
-        backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
+      CHALLENGE_STRING.innerText = this.backgroundAPI.STRINGS.getChallengeString(
+        this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
       )
       CHALLENGE_INPUT.focus()
     }
+
+    visitButton.addEventListener('click', () => {
+      visitButton.style.display = 'none'
+      cancelButton.style.display = 'none'
+
+      switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
+        case 'breathing':
+          return initiateBreathing()
+        case 'challenge':
+          return initiateChallenge()
+      }
+    })
 
     CHALLENGE_INPUT.addEventListener('input', event => {
       if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
