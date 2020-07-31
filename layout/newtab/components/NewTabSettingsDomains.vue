@@ -19,7 +19,6 @@
         v-for="domain in blockedDomains"
         :key="domain.name"
         :domain="domain"
-        :background-a-p-i="backgroundAPI"
       />
     </ul>
     <p

@@ -31,15 +31,16 @@ export default {
     domain: {
       type: Object,
       required: true
-    },
-    backgroundAPI: {
-      type: Object,
-      required: true
     }
   },
   data () {
     return {
       removalCountdown: ''
+    }
+  },
+  computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
     }
   },
   mounted () {
