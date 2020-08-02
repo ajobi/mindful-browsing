@@ -1,7 +1,11 @@
 <template>
   <div class="central-wrapper">
     <div id="quote_panel">
-      <div id="logo">
+      <div
+        v-if="displayed === 'logo'"
+        id="logo"
+        :class="{'animated': displayed === 'logo'}"
+      >
         <img
           src="/assets/logo/icon.svg"
           width="100px"
@@ -10,13 +14,17 @@
         <p>Change your browsing habits for good.</p>
       </div>
 
-      <blockquote id="quote">
+      <blockquote
+        v-if="displayed === 'quote'"
+        id="quote"
+        :class="{'animated': displayed === 'quote'}"
+      >
         <img
           src="/assets/quote.svg"
           width="50px"
         >
-        <p />
-        <span />
+        <p>{{ quote.text }}</p>
+        <span>{{ quote.author }}</span>
       </blockquote>
     </div>
   </div>
@@ -25,52 +33,32 @@
 <script>
 import quotes from '../../../assets/quotes.js'
 
-let interval
-
 export default {
-  mounted () {
-    const EMERGE_ANIMATION = '8s linear infinite alternate emerge'
-    const LOGO = document.getElementById('logo')
-    const QUOTE = document.getElementById('quote')
-
-    function loadQuote () {
-      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
-      QUOTE.querySelector('p').innerText = randomQuote.text
-      QUOTE.querySelector('span').innerText = randomQuote.author
-    }
-
-    function showNextQuote () {
-      loadQuote()
-      LOGO.style.display = 'none'
-      QUOTE.style.display = 'block'
-      QUOTE.style.animation = EMERGE_ANIMATION
-    }
-
-    function showLogo () {
-      LOGO.style.display = 'block'
-      QUOTE.style.display = 'none'
-      LOGO.style.animation = EMERGE_ANIMATION
-    }
-
-    const NUMBER_OF_QUOTES = 1
-
-    let counter = 0
-
-    const showNextSlide = () => {
-      if (counter === 0) {
-        showLogo()
-      } else {
-        showNextQuote()
+  data () {
+    return {
+      displayed: 'quote',
+      quote: {
+        text: '',
+        author: ''
       }
-
-      counter = counter < NUMBER_OF_QUOTES ? counter + 1 : 0
     }
-
-    showNextSlide()
-    interval = setInterval(showNextSlide, 16000)
+  },
+  mounted () {
+    this.interval = setInterval(this.showNextSlide, 16000)
+    this.showNextSlide()
   },
   beforeDestroy () {
-    clearInterval(interval)
+    clearInterval(this.interval)
+  },
+  methods: {
+    showNextSlide () {
+      if (this.displayed === 'logo') {
+        this.quote = quotes[Math.floor(Math.random() * quotes.length)]
+        this.displayed = 'quote'
+      } else {
+        this.displayed = 'logo'
+      }
+    }
   }
 }
 </script>
@@ -98,14 +86,6 @@ export default {
     font-size: var(--font-14);
   }
 
-  #logo {
-    display: none;
-  }
-
-  #quote {
-    display: none;
-  }
-
   #quote p {
     font-size: var(--font-18);
     color: var(--col-primary-80);
@@ -115,6 +95,10 @@ export default {
     margin-top: 15px;
     margin-bottom: 20px;
     line-height: 180%;
+  }
+
+  .animated {
+    animation: 8s linear infinite alternate emerge;
   }
 
   @keyframes emerge {
