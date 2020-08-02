@@ -4,7 +4,7 @@
       <div
         v-if="displayed === 'logo'"
         id="logo"
-        :class="{'animated': displayed === 'logo'}"
+        class="animated"
       >
         <img
           src="/assets/logo/icon.svg"
@@ -17,7 +17,7 @@
       <blockquote
         v-if="displayed === 'quote'"
         id="quote"
-        :class="{'animated': displayed === 'quote'}"
+        class="animated"
       >
         <img
           src="/assets/quote.svg"
