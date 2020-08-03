@@ -3,26 +3,7 @@
     <WarningHeader />
     <WarningChallengeBreathing />
     <WarningChallengeTask />
-
-    <button
-      id="visit_button"
-      class="button--secondary"
-    >
-      I need to visit this site
-    </button>
-
-    <button
-      id="proceed_button"
-      class="button--secondary"
-    >
-      I really have to visit this site
-    </button>
-    <button
-      id="cancel_button"
-      class="button--primary"
-    >
-      I have changed my mind
-    </button>
+    <WarningControls />
 
     <p id="support_us">
       <a
@@ -38,9 +19,11 @@
 import WarningHeader from './WarningHeader.vue'
 import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
+import WarningControls from './WarningControls.vue'
 
 export default {
   components: {
+    WarningControls,
     WarningChallengeBreathing,
     WarningChallengeTask,
     WarningHeader
