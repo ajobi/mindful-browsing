@@ -16,8 +16,6 @@ export default {
 </script>
 
 <style>
-@import "../../../assets/css/main.css";
-
 #try_again {
   display: none;
   cursor: pointer;

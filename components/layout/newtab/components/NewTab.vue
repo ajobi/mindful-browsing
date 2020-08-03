@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style>
-  @import "../../../assets/css/main.css";
+  @import "../../../../assets/css/main.css";
 
   h2 {
     text-transform: uppercase;

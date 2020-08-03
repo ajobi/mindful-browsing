@@ -6,8 +6,6 @@
 </template>
 
 <style>
-@import "../../../assets/css/main.css";
-
 #warning_panel {
   padding: 16vh 0 13vh;
   margin-bottom: 5vh;
