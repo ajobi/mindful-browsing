@@ -5,8 +5,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   entry: {
     background: './background.js',
-    'components/layout/newtab/newtab': './components/layout/newtab/newtab.js',
-    'components/layout/warning/warning': './components/layout/warning/warning.js'
+    'pages/newtab/newtab': './pages/newtab/newtab.js',
+    'pages/warning/warning': './pages/warning/warning.js'
   },
   output: {
     filename: '[name].js',
@@ -28,8 +28,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: 'components/layout/newtab/newtab.html', to: 'components/layout/newtab/newtab.html' },
-        { from: 'components/layout/warning/warning.html', to: 'components/layout/warning/warning.html' },
+        { from: 'pages/newtab/newtab.html', to: 'pages/newtab/newtab.html' },
+        { from: 'pages/warning/warning.html', to: 'pages/warning/warning.html' },
         { from: 'assets', to: 'assets' },
         { from: 'modules', to: 'modules' },
         { from: 'manifest.json', to: 'manifest.json' }

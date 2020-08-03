@@ -13,7 +13,7 @@ import WarningHeader from './WarningHeader.vue'
 import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
-import SupportMe from '../../../atoms/SupportMe.vue'
+import SupportMe from '../atoms/SupportMe.vue'
 
 export default {
   components: {
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style>
-  @import "../../../../assets/css/main.css";
+  @import "../../../assets/css/main.css";
 
   #proceed_button {
     display: none;

@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.runtime.min.js'
-import NewTab from './components/NewTab.vue'
-import store from '../../../store'
+import NewTab from '../../vue/components/newtab/NewTab.vue'
+import store from '../../vue/store'
 
 new Vue({
   store,

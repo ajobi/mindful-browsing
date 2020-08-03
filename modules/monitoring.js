@@ -9,7 +9,7 @@ const MONITORING = (function () {
   }
 
   const _openWarning = tab => {
-    chrome.tabs.update(tab.id, { url: 'layout/warning/warning.html' }, () => {
+    chrome.tabs.update(tab.id, { url: 'pages/warning/warning.html' }, () => {
       chrome.tabs.onUpdated.addListener(function warningLoaded (tabId, changeInfo) {
         if (tabId === tab.id && changeInfo.status === 'complete') {
           STORE.mutations.addWarningTab(tab)

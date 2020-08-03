@@ -21,7 +21,7 @@ import NewTabSettingsTask from './NewTabSettingsTask.vue'
 import NewTabSettingsDomains from './NewTabSettingsDomains.vue'
 import NewTabSettingsMechanism from './NewTabSettingsMechanism.vue'
 import NewTabSettingsNotifications from './NewTabSettingsNotifications.vue'
-import SupportMe from '../../../atoms/SupportMe.vue'
+import SupportMe from '../atoms/SupportMe.vue'
 
 export default {
   components: {
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style>
-  @import "../../../../assets/css/main.css";
+  @import "../../../assets/css/main.css";
 
   h2 {
     text-transform: uppercase;

@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.runtime.min.js'
-import Warning from './components/Warning.vue'
-import store from '../../../store'
+import Warning from '../../vue/components/warning/Warning.vue'
+import store from '../../vue/store'
 
 new Vue({
   store,

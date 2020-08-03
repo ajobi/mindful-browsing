@@ -21,7 +21,7 @@
     "persistent": false
   },
   "chrome_url_overrides": {
-    "newtab": "layout/newtab/newtab.html"
+    "newtab": "pages/newtab/newtab.html"
   },
   "permissions": [
     "storage",
