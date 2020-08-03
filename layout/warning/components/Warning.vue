@@ -1,6 +1,8 @@
 <template>
   <div>
     <WarningHeader />
+    <WarningChallengeBreathing />
+    <WarningChallengeTask />
 
     <button
       id="visit_button"
@@ -8,28 +10,6 @@
     >
       I need to visit this site
     </button>
-
-    <h3 id="try_again">
-      You did not focus, let's try once again?
-    </h3>
-    <h2 id="breath_guide">
-      Take a deep breath
-    </h2>
-
-    <WarningChallengeTask />
-    <!--    <div id="challenge_task">-->
-    <!--      <h2>Type in the following text:</h2>-->
-    <!--      <div id="challenge_string_wrapper">-->
-    <!--        <p id="challenge_string" />-->
-    <!--        <p id="correct_input" />-->
-    <!--      </div> <br>-->
-    <!--      <input-->
-    <!--        id="challenge_input"-->
-    <!--        class="input-text"-->
-    <!--        type="text"-->
-    <!--        size="80"-->
-    <!--      >-->
-    <!--    </div>-->
 
     <button
       id="proceed_button"
@@ -57,9 +37,11 @@
 <script>
 import WarningHeader from './WarningHeader.vue'
 import WarningChallengeTask from './WarningChallengeTask.vue'
+import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 
 export default {
   components: {
+    WarningChallengeBreathing,
     WarningChallengeTask,
     WarningHeader
   },
@@ -192,19 +174,6 @@ export default {
 
 <style>
   @import "../../../assets/css/main.css";
-
-  #try_again {
-    display: none;
-    cursor: pointer;
-  }
-
-  #breath_guide {
-    display: none;
-    line-height: 30px;
-    user-select: none;
-    font-size: var(--font-32);
-    animation: fontbulger 8s infinite;
-  }
 
   #proceed_button {
     display: none;
