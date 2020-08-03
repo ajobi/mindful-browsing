@@ -4,14 +4,7 @@
     <WarningChallengeBreathing />
     <WarningChallengeTask />
     <WarningControls />
-
-    <p id="support_us">
-      <a
-        href="https://www.paypal.me/andrejbilec/5"
-        target="_blank"
-        tabindex="-1"
-      > BUY ME A COFFEE </a>
-    </p>
+    <SupportMe />
   </div>
 </template>
 
@@ -20,13 +13,15 @@ import WarningHeader from './WarningHeader.vue'
 import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
+import SupportMe from '../../../atoms/SupportMe.vue'
 
 export default {
   components: {
     WarningControls,
     WarningChallengeBreathing,
     WarningChallengeTask,
-    WarningHeader
+    WarningHeader,
+    SupportMe
   },
   data () {
     return {

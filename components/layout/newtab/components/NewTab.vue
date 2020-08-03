@@ -6,14 +6,7 @@
     <NewTabSettingsDomains v-if="activeView === 2" />
     <NewTabSettingsMechanism v-if="activeView === 3" />
     <NewTabSettingsNotifications v-if="activeView === 4" />
-
-    <p id="support_us">
-      <a
-        href="https://www.paypal.me/andrejbilec/5"
-        target="_blank"
-        tabindex="-1"
-      > BUY ME A COFFEE </a>
-    </p>
+    <SupportMe />
     <span
       id="focus_anchor"
       tabindex="1"
@@ -28,6 +21,7 @@ import NewTabSettingsTask from './NewTabSettingsTask.vue'
 import NewTabSettingsDomains from './NewTabSettingsDomains.vue'
 import NewTabSettingsMechanism from './NewTabSettingsMechanism.vue'
 import NewTabSettingsNotifications from './NewTabSettingsNotifications.vue'
+import SupportMe from '../../../atoms/SupportMe.vue'
 
 export default {
   components: {
@@ -36,7 +30,8 @@ export default {
     NewTabSettingsTask,
     NewTabSettingsDomains,
     NewTabSettingsMechanism,
-    NewTabSettingsNotifications
+    NewTabSettingsNotifications,
+    SupportMe
   },
   data () {
     return {
