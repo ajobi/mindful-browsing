@@ -28,19 +28,25 @@ export default {
     WarningChallengeTask,
     WarningHeader
   },
+  data () {
+    return {
+      tabId: null,
+      targetUrl: null
+    }
+  },
   computed: {
     backgroundAPI () {
       return this.$store.getters['backgroundAPI/getBackgroundAPI']
     }
   },
   mounted () {
-    const onMessage = ({ id, data }) => {
+    chrome.runtime.onMessage.addListener(({ id, data }) => {
       if (id === 'BLOCKED_TAB_FEED') {
-        myTabId = data.tabId
-        myTargetUrl = data.targetUrl
+        this.tabId = data.tabId
+        this.targetUrl = data.targetUrl
 
-        if (this.backgroundAPI.STORE.getters.getBreathingStatus(myTabId)) {
-          this.backgroundAPI.STORE.mutations.resetBreathing(myTabId)
+        if (this.backgroundAPI.STORE.getters.getBreathingStatus(this.tabId)) {
+          this.backgroundAPI.STORE.mutations.resetBreathing(this.tabId)
         }
 
         return
@@ -49,12 +55,7 @@ export default {
       if (id === 'INTERRUPT_BREATHING') {
         interruptBreathing()
       }
-    }
-
-    chrome.runtime.onMessage.addListener(onMessage)
-
-    let myTabId
-    let myTargetUrl
+    })
 
     const warningPanel = document.getElementById('warning_panel')
     const visitButton = document.getElementById('visit_button')
@@ -71,13 +72,13 @@ export default {
     let breathingTimeout = null
 
     const initiateBreathing = () => {
-      this.backgroundAPI.STORE.mutations.initiateBreathing(myTabId)
+      this.backgroundAPI.STORE.mutations.initiateBreathing(this.tabId)
 
       retryBreathing.style.display = 'none'
       BREATH_GUIDE.style.display = 'inline-flex'
 
       breathingTimeout = setTimeout(() => {
-        this.backgroundAPI.STORE.mutations.finishBreathing(myTabId)
+        this.backgroundAPI.STORE.mutations.finishBreathing(this.tabId)
 
         proceedButton.style.display = 'initial'
         cancelButton.style.display = 'initial'
@@ -86,7 +87,7 @@ export default {
     }
 
     const interruptBreathing = () => {
-      this.backgroundAPI.STORE.mutations.interruptBreathing(myTabId)
+      this.backgroundAPI.STORE.mutations.interruptBreathing(this.tabId)
 
       retryBreathing.style.display = 'block'
       BREATH_GUIDE.style.display = 'none'
@@ -133,24 +134,24 @@ export default {
       }
     })
 
+    const onCancelClicked = () => {
+      chrome.runtime.sendMessage({
+        id: 'BLOCKED_TAB_ACTION',
+        data: { tabId: this.tabId, action: 'CANCEL' }
+      })
+    }
+
+    const onProceedClicked = () => {
+      chrome.runtime.sendMessage({
+        id: 'BLOCKED_TAB_ACTION',
+        data: { tabId: this.tabId, action: 'PROCEED', targetUrl: this.targetUrl }
+      })
+    }
+
     proceedButton.addEventListener('click', onProceedClicked)
     warningPanel.addEventListener('click', onCancelClicked)
     cancelButton.addEventListener('click', onCancelClicked)
     retryBreathing.addEventListener('click', initiateBreathing)
-
-    function onCancelClicked () {
-      chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
-        data: { tabId: myTabId, action: 'CANCEL' }
-      })
-    }
-
-    function onProceedClicked () {
-      chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
-        data: { tabId: myTabId, action: 'PROCEED', targetUrl: myTargetUrl }
-      })
-    }
   }
 }
 </script>
