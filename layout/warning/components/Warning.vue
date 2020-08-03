@@ -1,9 +1,6 @@
 <template>
   <div>
-    <header id="warning_panel">
-      <h1>This domain has been blocked for a good reason.</h1>
-      <h2>Please, pause and reconsider whether you really need to visit this site.</h2>
-    </header>
+    <WarningHeader />
 
     <button
       id="visit_button"
@@ -57,7 +54,12 @@
 </template>
 
 <script>
+import WarningHeader from './WarningHeader.vue'
+
 export default {
+  components: {
+    WarningHeader
+  },
   computed: {
     backgroundAPI () {
       return this.$store.getters['backgroundAPI/getBackgroundAPI']
@@ -187,22 +189,6 @@ export default {
 
 <style>
   @import "../../../assets/css/main.css";
-
-  #warning_panel {
-    padding: 16vh 0 13vh;
-    margin-bottom: 5vh;
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-  }
-
-  #warning_panel h1 {
-    margin-bottom: 10px;
-  }
-
-  #warning_panel h2 {
-    font-size: var(--font-20);
-  }
 
   #try_again {
     display: none;
