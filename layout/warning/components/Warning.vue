@@ -16,19 +16,20 @@
       Take a deep breath
     </h2>
 
-    <div id="challenge_task">
-      <h2>Type in the following text:</h2>
-      <div id="challenge_string_wrapper">
-        <p id="challenge_string" />
-        <p id="correct_input" />
-      </div> <br>
-      <input
-        id="challenge_input"
-        class="input-text"
-        type="text"
-        size="80"
-      >
-    </div>
+    <WarningChallengeTask />
+    <!--    <div id="challenge_task">-->
+    <!--      <h2>Type in the following text:</h2>-->
+    <!--      <div id="challenge_string_wrapper">-->
+    <!--        <p id="challenge_string" />-->
+    <!--        <p id="correct_input" />-->
+    <!--      </div> <br>-->
+    <!--      <input-->
+    <!--        id="challenge_input"-->
+    <!--        class="input-text"-->
+    <!--        type="text"-->
+    <!--        size="80"-->
+    <!--      >-->
+    <!--    </div>-->
 
     <button
       id="proceed_button"
@@ -55,9 +56,11 @@
 
 <script>
 import WarningHeader from './WarningHeader.vue'
+import WarningChallengeTask from './WarningChallengeTask.vue'
 
 export default {
   components: {
+    WarningChallengeTask,
     WarningHeader
   },
   computed: {
@@ -203,34 +206,6 @@ export default {
     animation: fontbulger 8s infinite;
   }
 
-  #challenge_task {
-    display: none;
-  }
-
-  #challenge_task h2 {
-    margin-bottom: 25px;
-  }
-
-  #challenge_string_wrapper {
-    position: relative;
-    display: inline-block;
-  }
-
-  #challenge_string {
-    user-select: none;
-    color: var(--col-primary-50);
-    margin-bottom: 15px;
-    font-size: var(--font-18);
-  }
-
-  #correct_input {
-    user-select: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: var(--font-18);
-  }
-
   #proceed_button {
     display: none;
   }
@@ -241,10 +216,6 @@ export default {
 
   #proceed_button {
     position: relative;
-  }
-
-  #challenge_input {
-    text-align: center;
   }
 
   button {
