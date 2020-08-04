@@ -1,5 +1,5 @@
 <template>
-  <p id="support_us">
+  <p id="support_me">
     <a
       href="https://www.paypal.me/andrejbilec/5"
       target="_blank"
@@ -9,7 +9,7 @@
 </template>
 
 <style>
-#support_us {
+#support_me {
   position: fixed;
   font-size: var(--font-12);
   bottom: 15px;
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-#support_us a:-webkit-any-link {
+#support_me a:-webkit-any-link {
   text-decoration: none;
   color: inherit;
 }
