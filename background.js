@@ -1,13 +1,7 @@
+import './modules/installation.js'
+
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, TIME, STORE, STRINGS }
-
-chrome.runtime.onInstalled.addListener(() => {
-  // this also gets called when a new version is released, and will override storage
-  // don't forget to change the type of default settings for production
-  INSTALLATION.install(INSTALLATION.settingsProduction, () => {
-    chrome.tabs.create({ url: 'chrome://newtab/' })
-  })
-})
 
 chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)
