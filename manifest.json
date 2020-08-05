@@ -12,7 +12,6 @@
       "modules/utils/validators.js",
       "modules/settings.js",
       "modules/monitoring.js",
-      "modules/enforcing.js",
       "modules/store.js",
       "background.js"
     ],

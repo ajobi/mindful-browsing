@@ -1,4 +1,11 @@
 import './modules/installation.js'
+import {
+  startDisciplineEnforcement,
+  stopDisciplineEnforcement,
+  checkTabsOnUpdate,
+  checkTabsOnRemoved,
+  interruptBreathingTabs
+} from './modules/enforcing.js'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, TIME, STORE }
@@ -12,8 +19,8 @@ if (!SETTINGS.getters.areSettingsLoaded()) {
   SETTINGS.load()
 }
 
-chrome.tabs.onActivated.addListener(ENFORCING.interruptBreathingTabs)
-chrome.windows.onFocusChanged.addListener(ENFORCING.interruptBreathingTabs)
+chrome.tabs.onActivated.addListener(interruptBreathingTabs)
+chrome.windows.onFocusChanged.addListener(interruptBreathingTabs)
 
 function onMessage ({ id, data }) {
   if (id === 'BLOCKED_TAB_ACTION') {
@@ -28,14 +35,14 @@ function onMessage ({ id, data }) {
 
 function grantException () {
   chrome.tabs.onUpdated.removeListener(MONITORING.checkUrl)
-  chrome.tabs.onUpdated.addListener(ENFORCING.checkTabsOnUpdate)
-  chrome.tabs.onRemoved.addListener(ENFORCING.checkTabsOnRemoved)
-  ENFORCING.startDisciplineEnforcement()
+  chrome.tabs.onUpdated.addListener(checkTabsOnUpdate)
+  chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
+  startDisciplineEnforcement()
 }
 
 function removeException () {
   chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
-  chrome.tabs.onUpdated.removeListener(ENFORCING.checkTabsOnUpdate)
-  chrome.tabs.onRemoved.removeListener(ENFORCING.checkTabsOnRemoved)
-  ENFORCING.stopDisciplineEnforcement()
+  chrome.tabs.onUpdated.removeListener(checkTabsOnUpdate)
+  chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
+  stopDisciplineEnforcement()
 }
