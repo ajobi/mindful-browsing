@@ -1,3 +1,5 @@
+import { basicNotification } from './utils/notifications.js'
+
 let countdown
 
 // const enforcingLog = LOGGER.getNamedLogger('ENFORCING', 'green')
@@ -52,7 +54,7 @@ export const startDisciplineEnforcement = () => {
 
     if (--counter === 0) {
       redirectToForbiddenTab()
-      NOTIFICATIONS.basicNotification(
+      basicNotification(
         'Mindful Browsing',
         `You have already spent ${TIME.format(secondsSpentOnForbidden)} on distracting websites!`,
         true
@@ -87,7 +89,7 @@ export const checkTabsOnRemoved = () => {
       }
     }
 
-    NOTIFICATIONS.basicNotification('Mindful Browsing', 'Congratulations! All distracting pages closed!', false)
+    basicNotification('Mindful Browsing', 'Congratulations! All distracting pages closed!', false)
     removeException()
   })
 }
