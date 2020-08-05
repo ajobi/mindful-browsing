@@ -112,7 +112,7 @@ const settingsProduction = {
   }
 }
 
-const _withDefaults = settings => {
+const withDefaults = settings => {
   for (const key of Object.keys(settings.userSettings)) {
     settings.userSettings[key].value = settings.userSettings[key].default
   }
@@ -121,7 +121,7 @@ const _withDefaults = settings => {
 }
 
 export const install = callback => {
-  chrome.storage.sync.set(_withDefaults(settingsProduction), () => {
+  chrome.storage.sync.set(withDefaults(settingsProduction), () => {
     // installationLog.log(`Installed with ${initialSettings.targetEnv} settings.`)
 
     if (callback) {
