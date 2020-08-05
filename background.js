@@ -6,11 +6,14 @@ import {
   checkTabsOnRemoved,
   interruptBreathingTabs
 } from './modules/enforcing.js'
+import {
+  checkUrl
+} from './modules/monitoring.js'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, TIME, STORE }
 
-chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
+chrome.tabs.onUpdated.addListener(checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)
 chrome.storage.onChanged.addListener(SETTINGS.load)
 
@@ -34,14 +37,14 @@ function onMessage ({ id, data }) {
 }
 
 function grantException () {
-  chrome.tabs.onUpdated.removeListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.removeListener(checkUrl)
   chrome.tabs.onUpdated.addListener(checkTabsOnUpdate)
   chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
   startDisciplineEnforcement()
 }
 
 function removeException () {
-  chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.addListener(checkUrl)
   chrome.tabs.onUpdated.removeListener(checkTabsOnUpdate)
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   stopDisciplineEnforcement()
