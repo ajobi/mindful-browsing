@@ -7,7 +7,6 @@
     "scripts": [
       "modules/utils/logger.js",
       "modules/utils/notifications.js",
-      "modules/utils/strings.js",
       "modules/utils/time.js",
       "modules/utils/url.js",
       "modules/utils/validators.js",

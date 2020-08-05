@@ -14,6 +14,7 @@ import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
 import SupportMe from '../atoms/SupportMe.vue'
+import { getChallengeString } from '../../utils/utils.string.js'
 
 export default {
   components: {
@@ -91,9 +92,7 @@ export default {
 
     const initiateChallenge = () => {
       CHALLENGE.style.display = 'block'
-      CHALLENGE_STRING.innerText = this.backgroundAPI.STRINGS.getChallengeString(
-        this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty()
-      )
+      CHALLENGE_STRING.innerText = getChallengeString(this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty())
       CHALLENGE_INPUT.focus()
     }
 
