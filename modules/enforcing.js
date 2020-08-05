@@ -1,4 +1,5 @@
 import { basicNotification } from './utils/notifications.js'
+import { format } from './utils/time.js'
 
 let countdown
 
@@ -56,7 +57,7 @@ export const startDisciplineEnforcement = () => {
       redirectToForbiddenTab()
       basicNotification(
         'Mindful Browsing',
-        `You have already spent ${TIME.format(secondsSpentOnForbidden)} on distracting websites!`,
+        `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
         true
       )
       counter = SETTINGS.getters.getNotificationInterval()

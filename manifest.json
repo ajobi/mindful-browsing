@@ -6,7 +6,6 @@
   "background": {
     "scripts": [
       "modules/utils/logger.js",
-      "modules/utils/time.js",
       "modules/utils/url.js",
       "modules/utils/validators.js",
       "modules/settings.js",

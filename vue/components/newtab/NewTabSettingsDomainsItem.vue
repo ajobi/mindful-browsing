@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { format } from '../../../modules/utils/time.js'
 
 export default {
   props: {
@@ -52,14 +53,14 @@ export default {
         if (newValue.removeTimestamp) {
           const currentTime = new Date().valueOf()
           const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
-          this.removalCountdownText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+          this.removalCountdownText = `in ${format(timeDifferenceInSeconds)}`
 
           this.removeInterval = setInterval(() => {
             const currentTime = new Date().valueOf()
             const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
 
             if (timeDifferenceInSeconds > 1) {
-              this.removalCountdownText = `in ${this.backgroundAPI.TIME.format(timeDifferenceInSeconds)}`
+              this.removalCountdownText = `in ${format(timeDifferenceInSeconds)}`
             } else {
               this.$store.dispatch('settings/deleteBlockedDomain', this.domain.name)
             }

@@ -11,7 +11,7 @@ import {
 } from './modules/monitoring.js'
 
 // expose modules to the internal pages via global object
-window.backgroundAPI = { SETTINGS, URL, VALIDATORS, TIME, STORE }
+window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
 
 chrome.tabs.onUpdated.addListener(checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)
