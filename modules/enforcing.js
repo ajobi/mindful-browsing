@@ -2,7 +2,7 @@ let countdown
 
 // const enforcingLog = LOGGER.getNamedLogger('ENFORCING', 'green')
 
-export function _onNotificationClicked (notificationId) {
+const onNotificationClicked = notificationId => {
   chrome.tabs.query({}, tabs => {
     const forbiddenIds = []
 
@@ -20,10 +20,27 @@ export function _onNotificationClicked (notificationId) {
   })
 }
 
-export function startDisciplineEnforcement () {
+const redirectToForbiddenTab = () => {
+  chrome.tabs.query({ active: true }, tabs => {
+    if (!URL.isForbidden(tabs[0].url)) {
+      chrome.tabs.query({}, tabs => {
+        for (const tab of tabs) {
+          for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+            if (URL.isOfDomain(tab.url, blockedDomain.name)) {
+              chrome.tabs.update(tab.id, { selected: true })
+              return
+            }
+          }
+        }
+      })
+    }
+  })
+}
+
+export const startDisciplineEnforcement = () => {
   // enforcingLog.log('Browsing discipline enforcement started.')
 
-  chrome.notifications.onClicked.addListener(_onNotificationClicked)
+  chrome.notifications.onClicked.addListener(onNotificationClicked)
 
   let counter = SETTINGS.getters.getNotificationInterval()
   let secondsSpentOnForbidden = 0
@@ -45,31 +62,14 @@ export function startDisciplineEnforcement () {
   }, 1000)
 }
 
-export function stopDisciplineEnforcement () {
+export const stopDisciplineEnforcement = () => {
   // enforcingLog.log('Browsing discipline enforcement stopped.')
 
-  chrome.notifications.onClicked.removeListener(_onNotificationClicked)
+  chrome.notifications.onClicked.removeListener(onNotificationClicked)
   clearInterval(countdown)
 }
 
-export function redirectToForbiddenTab () {
-  chrome.tabs.query({ active: true }, tabs => {
-    if (!URL.isForbidden(tabs[0].url)) {
-      chrome.tabs.query({}, tabs => {
-        for (const tab of tabs) {
-          for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
-            if (URL.isOfDomain(tab.url, blockedDomain.name)) {
-              chrome.tabs.update(tab.id, { selected: true })
-              return
-            }
-          }
-        }
-      })
-    }
-  })
-}
-
-export function checkTabsOnUpdate (tabId, changeInfo) {
+export const checkTabsOnUpdate = (tabId, changeInfo) => {
   if (!changeInfo.url) {
     return
   }
@@ -77,7 +77,7 @@ export function checkTabsOnUpdate (tabId, changeInfo) {
   checkTabsOnRemoved()
 }
 
-export function checkTabsOnRemoved () {
+export const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
     for (tab of tabs) {
@@ -92,7 +92,7 @@ export function checkTabsOnRemoved () {
   })
 }
 
-export function interruptBreathingTabs () {
+export const interruptBreathingTabs = () => {
   for (const tab of STORE.getters.getBreathingTabs()) {
     chrome.tabs.sendMessage(tab.tabId, {
       id: 'INTERRUPT_BREATHING',
