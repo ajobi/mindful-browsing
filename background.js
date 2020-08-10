@@ -12,6 +12,7 @@ import {
 import { STORE } from './modules/store.js'
 import { SETTINGS } from './modules/settings.js'
 import { VALIDATORS } from './modules/utils/validators.js'
+import { URL } from './modules/utils/url.js'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }

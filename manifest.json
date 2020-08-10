@@ -6,7 +6,6 @@
   "background": {
     "scripts": [
       "modules/utils/logger.js",
-      "modules/utils/url.js",
       "background.js"
     ],
     "persistent": false

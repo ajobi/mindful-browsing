@@ -24,17 +24,17 @@ export const checkUrl = (tabId, { url }, tab) => {
     return
   }
 
-  if (URL.isNewTab(url)) {
+  if (window.backgroundAPI.URL.isNewTab(url)) {
     monitoringLog.log(`New URL detected: ${url} (newtab)`)
     return
   }
 
-  if (URL.isExtensionUrl(url)) {
+  if (window.backgroundAPI.URL.isExtensionUrl(url)) {
     monitoringLog.log(`New URL detected: ${url} (internal url)`)
     return
   }
 
-  if (URL.isForbidden(url)) {
+  if (window.backgroundAPI.URL.isForbidden(url)) {
     monitoringLog.log(`New URL detected: ${url} (forbidden domain)`)
     openWarning(tab)
     return

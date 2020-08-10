@@ -10,12 +10,12 @@ const validators = {
     )
   },
   validateDomainName (userInput) {
-    return URL.domainNameRegex.test(userInput)
+    return window.backgroundAPI.URL.domainNameRegex.test(userInput)
   },
   validateNewDomainName (userInput) {
     const blockedDomains = window.backgroundAPI.SETTINGS.getters.getBlockedDomains()
 
-    return !blockedDomains.find(domain => domain.name === URL.domainNameFromUrl(userInput))
+    return !blockedDomains.find(domain => domain.name === window.backgroundAPI.URL.domainNameFromUrl(userInput))
   },
   validateNotificationInterval (userInput) {
     return (
@@ -48,7 +48,7 @@ const errorMessages = {
     return `Unfortunately, "${userInput}" is not a valid domain name!`
   },
   errorExistingDomain (userInput) {
-    return `Seems like the "${URL.domainNameFromUrl(userInput)}" is already in the list!`
+    return `Seems like the "${window.backgroundAPI.URL.domainNameFromUrl(userInput)}" is already in the list!`
   },
   errorNotificationInterval (userInput) {
     return `Unfortunately, "${userInput}" is not a valid notification interval! Please pick an interval length between ${window.backgroundAPI.SETTINGS.validators.notificationInterval.minValue()} and ${window.backgroundAPI.SETTINGS.validators.notificationInterval.maxValue()} seconds!`
