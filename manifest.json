@@ -7,7 +7,6 @@
     "scripts": [
       "modules/utils/logger.js",
       "modules/utils/url.js",
-      "modules/utils/validators.js",
       "background.js"
     ],
     "persistent": false
