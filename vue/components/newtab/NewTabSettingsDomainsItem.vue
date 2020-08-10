@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { format } from '../../../modules/utils/time.js'
+import { format } from '../../../src/utils/time.js'
 
 export default {
   props: {

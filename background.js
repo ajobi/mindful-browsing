@@ -1,18 +1,18 @@
-import './modules/installation.js'
+import './src/installation.js'
 import {
   startDisciplineEnforcement,
   stopDisciplineEnforcement,
   checkTabsOnUpdate,
   checkTabsOnRemoved,
   interruptBreathingTabs
-} from './modules/enforcing.js'
+} from './src/enforcing.js'
 import {
   checkUrl
-} from './modules/monitoring.js'
-import { STORE } from './modules/store.js'
-import { SETTINGS } from './modules/settings.js'
-import { VALIDATORS } from './modules/utils/validators.js'
-import { URL } from './modules/utils/url.js'
+} from './src/monitoring.js'
+import { STORE } from './src/store.js'
+import { SETTINGS } from './src/settings.js'
+import { VALIDATORS } from './src/utils/validators.js'
+import { URL } from './src/utils/url.js'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
