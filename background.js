@@ -9,6 +9,7 @@ import {
 import {
   checkUrl
 } from './modules/monitoring.js'
+import { STORE } from './modules/store.js'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }

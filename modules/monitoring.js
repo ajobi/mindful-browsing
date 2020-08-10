@@ -3,7 +3,7 @@ const monitoringLog = LOGGER.getNamedLogger('MONITORING', 'indianred')
 const feedWarningTab = tabId => {
   chrome.tabs.sendMessage(tabId, {
     id: 'BLOCKED_TAB_FEED',
-    data: { tabId: tabId, targetUrl: STORE.getters.getTargetUrl(tabId) }
+    data: { tabId: tabId, targetUrl: window.backgroundAPI.STORE.getters.getTargetUrl(tabId) }
   })
 }
 
@@ -11,7 +11,7 @@ const openWarning = tab => {
   chrome.tabs.update(tab.id, { url: 'pages/warning/warning.html' }, () => {
     chrome.tabs.onUpdated.addListener(function warningLoaded (tabId, changeInfo) {
       if (tabId === tab.id && changeInfo.status === 'complete') {
-        STORE.mutations.addWarningTab(tab)
+        window.backgroundAPI.STORE.mutations.addWarningTab(tab)
         feedWarningTab(tabId)
         chrome.tabs.onUpdated.removeListener(warningLoaded)
       }
@@ -44,17 +44,17 @@ export const checkUrl = (tabId, { url }, tab) => {
 }
 
 chrome.tabs.onRemoved.addListener((tabId) => {
-  if (STORE.getters.isWarningTab(tabId)) {
-    STORE.mutations.removeWarningTab(tabId)
+  if (window.backgroundAPI.STORE.getters.isWarningTab(tabId)) {
+    window.backgroundAPI.STORE.mutations.removeWarningTab(tabId)
   }
 })
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-  if (STORE.getters.isWarningTab(tabId) && changeInfo.status === 'complete') {
+  if (window.backgroundAPI.STORE.getters.isWarningTab(tabId) && changeInfo.status === 'complete') {
     feedWarningTab(tabId)
   }
 
-  if (STORE.getters.isWarningTab(tabId) && changeInfo.url) {
-    STORE.mutations.removeWarningTab(tabId)
+  if (window.backgroundAPI.STORE.getters.isWarningTab(tabId) && changeInfo.url) {
+    window.backgroundAPI.STORE.mutations.removeWarningTab(tabId)
   }
 })

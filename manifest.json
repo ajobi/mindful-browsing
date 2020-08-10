@@ -9,7 +9,6 @@
       "modules/utils/url.js",
       "modules/utils/validators.js",
       "modules/settings.js",
-      "modules/store.js",
       "background.js"
     ],
     "persistent": false

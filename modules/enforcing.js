@@ -96,7 +96,7 @@ export const checkTabsOnRemoved = () => {
 }
 
 export const interruptBreathingTabs = () => {
-  for (const tab of STORE.getters.getBreathingTabs()) {
+  for (const tab of window.backgroundAPI.STORE.getters.getBreathingTabs()) {
     chrome.tabs.sendMessage(tab.tabId, {
       id: 'INTERRUPT_BREATHING',
       data: null
