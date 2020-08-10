@@ -41,7 +41,7 @@ const redirectToForbiddenTab = () => {
   })
 }
 
-export const startDisciplineEnforcement = () => {
+const startDisciplineEnforcement = () => {
   enforcingLog.log('Browsing discipline enforcement started.')
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
@@ -66,7 +66,7 @@ export const startDisciplineEnforcement = () => {
   }, 1000)
 }
 
-export const stopDisciplineEnforcement = () => {
+const stopDisciplineEnforcement = () => {
   enforcingLog.log('Browsing discipline enforcement stopped.')
 
   chrome.notifications.onClicked.removeListener(onNotificationClicked)
@@ -81,7 +81,7 @@ export const checkTabsOnUpdate = (tabId, changeInfo) => {
   checkTabsOnRemoved()
 }
 
-export const checkTabsOnRemoved = () => {
+const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
     for (const tab of tabs) {
@@ -96,11 +96,19 @@ export const checkTabsOnRemoved = () => {
   })
 }
 
-export const interruptBreathingTabs = () => {
+const interruptBreathingTabs = () => {
   for (const tab of window.backgroundAPI.STORE.getters.getBreathingTabs()) {
     chrome.tabs.sendMessage(tab.tabId, {
       id: 'INTERRUPT_BREATHING',
       data: null
     })
   }
+}
+
+export const ENFORCING = {
+  startDisciplineEnforcement,
+  stopDisciplineEnforcement,
+  checkTabsOnUpdate,
+  checkTabsOnRemoved,
+  interruptBreathingTabs
 }

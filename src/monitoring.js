@@ -21,7 +21,7 @@ const openWarning = tab => {
   })
 }
 
-export const checkUrl = (tabId, { url }, tab) => {
+const checkUrl = (tabId, { url }, tab) => {
   if (!url) {
     return
   }
@@ -60,3 +60,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
     window.backgroundAPI.STORE.mutations.removeWarningTab(tabId)
   }
 })
+
+export const MONITORING = {
+  checkUrl
+}
