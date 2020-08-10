@@ -1,4 +1,6 @@
-const notificationsLog = LOGGER.getNamedLogger('NOTIFICATIONS', 'purple')
+import { getNamedLogger } from './logger'
+
+const notificationsLog = getNamedLogger('NOTIFICATIONS', 'purple')
 
 const image = 'assets/logo/logo-128.png'
 const tickSound = new Audio('assets/sounds/tick.mp3')

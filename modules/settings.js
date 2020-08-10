@@ -1,4 +1,6 @@
-const settingsLog = LOGGER.getNamedLogger('SETTINGS', 'gray')
+import { getNamedLogger } from './utils/logger'
+
+const settingsLog = getNamedLogger('SETTINGS', 'gray')
 
 let settings = null // core data object
 let onChangedCallbacks = []

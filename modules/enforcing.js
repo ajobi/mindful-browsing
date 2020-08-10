@@ -1,9 +1,10 @@
 import { basicNotification } from './utils/notifications.js'
 import { format } from './utils/time.js'
+import { getNamedLogger } from './utils/logger'
 
 let countdown
 
-// const enforcingLog = LOGGER.getNamedLogger('ENFORCING', 'green')
+const enforcingLog = getNamedLogger('ENFORCING', 'green')
 
 const onNotificationClicked = notificationId => {
   chrome.tabs.query({}, tabs => {
@@ -41,7 +42,7 @@ const redirectToForbiddenTab = () => {
 }
 
 export const startDisciplineEnforcement = () => {
-  // enforcingLog.log('Browsing discipline enforcement started.')
+  enforcingLog.log('Browsing discipline enforcement started.')
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
@@ -51,7 +52,7 @@ export const startDisciplineEnforcement = () => {
   countdown = setInterval(() => {
     chrome.runtime.sendMessage({ id: 'ENFORCEMENT_KEEP_ALIVE' })
     secondsSpentOnForbidden++
-    // enforcingLog.log(`Seconds spent on forbidden content: ${secondsSpentOnForbidden}`)
+    enforcingLog.log(`Seconds spent on forbidden content: ${secondsSpentOnForbidden}`)
 
     if (--counter === 0) {
       redirectToForbiddenTab()
@@ -66,7 +67,7 @@ export const startDisciplineEnforcement = () => {
 }
 
 export const stopDisciplineEnforcement = () => {
-  // enforcingLog.log('Browsing discipline enforcement stopped.')
+  enforcingLog.log('Browsing discipline enforcement stopped.')
 
   chrome.notifications.onClicked.removeListener(onNotificationClicked)
   clearInterval(countdown)

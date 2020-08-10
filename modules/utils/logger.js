@@ -1,19 +1,12 @@
-const LOGGER = (function() {
-  class NamedLogger {
-    name;
-    color;
-
-    constructor(name, color) {
-      this.name = name;
-      this.color = color;
-    }
-
-    log(message) {
-      console.log(`%c ${this.name}: ${message}`, `color: ${this.color}`);
-    }
+class NamedLogger {
+  constructor (name, color) {
+    this.name = name
+    this.color = color
   }
 
-  return {
-    getNamedLogger: (name, color) => new NamedLogger(name, color)
-  };
-})();
+  log (message) {
+    console.log(`%c ${this.name}: ${message}`, `color: ${this.color}`)
+  }
+}
+
+export const getNamedLogger = (name, color) => new NamedLogger(name, color)

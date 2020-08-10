@@ -1,4 +1,6 @@
-const storeLog = LOGGER.getNamedLogger('STORE', 'olive')
+import { getNamedLogger } from './utils/logger'
+
+const storeLog = getNamedLogger('STORE', 'olive')
 
 const store = {
   warningTabs: []

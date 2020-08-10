@@ -1,4 +1,6 @@
-const monitoringLog = LOGGER.getNamedLogger('MONITORING', 'indianred')
+import { getNamedLogger } from './utils/logger'
+
+const monitoringLog = getNamedLogger('MONITORING', 'indianred')
 
 const feedWarningTab = tabId => {
   chrome.tabs.sendMessage(tabId, {
