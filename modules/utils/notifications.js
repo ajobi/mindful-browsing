@@ -10,7 +10,7 @@ export const basicNotification = (title, message, withSound) => {
     () => {
       notificationsLog.log(`Notification created: ${title} ${message}`)
 
-      if (SETTINGS.getters.getSoundsAllowed() && withSound) {
+      if (window.backgroundAPI.SETTINGS.getters.getSoundsAllowed() && withSound) {
         setTimeout(() => tickSound.play(), soundTimeout)
       }
     }

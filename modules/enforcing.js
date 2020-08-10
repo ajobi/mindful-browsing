@@ -10,7 +10,7 @@ const onNotificationClicked = notificationId => {
     const forbiddenIds = []
 
     for (const tab of tabs) {
-      for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+      for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
         if (URL.isOfDomain(tab.url, blockedDomain.name)) {
           forbiddenIds.push(tab.id)
         }
@@ -28,7 +28,7 @@ const redirectToForbiddenTab = () => {
     if (!URL.isForbidden(tabs[0].url)) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
-          for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+          for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
             if (URL.isOfDomain(tab.url, blockedDomain.name)) {
               chrome.tabs.update(tab.id, { selected: true })
               return
@@ -45,7 +45,7 @@ export const startDisciplineEnforcement = () => {
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
-  let counter = SETTINGS.getters.getNotificationInterval()
+  let counter = window.backgroundAPI.SETTINGS.getters.getNotificationInterval()
   let secondsSpentOnForbidden = 0
 
   countdown = setInterval(() => {
@@ -60,7 +60,7 @@ export const startDisciplineEnforcement = () => {
         `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
         true
       )
-      counter = SETTINGS.getters.getNotificationInterval()
+      counter = window.backgroundAPI.SETTINGS.getters.getNotificationInterval()
     }
   }, 1000)
 }
@@ -83,7 +83,7 @@ export const checkTabsOnUpdate = (tabId, changeInfo) => {
 export const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
-    for (tab of tabs) {
+    for (const tab of tabs) {
       if (URL.isForbidden(tab.url)) {
         chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
         return

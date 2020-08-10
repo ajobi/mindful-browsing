@@ -8,7 +8,6 @@
       "modules/utils/logger.js",
       "modules/utils/url.js",
       "modules/utils/validators.js",
-      "modules/settings.js",
       "background.js"
     ],
     "persistent": false

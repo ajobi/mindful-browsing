@@ -16,7 +16,7 @@ const URL = (function () {
   }
 
   function isForbidden (url) {
-    for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+    for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
       if (isOfDomain(url, blockedDomain.name)) {
         return true
       }
