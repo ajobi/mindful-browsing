@@ -1,6 +1,7 @@
 import { basicNotification } from './utils/notifications.js'
 import { format } from './utils/time.js'
 import { getNamedLogger } from './utils/logger'
+import { removeException } from '../background'
 
 let countdown
 

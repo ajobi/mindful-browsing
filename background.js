@@ -32,14 +32,14 @@ function onMessage ({ id, data }) {
   }
 }
 
-function grantException () {
+export function grantException () {
   chrome.tabs.onUpdated.removeListener(MONITORING.checkUrl)
   chrome.tabs.onUpdated.addListener(ENFORCING.checkTabsOnUpdate)
   chrome.tabs.onRemoved.addListener(ENFORCING.checkTabsOnRemoved)
   ENFORCING.startDisciplineEnforcement()
 }
 
-function removeException () {
+export function removeException () {
   chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
   chrome.tabs.onUpdated.removeListener(ENFORCING.checkTabsOnUpdate)
   chrome.tabs.onRemoved.removeListener(ENFORCING.checkTabsOnRemoved)
