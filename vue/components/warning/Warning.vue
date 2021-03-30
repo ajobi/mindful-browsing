@@ -53,7 +53,6 @@ export default {
       }
     })
 
-    const warningPanel = document.getElementById('warning_panel')
     const visitButton = document.getElementById('visit_button')
     const cancelButton = document.getElementById('cancel_button')
     const proceedButton = document.getElementById('proceed_button')
@@ -128,14 +127,6 @@ export default {
       }
     })
 
-    const onCancelClicked = () => {
-      chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
-        data: { tabId: this.tabId, action: 'CANCEL' }
-      })
-    }
-
-    warningPanel.addEventListener('click', onCancelClicked)
     retryBreathing.addEventListener('click', initiateBreathing)
   }
 }
