@@ -41,3 +41,25 @@
     }
   }
 </script>
+
+<style>
+@import "../../../assets/css/main.css";
+
+#proceed_button {
+  display: none;
+}
+
+#visit_button {
+  position: relative;
+}
+
+#proceed_button {
+  position: relative;
+}
+
+button {
+  height: 36px;
+  width: 310px;
+  margin: 0 5px;
+}
+</style>
