@@ -54,14 +54,15 @@ export default {
     onKeyDown (event) {
       const { keyCode } = event
 
-      // on tab pressed
-      if (keyCode === 9) {
+      const keyCodeTab = 9
+      const keyCodeEsc = 27
+
+      if (keyCode === keyCodeTab) {
         event.preventDefault()
         this.nextView()
       }
 
-      // on esc pressed
-      if (keyCode === 27) {
+      if (keyCode === keyCodeEsc) {
         event.preventDefault()
         this.startView()
       }
