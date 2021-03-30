@@ -1,61 +1,61 @@
-// const settingsDevelopment = {
-//   targetEnv: 'development',
-//   extensionSettings: {
-//     removeDelay: 10,
-//     validators: {
-//       activeTask: {
-//         minValue: 3,
-//         maxValue: 70
-//       },
-//       notificationInterval: {
-//         minValue: 10,
-//         maxValue: 600
-//       },
-//       breathCount: {
-//         minValue: 1,
-//         maxValue: 10
-//       },
-//       challengeDifficulty: {
-//         minValue: 5,
-//         maxValue: 80
-//       }
-//     }
-//   },
-//   userSettings: {
-//     activeTask: {
-//       value: null,
-//       default: 'to finish this extension!'
-//     },
-//     blockedDomains: {
-//       value: null,
-//       default: [
-//         { name: 'twitter.com', removeTimestamp: null },
-//         { name: 'facebook.com', removeTimestamp: null },
-//         { name: 'youtube.com', removeTimestamp: null }
-//       ]
-//     },
-//     soundsAllowed: {
-//       value: null,
-//       default: false
-//     },
-//     notificationInterval: {
-//       value: null,
-//       default: 10
-//     },
-//     activeMechanism: {
-//       value: null,
-//       default: 'breathing'
-//     },
-//     breathCount: {
-//       value: null,
-//       default: 1
-//     },
-//     challengeDifficulty: {
-//       value: null,
-//       default: 10
-//     }
-//   }
-// }
+const settingsDevelopment = {
+  targetEnv: 'development',
+  extensionSettings: {
+    removeDelay: 10,
+    validators: {
+      activeTask: {
+        minValue: 3,
+        maxValue: 70
+      },
+      notificationInterval: {
+        minValue: 10,
+        maxValue: 600
+      },
+      breathCount: {
+        minValue: 1,
+        maxValue: 10
+      },
+      challengeDifficulty: {
+        minValue: 5,
+        maxValue: 80
+      }
+    }
+  },
+  userSettings: {
+    activeTask: {
+      value: null,
+      default: 'to finish this extension!'
+    },
+    blockedDomains: {
+      value: null,
+      default: [
+        { name: 'twitter.com', removeTimestamp: null },
+        { name: 'quora.com', removeTimestamp: null },
+        { name: 'youtube.com', removeTimestamp: null }
+      ]
+    },
+    soundsAllowed: {
+      value: null,
+      default: false
+    },
+    notificationInterval: {
+      value: null,
+      default: 10
+    },
+    activeMechanism: {
+      value: null,
+      default: 'breathing'
+    },
+    breathCount: {
+      value: null,
+      default: 1
+    },
+    challengeDifficulty: {
+      value: null,
+      default: 10
+    }
+  }
+}
 
 const settingsProduction = {
   targetEnv: 'production',
@@ -121,7 +121,7 @@ const withDefaults = settings => {
 }
 
 export const install = callback => {
-  chrome.storage.sync.set(withDefaults(settingsProduction), () => {
+  chrome.storage.sync.set(withDefaults(settingsDevelopment), () => {
     // installationLog.log(`Installed with ${initialSettings.targetEnv} settings.`)
 
     if (callback) {
