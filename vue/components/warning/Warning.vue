@@ -61,7 +61,6 @@ export default {
     const BREATH_GUIDE = document.getElementById('breath_guide')
     const CHALLENGE = document.getElementById('challenge_task')
     const CHALLENGE_STRING = document.getElementById('challenge_string')
-    const CORRECT_INPUT = document.getElementById('correct_input')
     const CHALLENGE_INPUT = document.getElementById('challenge_input')
 
     let breathingTimeout = null
@@ -104,26 +103,6 @@ export default {
           return initiateBreathing()
         case 'challenge':
           return initiateChallenge()
-      }
-    })
-
-    CHALLENGE_INPUT.addEventListener('input', event => {
-      if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
-        proceedButton.style.display = 'initial'
-        cancelButton.style.display = 'initial'
-        CHALLENGE.style.display = 'none'
-      } else {
-        const input = event.target.value
-        let correctInput = ''
-        for (let i = 0; i < input.length; i++) {
-          if (input[i] === CHALLENGE_STRING.innerText[i]) {
-            correctInput += input[i]
-          } else {
-            break
-          }
-        }
-
-        CORRECT_INPUT.innerText = correctInput
       }
     })
 
