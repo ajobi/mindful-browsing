@@ -135,16 +135,7 @@ export default {
       })
     }
 
-    const onProceedClicked = () => {
-      chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
-        data: { tabId: this.tabId, action: 'PROCEED', targetUrl: this.targetUrl }
-      })
-    }
-
-    proceedButton.addEventListener('click', onProceedClicked)
     warningPanel.addEventListener('click', onCancelClicked)
-    cancelButton.addEventListener('click', onCancelClicked)
     retryBreathing.addEventListener('click', initiateBreathing)
   }
 }
