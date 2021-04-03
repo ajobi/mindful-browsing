@@ -1,3 +1,5 @@
+// TODO: Migrate to Manifest V3 with service worker
+
 import './src/installation.js'
 import { STORE } from './src/store.js'
 import { SETTINGS } from './src/settings.js'
