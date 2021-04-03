@@ -31,7 +31,6 @@ module.exports = {
         { from: 'pages/newtab/newtab.html', to: 'pages/newtab/newtab.html' },
         { from: 'pages/warning/warning.html', to: 'pages/warning/warning.html' },
         { from: 'assets', to: 'assets' },
-        { from: 'src', to: 'src' },
         { from: 'manifest.json', to: 'manifest.json' }
       ]
     })
