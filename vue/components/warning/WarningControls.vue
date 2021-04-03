@@ -3,6 +3,7 @@
     <button
       id="visit_button"
       class="button--secondary"
+      v-show="breathing === null"
     >
       I need to visit this site
     </button>
@@ -10,6 +11,7 @@
       id="proceed_button"
       class="button--secondary"
       @click="onProceed"
+      v-show="breathing === 'success'"
     >
       I really have to visit this site
     </button>
@@ -17,6 +19,7 @@
       id="cancel_button"
       class="button--primary"
       @click="onCancel"
+      v-show="breathing === null || breathing === 'success'"
     >
       I have changed my mind
     </button>
@@ -25,6 +28,11 @@
 
 <script>
   export default {
+    computed: {
+      breathing () {
+        return this.$store.getters['warning/getBreathing']
+      }
+    },
     methods: {
       onProceed () {
         chrome.runtime.sendMessage({
@@ -46,7 +54,7 @@
 @import "../../../assets/css/main.css";
 
 #proceed_button {
-  display: none;
+  /*display: none;*/
 }
 
 #visit_button {

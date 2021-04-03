@@ -54,8 +54,6 @@ export default {
     })
 
     const visitButton = document.getElementById('visit_button')
-    const cancelButton = document.getElementById('cancel_button')
-    const proceedButton = document.getElementById('proceed_button')
     const retryBreathing = document.getElementById('try_again')
 
     const CHALLENGE = document.getElementById('challenge_task')
@@ -71,9 +69,6 @@ export default {
       breathingTimeout = setTimeout(() => {
         this.backgroundAPI.STORE.mutations.finishBreathing(this.tabId)
         this.$store.commit('warning/setBreathing', 'success')
-
-        proceedButton.style.display = 'initial'
-        cancelButton.style.display = 'initial'
       }, 1000 * this.backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
     }
 
@@ -90,9 +85,6 @@ export default {
     }
 
     visitButton.addEventListener('click', () => {
-      visitButton.style.display = 'none'
-      cancelButton.style.display = 'none'
-
       switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
         case 'breathing':
           return initiateBreathing()
