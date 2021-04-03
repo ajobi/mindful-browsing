@@ -15,5 +15,6 @@ const store = new Vuex.Store({
 })
 
 store.dispatch('backgroundAPI/init')
+store.dispatch('warning/init')
 
 export default store

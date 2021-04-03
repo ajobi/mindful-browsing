@@ -25,6 +25,18 @@ export default {
 </script>
 
 <style>
+@import "../../../assets/css/main.css";
+
+@keyframes fontbulger {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
 #try_again {
   cursor: pointer;
 }
