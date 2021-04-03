@@ -4,7 +4,7 @@ const state = () => ({
   breathing: null,
   challenge: null,
   tabId: null,
-  targetUrl: null,
+  targetUrl: null
 })
 
 const mutations = {
@@ -41,20 +41,19 @@ const actions = {
   init ({ commit, dispatch, rootState }) {
     // TODO: Might need a cleanup - test what happens when running longer
     chrome.runtime.onMessage.addListener(({ id, data }) => {
-        if (id === 'BLOCKED_TAB_FEED') {
-          commit('setTabId', data.tabId)
-          commit('setTargetUrl', data.targetUrl)
+      if (id === 'BLOCKED_TAB_FEED') {
+        commit('setTabId', data.tabId)
+        commit('setTargetUrl', data.targetUrl)
 
-          if (rootState.backgroundAPI.backgroundAPI.STORE.getters.getBreathingStatus(data.tabId)) {
-            rootState.backgroundAPI.backgroundAPI.STORE.mutations.resetBreathing(data.tabId)
-          }
-
-          return
+        if (rootState.backgroundAPI.backgroundAPI.STORE.getters.getBreathingStatus(data.tabId)) {
+          rootState.backgroundAPI.backgroundAPI.STORE.mutations.resetBreathing(data.tabId)
         }
 
-        if (id === 'INTERRUPT_BREATHING')
-          dispatch('interruptBreathing')
+        return
       }
+
+      if (id === 'INTERRUPT_BREATHING') { dispatch('interruptBreathing') }
+    }
     )
   },
   initiateBreathing ({ commit, rootState, state }) {

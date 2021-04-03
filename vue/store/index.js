@@ -7,7 +7,7 @@ const store = createStore({
   modules: {
     backgroundAPI,
     settings,
-    warning,
+    warning
   }
 })
 

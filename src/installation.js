@@ -57,6 +57,7 @@ const settingsDevelopment = {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const settingsProduction = {
   targetEnv: 'production',
   extensionSettings: {
