@@ -1,5 +1,3 @@
-import { getChallengeString } from '../../utils/utils.string'
-
 let breathingTimeout = null
 
 const state = () => ({
@@ -68,12 +66,8 @@ const actions = {
       commit('setBreathing', 'success')
     }, 1000 * rootState.backgroundAPI.backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
   },
-  initiateChallenge ({ commit, rootState }) {
+  initiateChallenge ({ commit }) {
     commit('setChallenge', 'initiated')
-
-    // CHALLENGE.style.display = 'block'
-    // CHALLENGE_STRING.innerText = getChallengeString(rootState.backgroundAPI.SETTINGS.getters.getChallengeDifficulty())
-    // CHALLENGE_INPUT.focus()
   },
   interruptBreathing ({ commit, rootState, state }) {
     rootState.backgroundAPI.backgroundAPI.STORE.mutations.interruptBreathing(state.tabId)

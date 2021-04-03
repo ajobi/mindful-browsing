@@ -1,5 +1,5 @@
 <template>
-  <div id="challenge_task">
+  <div id="challenge_task" v-show="challenge && challenge !== 'success'">
     <h2>Type in the following text:</h2>
     <div id="challenge_string_wrapper">
       <p id="challenge_string" />
@@ -15,42 +15,53 @@
 </template>
 
 <script>
+import { getChallengeString } from '../../utils/utils.string'
+
 export default {
-  mounted () {
-    const CHALLENGE = document.getElementById('challenge_task')
-    const CHALLENGE_STRING = document.getElementById('challenge_string')
-    const CORRECT_INPUT = document.getElementById('correct_input')
-    const CHALLENGE_INPUT = document.getElementById('challenge_input')
+  computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    },
+    challenge () {
+      return this.$store.getters['warning/getChallenge']
+    }
+  },
+  watch: {
+    challenge (newValue) {
+      const CHALLENGE_STRING = document.getElementById('challenge_string')
+      const CORRECT_INPUT = document.getElementById('correct_input')
+      const CHALLENGE_INPUT = document.getElementById('challenge_input')
 
-    const cancelButton = document.getElementById('cancel_button')
-    const proceedButton = document.getElementById('proceed_button')
+      if (newValue === 'initiated') {
+        CHALLENGE_STRING.innerText = getChallengeString(this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty())
+        CHALLENGE_INPUT.focus()
 
-    CHALLENGE_INPUT.addEventListener('input', event => {
-      if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
-        proceedButton.style.display = 'initial'
-        cancelButton.style.display = 'initial'
-        CHALLENGE.style.display = 'none'
-      } else {
-        const input = event.target.value
-        let correctInput = ''
-        for (let i = 0; i < input.length; i++) {
-          if (input[i] === CHALLENGE_STRING.innerText[i]) {
-            correctInput += input[i]
+        CHALLENGE_INPUT.addEventListener('input', event => {
+          if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
+            this.$store.commit('warning/setChallenge', 'success')
           } else {
-            break
-          }
-        }
+            const input = event.target.value
+            let correctInput = ''
+            for (let i = 0; i < input.length; i++) {
+              if (input[i] === CHALLENGE_STRING.innerText[i]) {
+                correctInput += input[i]
+              } else {
+                break
+              }
+            }
 
-        CORRECT_INPUT.innerText = correctInput
+            CORRECT_INPUT.innerText = correctInput
+          }
+        })
       }
-    })
+    }
   }
 }
 </script>
 
 <style>
 #challenge_task {
-  display: none;
+  /*display: none;*/
 }
 
 #challenge_task h2 {
