@@ -2,7 +2,8 @@
   "scripts": {
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
-    "lint": "eslint --fix ./"
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./"
   },
   "dependencies": {
     "vue": "3.0.11",
