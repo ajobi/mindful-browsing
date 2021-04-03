@@ -1,8 +1,8 @@
-import Vue from 'vue/dist/vue.runtime.min.js'
+import { createApp } from '@vue/runtime-dom/dist/runtime-dom.esm-bundler.js'
 import Warning from '../../vue/components/warning/Warning.vue'
 import store from '../../vue/store'
 
-new Vue({
-  store,
-  render: h => h(Warning)
-}).$mount('#app')
+const app = createApp(Warning)
+
+app.use(store)
+app.mount('#app')

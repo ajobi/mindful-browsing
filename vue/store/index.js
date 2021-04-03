@@ -1,12 +1,9 @@
-import Vue from 'vue/dist/vue.runtime.min.js'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import settings from './modules/settings'
 import backgroundAPI from './modules/backgroundAPI'
 import warning from './modules/warning'
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+const store = createStore({
   modules: {
     backgroundAPI,
     settings,

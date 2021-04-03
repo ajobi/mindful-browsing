@@ -40,9 +40,9 @@ export default {
   },
   mounted () {
     window.addEventListener('keydown', this.onKeyDown)
-    this.$once('hook:destroy', () => {
-      window.removeEventListener('keydown', this.onKeyDown)
-    })
+  },
+  unmounted () {
+    window.removeEventListener('keydown', this.onKeyDown)
   },
   methods: {
     nextView () {
