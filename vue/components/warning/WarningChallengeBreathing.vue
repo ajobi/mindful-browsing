@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h3 id="try_again">
+  <div v-show="breathing && breathing !== 'success'">
+    <h3 id="try_again" v-show="breathing === 'interrupted'" >
       You did not focus, let's try once again?
     </h3>
-    <h2 id="breath_guide">
+    <h2 id="breath_guide" v-show="breathing === 'initiated'">
       Take a deep breath
     </h2>
   </div>
@@ -11,18 +11,20 @@
 
 <script>
 export default {
-  name: 'WarningChallengeBreathing'
+  computed: {
+    breathing () {
+      return this.$store.getters['warning/getBreathing']
+    }
+  }
 }
 </script>
 
 <style>
 #try_again {
-  display: none;
   cursor: pointer;
 }
 
 #breath_guide {
-  display: none;
   line-height: 30px;
   user-select: none;
   font-size: var(--font-32);

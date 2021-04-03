@@ -58,7 +58,6 @@ export default {
     const proceedButton = document.getElementById('proceed_button')
     const retryBreathing = document.getElementById('try_again')
 
-    const BREATH_GUIDE = document.getElementById('breath_guide')
     const CHALLENGE = document.getElementById('challenge_task')
     const CHALLENGE_STRING = document.getElementById('challenge_string')
     const CHALLENGE_INPUT = document.getElementById('challenge_input')
@@ -67,24 +66,20 @@ export default {
 
     const initiateBreathing = () => {
       this.backgroundAPI.STORE.mutations.initiateBreathing(this.tabId)
-
-      retryBreathing.style.display = 'none'
-      BREATH_GUIDE.style.display = 'inline-flex'
+      this.$store.commit('warning/setBreathing', 'initiated')
 
       breathingTimeout = setTimeout(() => {
         this.backgroundAPI.STORE.mutations.finishBreathing(this.tabId)
+        this.$store.commit('warning/setBreathing', 'success')
 
         proceedButton.style.display = 'initial'
         cancelButton.style.display = 'initial'
-        BREATH_GUIDE.style.display = 'none'
       }, 1000 * this.backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
     }
 
     const interruptBreathing = () => {
       this.backgroundAPI.STORE.mutations.interruptBreathing(this.tabId)
-
-      retryBreathing.style.display = 'block'
-      BREATH_GUIDE.style.display = 'none'
+      this.$store.commit('warning/setBreathing', 'interrupted')
       clearTimeout(breathingTimeout)
     }
 
