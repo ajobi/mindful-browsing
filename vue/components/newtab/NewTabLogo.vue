@@ -8,7 +8,7 @@
       >
         <img
           src="/assets/logo/icon.svg"
-          width="100px"
+          width="100"
         >
         <h4>MINDFUL BROWSING</h4>
         <p>Change your browsing habits for good.</p>
@@ -21,7 +21,7 @@
       >
         <img
           src="/assets/quote.svg"
-          width="50px"
+          width="50"
         >
         <p>{{ quote.text }}</p>
         <span>{{ quote.author }}</span>
