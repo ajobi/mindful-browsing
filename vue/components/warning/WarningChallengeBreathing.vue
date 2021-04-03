@@ -1,6 +1,6 @@
 <template>
   <div v-show="breathing && breathing !== 'success'">
-    <h3 id="try_again" v-show="breathing === 'interrupted'" >
+    <h3 id="try_again" v-show="breathing === 'interrupted'" @click="onRetry">
       You did not focus, let's try once again?
     </h3>
     <h2 id="breath_guide" v-show="breathing === 'initiated'">
@@ -14,6 +14,11 @@ export default {
   computed: {
     breathing () {
       return this.$store.getters['warning/getBreathing']
+    }
+  },
+  methods: {
+    onRetry () {
+      this.$store.dispatch('warning/initiateBreathing')
     }
   }
 }

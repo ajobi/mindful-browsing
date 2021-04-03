@@ -4,6 +4,7 @@
       id="visit_button"
       class="button--secondary"
       v-show="breathing === null"
+      @click="onVisit"
     >
       I need to visit this site
     </button>
@@ -26,14 +27,26 @@
   </div>
 </template>
 
+
 <script>
   export default {
     computed: {
+      backgroundAPI () {
+        return this.$store.getters['backgroundAPI/getBackgroundAPI']
+      },
       breathing () {
         return this.$store.getters['warning/getBreathing']
       }
     },
     methods: {
+      onVisit () {
+        switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
+          case 'breathing':
+            return this.$store.dispatch('warning/initiateBreathing')
+          case 'challenge':
+            return this.$store.dispatch('warning/initiateChallenge')
+        }
+      },
       onProceed () {
         chrome.runtime.sendMessage({
           id: 'BLOCKED_TAB_ACTION',
@@ -45,7 +58,7 @@
           id: 'BLOCKED_TAB_ACTION',
           data: { tabId: this.tabId, action: 'CANCEL' }
         })
-      }
+      },
     }
   }
 </script>
