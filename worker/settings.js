@@ -119,41 +119,6 @@ const mutations = {
   }
 }
 
-const validators = {
-  activeTask: {
-    minValue () {
-      return settings.extensionSettings.validators.activeTask.minValue
-    },
-    maxValue () {
-      return settings.extensionSettings.validators.activeTask.maxValue
-    }
-  },
-  notificationInterval: {
-    minValue () {
-      return settings.extensionSettings.validators.notificationInterval.minValue
-    },
-    maxValue () {
-      return settings.extensionSettings.validators.notificationInterval.maxValue
-    }
-  },
-  breathCount: {
-    minValue () {
-      return settings.extensionSettings.validators.breathCount.minValue
-    },
-    maxValue () {
-      return settings.extensionSettings.validators.breathCount.maxValue
-    }
-  },
-  challengeDifficulty: {
-    minValue () {
-      return settings.extensionSettings.validators.challengeDifficulty.minValue
-    },
-    maxValue () {
-      return settings.extensionSettings.validators.challengeDifficulty.maxValue
-    }
-  }
-}
-
 const onSettingsChanged = {
   addListener (callback) {
     onChangedCallbacks.push(callback)
@@ -167,6 +132,5 @@ export const SETTINGS = {
   load,
   getters,
   mutations,
-  onSettingsChanged,
-  validators
+  onSettingsChanged
 }

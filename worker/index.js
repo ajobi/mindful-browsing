@@ -3,14 +3,13 @@ import './installation.js'
 import './storage.js'
 import { STORE } from './store.js'
 import { SETTINGS } from './settings.js'
-import { VALIDATORS } from './utils/validators.js'
 import { URL } from './utils/url.js'
 import { ENFORCING } from './enforcing'
 import { MONITORING } from './monitoring'
 import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../utils/message'
 
 // expose modules to the internal pages via global object
-window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
+window.backgroundAPI = { SETTINGS, URL, STORE }
 
 chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)
