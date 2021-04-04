@@ -44,12 +44,6 @@ const getters = {
 }
 
 const mutations = {
-  setActiveTask (activeTask) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.activeTask.value = activeTask
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
   addBlockedDomain (blockedDomain) {
     const mutatedSettings = _getSettings()
     mutatedSettings.userSettings.blockedDomains.value.push({ name: blockedDomain, removeTimestamp: null })
@@ -78,36 +72,6 @@ const mutations = {
     mutatedSettings.userSettings.blockedDomains.value = mutatedSettings.userSettings.blockedDomains.value.filter(
       domain => domain.name !== blockedDomain
     )
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
-  setNotificationInterval (notificationInterval) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.notificationInterval.value = notificationInterval
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
-  setSoundsAllowed (soundsAllowed) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.soundsAllowed.value = soundsAllowed
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
-  setActiveMechanism (activeMechanism) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.activeMechanism.value = activeMechanism
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
-  setBreathCount (breathCount) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.breathCount.value = breathCount
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
-  setChallengeDifficulty (challengeDifficulty) {
-    const mutatedSettings = _getSettings()
-    mutatedSettings.userSettings.challengeDifficulty.value = challengeDifficulty
 
     chrome.storage.sync.set(mutatedSettings)
   }

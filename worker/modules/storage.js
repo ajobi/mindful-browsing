@@ -32,9 +32,16 @@ chrome.runtime.onMessage.addListener(({ id }) => {
   }
 })
 
+const updateUserSettings = (key, value) => {
+  chrome.storage.sync.get(null, storage => {
+    storage.userSettings[key].value = value
+    chrome.storage.sync.set(storage)
+  })
+}
+
 chrome.runtime.onMessage.addListener(({ id, value }) => {
   if (id === MESSAGE_ID_SET_ACTIVE_TASK) {
-    SETTINGS.mutations.setActiveTask(value)
+    updateUserSettings('activeTask', value)
     return
   }
 
@@ -59,27 +66,27 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
   }
 
   if (id === MESSAGE_ID_SET_ACTIVE_MECHANISM) {
-    SETTINGS.mutations.setActiveMechanism(value)
+    updateUserSettings('activeMechanism', value)
     return
   }
 
   if (id === MESSAGE_ID_SET_BREATH_COUNT) {
-    SETTINGS.mutations.setBreathCount(value)
+    updateUserSettings('breathCount', value)
     return
   }
 
   if (id === MESSAGE_ID_SET_CHALLENGE_DIFFICULTY) {
-    SETTINGS.mutations.setChallengeDifficulty(value)
+    updateUserSettings('challengeDifficulty', value)
     return
   }
 
   if (id === MESSAGE_ID_SET_SOUNDS_ALLOWED) {
-    SETTINGS.mutations.setSoundsAllowed(value)
+    updateUserSettings('soundsAllowed', value)
     return
   }
 
   if (id === MESSAGE_ID_SET_NOTIFICATION_INTERVAL) {
-    SETTINGS.mutations.setNotificationInterval(value)
+    updateUserSettings('notificationInterval', value)
     return
   }
 
