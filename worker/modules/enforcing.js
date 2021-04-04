@@ -1,11 +1,15 @@
 import { basicNotification } from '../utils/notifications.js'
 import { format } from '../utils/time.js'
 import { getNamedLogger } from '../utils/logger'
-import { removeException } from '../index'
 import { SETTINGS } from './settings'
 import { URL } from '../utils/url'
 import { STORE } from './store'
-import { MESSAGE_ID_INTERRUPT_BREATHING } from '../../messages'
+import {
+  MESSAGE_ID_BLOCKED_TAB_ACTION,
+  MESSAGE_ID_INTERRUPT_BREATHING,
+  MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
+} from '../../messages'
+import { MONITORING } from './monitoring'
 
 let countdown
 
@@ -107,6 +111,36 @@ const interruptBreathingTabs = () => {
       id: MESSAGE_ID_INTERRUPT_BREATHING,
       data: null
     })
+  }
+}
+
+chrome.tabs.onActivated.addListener(interruptBreathingTabs)
+chrome.windows.onFocusChanged.addListener(interruptBreathingTabs)
+
+function grantException () {
+  chrome.tabs.onUpdated.removeListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.addListener(checkTabsOnUpdate)
+  chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
+  startDisciplineEnforcement()
+}
+
+function removeException () {
+  chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.removeListener(checkTabsOnUpdate)
+  chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
+  stopDisciplineEnforcement()
+}
+
+chrome.runtime.onMessage.addListener(onMessage)
+
+function onMessage ({ id, data }) {
+  if (id === MESSAGE_ID_BLOCKED_TAB_ACTION) {
+    if (data.action === MESSAGE_VALUE_BLOCKED_TAB_CANCEL) {
+      chrome.tabs.update(data.tabId, { url: 'chrome://newtab/' })
+    } else if (data.action === MESSAGE_VALUE_BLOCKED_TAB_PROCEED && data.targetUrl) {
+      grantException()
+      chrome.tabs.update(data.tabId, { url: data.targetUrl })
+    }
   }
 }
 

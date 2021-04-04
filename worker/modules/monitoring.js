@@ -63,6 +63,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   }
 })
 
+chrome.tabs.onUpdated.addListener(checkUrl)
+
 export const MONITORING = {
   checkUrl
 }

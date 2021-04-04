@@ -128,6 +128,13 @@ const onSettingsChanged = {
   }
 }
 
+chrome.storage.onChanged.addListener(load)
+
+// needed in case chrome is opened without newtab
+if (!getters.areSettingsLoaded()) {
+  load()
+}
+
 export const SETTINGS = {
   load,
   getters,
