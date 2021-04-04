@@ -1,4 +1,4 @@
-import { SETTINGS } from '../settings'
+import { SETTINGS } from '../modules/settings'
 
 function isNewTab (url) {
   return url === 'chrome://newtab/'

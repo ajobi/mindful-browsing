@@ -1,4 +1,4 @@
-import { getNamedLogger } from './utils/logger'
+import { getNamedLogger } from '../utils/logger'
 
 const storeLog = getNamedLogger('STORE', 'olive')
 

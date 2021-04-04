@@ -1,9 +1,9 @@
-import { basicNotification } from './utils/notifications.js'
-import { format } from './utils/time.js'
-import { getNamedLogger } from './utils/logger'
-import { removeException } from './index'
+import { basicNotification } from '../utils/notifications.js'
+import { format } from '../utils/time.js'
+import { getNamedLogger } from '../utils/logger'
+import { removeException } from '../index'
 import { SETTINGS } from './settings'
-import { URL } from './utils/url'
+import { URL } from '../utils/url'
 import { STORE } from './store'
 
 let countdown

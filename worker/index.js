@@ -1,9 +1,9 @@
 // TODO: Migrate to Manifest V3 with service worker
-import './installation.js'
-import './storage.js'
-import { SETTINGS } from './settings.js'
-import { ENFORCING } from './enforcing'
-import { MONITORING } from './monitoring'
+import './modules/installation.js'
+import './modules/storage.js'
+import { SETTINGS } from './modules/settings.js'
+import { ENFORCING } from './modules/enforcing'
+import { MONITORING } from './modules/monitoring'
 import {
   MESSAGE_ID_BLOCKED_TAB_ACTION,
   MESSAGE_VALUE_BLOCKED_TAB_CANCEL,

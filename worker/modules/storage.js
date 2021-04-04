@@ -12,7 +12,7 @@ import {
   MESSAGE_ID_SET_SOUNDS_ALLOWED,
   MESSAGE_ID_STORAGE_UPDATE_REQUEST,
   MESSAGE_ID_STORAGE_UPDATED
-} from '../utils/message'
+} from '../../utils/message'
 
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(null, storage => {

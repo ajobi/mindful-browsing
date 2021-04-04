@@ -1,5 +1,5 @@
 import { getNamedLogger } from './logger'
-import { SETTINGS } from '../settings'
+import { SETTINGS } from '../modules/settings'
 
 const notificationsLog = getNamedLogger('NOTIFICATIONS', 'purple')
 

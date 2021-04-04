@@ -1,6 +1,6 @@
-import { getNamedLogger } from './utils/logger'
+import { getNamedLogger } from '../utils/logger'
 import { STORE } from './store'
-import { URL } from './utils/url'
+import { URL } from '../utils/url'
 
 const monitoringLog = getNamedLogger('MONITORING', 'indianred')
 
