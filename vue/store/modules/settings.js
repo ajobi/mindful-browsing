@@ -1,17 +1,4 @@
-const state = () => ({
-  settings: null
-})
-
-const mutations = {
-  setSettings (state, settings) {
-    state.settings = settings
-  }
-}
-
 const actions = {
-  load ({ commit }, backgroundAPI) {
-    commit('setSettings', backgroundAPI.SETTINGS.getters.getSettings())
-  },
   setActiveTask ({ rootState }, activeTask) {
     const { VALIDATORS, SETTINGS } = rootState.backgroundAPI.backgroundAPI
 
@@ -86,7 +73,5 @@ const actions = {
 
 export default {
   namespaced: true,
-  state,
-  actions,
-  mutations
+  actions
 }
