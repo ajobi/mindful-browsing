@@ -4,7 +4,11 @@ import './storage.js'
 import { SETTINGS } from './settings.js'
 import { ENFORCING } from './enforcing'
 import { MONITORING } from './monitoring'
-import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../utils/message'
+import {
+  MESSAGE_ID_BLOCKED_TAB_ACTION,
+  MESSAGE_VALUE_BLOCKED_TAB_CANCEL,
+  MESSAGE_VALUE_BLOCKED_TAB_PROCEED
+} from '../utils/message'
 
 chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)
@@ -20,9 +24,9 @@ chrome.windows.onFocusChanged.addListener(ENFORCING.interruptBreathingTabs)
 
 function onMessage ({ id, data }) {
   if (id === MESSAGE_ID_BLOCKED_TAB_ACTION) {
-    if (data.action === 'CANCEL') {
+    if (data.action === MESSAGE_VALUE_BLOCKED_TAB_CANCEL) {
       chrome.tabs.update(data.tabId, { url: 'chrome://newtab/' })
-    } else if (data.action === 'PROCEED' && data.targetUrl) {
+    } else if (data.action === MESSAGE_VALUE_BLOCKED_TAB_PROCEED && data.targetUrl) {
       grantException()
       chrome.tabs.update(data.tabId, { url: data.targetUrl })
     }
