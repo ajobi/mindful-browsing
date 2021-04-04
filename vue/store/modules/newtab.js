@@ -1,12 +1,14 @@
 import {
   MESSAGE_ID_SET_ACTIVE_TASK,
-  MESSAGE_ID_ADD_BLOCKED_DOMAIN,
   MESSAGE_ID_REMOVE_BLOCKED_DOMAIN,
   MESSAGE_ID_CANCEL_REMOVAL,
   MESSAGE_ID_DELETE_BLOCKED_DOMAIN,
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
   MESSAGE_ID_SET_BREATH_COUNT,
-  MESSAGE_ID_SET_CHALLENGE_DIFFICULTY, MESSAGE_ID_SET_SOUNDS_ALLOWED, MESSAGE_ID_SET_NOTIFICATION_INTERVAL
+  MESSAGE_ID_SET_CHALLENGE_DIFFICULTY,
+  MESSAGE_ID_SET_SOUNDS_ALLOWED,
+  MESSAGE_ID_SET_NOTIFICATION_INTERVAL,
+  MESSAGE_ID_SET_BLOCKED_DOMAINS
 } from '../../../messages'
 
 // eslint-disable-next-line prefer-regex-literals
@@ -44,7 +46,8 @@ const actions = {
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_ADD_BLOCKED_DOMAIN, value: pureDomainName })
+    const newValue = [...blockedDomains, { name: pureDomainName, removeTimestamp: null }]
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
   },
   removeBlockedDomain ({ rootState }, domainName) {
     chrome.runtime.sendMessage({ id: MESSAGE_ID_REMOVE_BLOCKED_DOMAIN, value: domainName })
