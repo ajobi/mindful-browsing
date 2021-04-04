@@ -52,12 +52,12 @@ export default {
   methods: {
     onBreathingSelected () {
       if (this.activeMechanism !== 'breathing') {
-        this.$store.dispatch('backgroundAPI/setActiveMechanism', 'breathing')
+        this.$store.dispatch('storage/setActiveMechanism', 'breathing')
       }
     },
     onChallengeSelected () {
       if (this.activeMechanism !== 'challenge') {
-        this.$store.dispatch('backgroundAPI/setActiveMechanism', 'challenge')
+        this.$store.dispatch('storage/setActiveMechanism', 'challenge')
       }
     },
     onBreathCountClicked () {
@@ -67,7 +67,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('backgroundAPI/setBreathCount', breathCount)
+      this.$store.dispatch('storage/setBreathCount', breathCount)
     },
     onChallengeDifficultyClicked () {
       const challengeDifficulty = prompt('Enter the number of characters:')
@@ -76,7 +76,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('backgroundAPI/setChallengeDifficulty', challengeDifficulty)
+      this.$store.dispatch('storage/setChallengeDifficulty', challengeDifficulty)
     }
   }
 }

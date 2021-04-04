@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     onSoundsAllowedClicked () {
-      this.$store.dispatch('backgroundAPI/setSoundsAllowed', !this.soundsAllowed)
+      this.$store.dispatch('storage/setSoundsAllowed', !this.soundsAllowed)
     },
     onEnterIntervalClicked () {
       const interval = prompt('Enter the notification interval:')
@@ -41,7 +41,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('backgroundAPI/setNotificationInterval', interval)
+      this.$store.dispatch('storage/setNotificationInterval', interval)
     }
   }
 }

@@ -22,11 +22,11 @@ import { getChallengeString } from '../../utils/utils.string'
 
 export default {
   computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    },
     challenge () {
       return this.$store.getters['warning/getChallenge']
+    },
+    challengeDifficulty () {
+      return this.$store.getters['storage/getChallengeDifficulty']
     }
   },
   watch: {
@@ -36,7 +36,7 @@ export default {
       const CHALLENGE_INPUT = document.getElementById('challenge_input')
 
       if (newValue === 'initiated') {
-        CHALLENGE_STRING.innerText = getChallengeString(this.backgroundAPI.SETTINGS.getters.getChallengeDifficulty())
+        CHALLENGE_STRING.innerText = getChallengeString(this.challengeDifficulty)
         CHALLENGE_INPUT.focus()
 
         CHALLENGE_INPUT.addEventListener('input', event => {

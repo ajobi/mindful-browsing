@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('backgroundAPI/addBlockedDomain', this.inputText)
+      this.$store.dispatch('storage/addBlockedDomain', this.inputText)
       this.inputText = ''
     }
   }

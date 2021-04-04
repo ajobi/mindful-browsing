@@ -32,16 +32,16 @@ import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../../../utils/message'
 
 export default {
   computed: {
-    backgroundAPI () {
-      return this.$store.getters['backgroundAPI/getBackgroundAPI']
-    },
     breathing () {
       return this.$store.getters['warning/getBreathing']
+    },
+    activeMechanism () {
+      return this.$store.getters['storage/getActiveMechanism']
     }
   },
   methods: {
     onVisit () {
-      switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
+      switch (this.activeMechanism) {
         case 'breathing':
           return this.$store.dispatch('warning/initiateBreathing')
         case 'challenge':
