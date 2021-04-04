@@ -3,17 +3,11 @@ import { getNamedLogger } from '../utils/logger'
 const settingsLog = getNamedLogger('SETTINGS', 'gray')
 
 let settings = null // core data object
-let onChangedCallbacks = []
 
 const load = () => new Promise((resolve, reject) =>
   chrome.storage.sync.get(null, storageItems => {
     settingsLog.log('New settings loaded.')
     settings = storageItems
-
-    for (const callback of onChangedCallbacks) {
-      callback()
-    }
-
     resolve()
   }))
 
@@ -119,15 +113,6 @@ const mutations = {
   }
 }
 
-const onSettingsChanged = {
-  addListener (callback) {
-    onChangedCallbacks.push(callback)
-  },
-  removeListener (callback) {
-    onChangedCallbacks = onChangedCallbacks.filter(value => value !== callback)
-  }
-}
-
 chrome.storage.onChanged.addListener(load)
 
 // needed in case chrome is opened without newtab
@@ -138,6 +123,5 @@ if (!getters.areSettingsLoaded()) {
 export const SETTINGS = {
   load,
   getters,
-  mutations,
-  onSettingsChanged
+  mutations
 }
