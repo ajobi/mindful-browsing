@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: {
-    background: './worker/index.js',
+    worker: './worker/index.js',
     'pages/newtab/newtab': './pages/newtab/newtab.js',
     'pages/warning/warning': './pages/warning/warning.js'
   },
