@@ -9,12 +9,14 @@
 </template>
 
 <script>
+import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../../../utils/message'
+
 export default {
   methods: {
     onCancel () {
       // TODO: Solve the duplication between Header and Controls
       chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
+        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
         data: { tabId: this.tabId, action: 'CANCEL' }
       })
     }

@@ -1,5 +1,4 @@
 // TODO: Migrate to Manifest V3 with service worker
-
 import './installation.js'
 import './storage.js'
 import { STORE } from './store.js'
@@ -8,6 +7,7 @@ import { VALIDATORS } from './utils/validators.js'
 import { URL } from './utils/url.js'
 import { ENFORCING } from './enforcing'
 import { MONITORING } from './monitoring'
+import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../utils/message'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
@@ -25,7 +25,7 @@ chrome.tabs.onActivated.addListener(ENFORCING.interruptBreathingTabs)
 chrome.windows.onFocusChanged.addListener(ENFORCING.interruptBreathingTabs)
 
 function onMessage ({ id, data }) {
-  if (id === 'BLOCKED_TAB_ACTION') {
+  if (id === MESSAGE_ID_BLOCKED_TAB_ACTION) {
     if (data.action === 'CANCEL') {
       chrome.tabs.update(data.tabId, { url: 'chrome://newtab/' })
     } else if (data.action === 'PROCEED' && data.targetUrl) {

@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { MESSAGE_ID_BLOCKED_TAB_ACTION } from '../../../utils/message'
+
 export default {
   computed: {
     backgroundAPI () {
@@ -48,13 +50,13 @@ export default {
     },
     onProceed () {
       chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
+        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
         data: { tabId: this.tabId, action: 'PROCEED', targetUrl: this.targetUrl }
       })
     },
     onCancel () {
       chrome.runtime.sendMessage({
-        id: 'BLOCKED_TAB_ACTION',
+        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
         data: { tabId: this.tabId, action: 'CANCEL' }
       })
     }
