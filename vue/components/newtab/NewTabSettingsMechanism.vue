@@ -40,13 +40,13 @@
 export default {
   computed: {
     activeMechanism () {
-      return this.$store.getters['settings/getActiveMechanism']
+      return this.$store.getters['storage/getActiveMechanism']
     },
     breathCount () {
-      return this.$store.getters['settings/getBreathCount']
+      return this.$store.getters['storage/getBreathCount']
     },
     challengeDifficulty () {
-      return this.$store.getters['settings/getChallengeDifficulty']
+      return this.$store.getters['storage/getChallengeDifficulty']
     }
   },
   methods: {

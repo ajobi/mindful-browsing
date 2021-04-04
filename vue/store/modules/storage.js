@@ -16,13 +16,19 @@ const actions = {
         console.log(storage)
       }
     })
+
+    chrome.runtime.sendMessage({ id: 'STORAGE_UPDATE_REQUEST' })
   }
 }
 
 const getters = {
-  getStorage (state) {
-    return state.storage
-  }
+  getActiveTask: state => state.storage?.userSettings?.activeTask?.value,
+  getBlockedDomains: state => state.storage?.userSettings?.blockedDomains?.value,
+  getActiveMechanism: state => state.storage?.userSettings?.activeMechanism?.value,
+  getBreathCount: state => state.storage?.userSettings?.breathCount?.value,
+  getChallengeDifficulty: state => state.storage?.userSettings?.challengeDifficulty?.value,
+  getNotificationInterval: state => state.storage?.userSettings?.notificationInterval?.value,
+  getSoundsAllowed: state => state.storage?.userSettings?.soundsAllowed?.value
 }
 
 export default {

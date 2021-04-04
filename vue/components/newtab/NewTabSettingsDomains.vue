@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     blockedDomains () {
-      return this.$store.getters['settings/getBlockedDomains']
+      return this.$store.getters['storage/getBlockedDomains']
     }
   },
   mounted () {

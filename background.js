@@ -18,6 +18,14 @@ chrome.storage.onChanged.addListener(() => {
   })
 })
 
+chrome.runtime.onMessage.addListener(({ id }) => {
+  if (id === 'STORAGE_UPDATE_REQUEST') {
+    chrome.storage.sync.get(null, storage => {
+      chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
+    })
+  }
+})
+
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
 

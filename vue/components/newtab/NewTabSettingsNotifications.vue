@@ -24,10 +24,10 @@
 export default {
   computed: {
     notificationInterval () {
-      return this.$store.getters['settings/getNotificationInterval']
+      return this.$store.getters['storage/getNotificationInterval']
     },
     soundsAllowed () {
-      return this.$store.getters['settings/getSoundsAllowed']
+      return this.$store.getters['storage/getSoundsAllowed']
     }
   },
   methods: {
