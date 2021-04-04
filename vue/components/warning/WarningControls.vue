@@ -40,7 +40,7 @@ export default {
       return this.$store.getters['warning/getBreathing']
     },
     activeMechanism () {
-      return this.$store.getters['storage/getActiveMechanism']
+      return this.$store.getters['newtab/getActiveMechanism']
     }
   },
   methods: {

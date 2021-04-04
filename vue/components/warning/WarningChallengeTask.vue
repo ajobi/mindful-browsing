@@ -26,7 +26,7 @@ export default {
       return this.$store.getters['warning/getChallenge']
     },
     challengeDifficulty () {
-      return this.$store.getters['storage/getChallengeDifficulty']
+      return this.$store.getters['newtab/getChallengeDifficulty']
     }
   },
   watch: {

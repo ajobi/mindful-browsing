@@ -40,24 +40,24 @@
 export default {
   computed: {
     activeMechanism () {
-      return this.$store.getters['storage/getActiveMechanism']
+      return this.$store.getters['newtab/getActiveMechanism']
     },
     breathCount () {
-      return this.$store.getters['storage/getBreathCount']
+      return this.$store.getters['newtab/getBreathCount']
     },
     challengeDifficulty () {
-      return this.$store.getters['storage/getChallengeDifficulty']
+      return this.$store.getters['newtab/getChallengeDifficulty']
     }
   },
   methods: {
     onBreathingSelected () {
       if (this.activeMechanism !== 'breathing') {
-        this.$store.dispatch('storage/setActiveMechanism', 'breathing')
+        this.$store.dispatch('newtab/setActiveMechanism', 'breathing')
       }
     },
     onChallengeSelected () {
       if (this.activeMechanism !== 'challenge') {
-        this.$store.dispatch('storage/setActiveMechanism', 'challenge')
+        this.$store.dispatch('newtab/setActiveMechanism', 'challenge')
       }
     },
     onBreathCountClicked () {
@@ -67,7 +67,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('storage/setBreathCount', breathCount)
+      this.$store.dispatch('newtab/setBreathCount', breathCount)
     },
     onChallengeDifficultyClicked () {
       const challengeDifficulty = prompt('Enter the number of characters:')
@@ -76,7 +76,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('storage/setChallengeDifficulty', challengeDifficulty)
+      this.$store.dispatch('newtab/setChallengeDifficulty', challengeDifficulty)
     }
   }
 }

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('storage/setActiveTask', this.inputText)
+      this.$store.dispatch('newtab/setActiveTask', this.inputText)
       this.inputText = ''
     }
   }

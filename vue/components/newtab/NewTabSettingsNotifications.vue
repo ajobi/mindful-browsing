@@ -24,15 +24,15 @@
 export default {
   computed: {
     notificationInterval () {
-      return this.$store.getters['storage/getNotificationInterval']
+      return this.$store.getters['newtab/getNotificationInterval']
     },
     soundsAllowed () {
-      return this.$store.getters['storage/getSoundsAllowed']
+      return this.$store.getters['newtab/getSoundsAllowed']
     }
   },
   methods: {
     onSoundsAllowedClicked () {
-      this.$store.dispatch('storage/setSoundsAllowed', !this.soundsAllowed)
+      this.$store.dispatch('newtab/setSoundsAllowed', !this.soundsAllowed)
     },
     onEnterIntervalClicked () {
       const interval = prompt('Enter the notification interval:')
@@ -41,7 +41,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('storage/setNotificationInterval', interval)
+      this.$store.dispatch('newtab/setNotificationInterval', interval)
     }
   }
 }

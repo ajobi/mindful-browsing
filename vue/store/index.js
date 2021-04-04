@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
-import warning from './modules/warning'
 import storage from './modules/storage'
+import newtab from './modules/newtab'
+import warning from './modules/warning'
 
 const store = createStore({
   modules: {
     storage,
+    newtab,
     warning
   }
 })

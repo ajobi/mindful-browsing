@@ -11,7 +11,7 @@
 export default {
   computed: {
     activeTask () {
-      return this.$store.getters['storage/getActiveTask']
+      return this.$store.getters['newtab/getActiveTask']
     }
   }
 }

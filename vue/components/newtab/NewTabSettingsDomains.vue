@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     blockedDomains () {
-      return this.$store.getters['storage/getBlockedDomains']
+      return this.$store.getters['newtab/getBlockedDomains']
     }
   },
   mounted () {
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('storage/addBlockedDomain', this.inputText)
+      this.$store.dispatch('newtab/addBlockedDomain', this.inputText)
       this.inputText = ''
     }
   }
