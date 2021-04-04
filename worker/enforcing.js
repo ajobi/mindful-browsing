@@ -2,6 +2,9 @@ import { basicNotification } from './utils/notifications.js'
 import { format } from './utils/time.js'
 import { getNamedLogger } from './utils/logger'
 import { removeException } from './index'
+import { SETTINGS } from './settings'
+import { URL } from './utils/url'
+import { STORE } from './store'
 
 let countdown
 
@@ -12,8 +15,8 @@ const onNotificationClicked = notificationId => {
     const forbiddenIds = []
 
     for (const tab of tabs) {
-      for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
-        if (window.backgroundAPI.URL.isOfDomain(tab.url, blockedDomain.name)) {
+      for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+        if (URL.isOfDomain(tab.url, blockedDomain.name)) {
           forbiddenIds.push(tab.id)
         }
       }
@@ -27,11 +30,11 @@ const onNotificationClicked = notificationId => {
 
 const redirectToForbiddenTab = () => {
   chrome.tabs.query({ active: true }, tabs => {
-    if (!window.backgroundAPI.URL.isForbidden(tabs[0].url)) {
+    if (!URL.isForbidden(tabs[0].url)) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
-          for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
-            if (window.backgroundAPI.URL.isOfDomain(tab.url, blockedDomain.name)) {
+          for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+            if (URL.isOfDomain(tab.url, blockedDomain.name)) {
               chrome.tabs.update(tab.id, { selected: true })
               return
             }
@@ -47,7 +50,7 @@ const startDisciplineEnforcement = () => {
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
-  let counter = window.backgroundAPI.SETTINGS.getters.getNotificationInterval()
+  let counter = SETTINGS.getters.getNotificationInterval()
   let secondsSpentOnForbidden = 0
 
   countdown = setInterval(() => {
@@ -62,7 +65,7 @@ const startDisciplineEnforcement = () => {
         `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
         true
       )
-      counter = window.backgroundAPI.SETTINGS.getters.getNotificationInterval()
+      counter = SETTINGS.getters.getNotificationInterval()
     }
   }, 1000)
 }
@@ -86,7 +89,7 @@ const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
     for (const tab of tabs) {
-      if (window.backgroundAPI.URL.isForbidden(tab.url)) {
+      if (URL.isForbidden(tab.url)) {
         chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
         return
       }
@@ -98,7 +101,7 @@ const checkTabsOnRemoved = () => {
 }
 
 const interruptBreathingTabs = () => {
-  for (const tab of window.backgroundAPI.STORE.getters.getBreathingTabs()) {
+  for (const tab of STORE.getters.getBreathingTabs()) {
     chrome.tabs.sendMessage(tab.tabId, {
       id: 'INTERRUPT_BREATHING',
       data: null

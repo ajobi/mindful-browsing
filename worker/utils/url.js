@@ -1,3 +1,5 @@
+import { SETTINGS } from '../settings'
+
 function isNewTab (url) {
   return url === 'chrome://newtab/'
 }
@@ -11,7 +13,7 @@ function isOfDomain (url, domain) {
 }
 
 function isForbidden (url) {
-  for (const blockedDomain of window.backgroundAPI.SETTINGS.getters.getBlockedDomains()) {
+  for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
     if (isOfDomain(url, blockedDomain.name)) {
       return true
     }

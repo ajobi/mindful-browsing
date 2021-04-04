@@ -1,4 +1,5 @@
 import { getNamedLogger } from './logger'
+import { SETTINGS } from '../settings'
 
 const notificationsLog = getNamedLogger('NOTIFICATIONS', 'purple')
 
@@ -12,7 +13,7 @@ export const basicNotification = (title, message, withSound) => {
     () => {
       notificationsLog.log(`Notification created: ${title} ${message}`)
 
-      if (window.backgroundAPI.SETTINGS.getters.getSoundsAllowed() && withSound) {
+      if (SETTINGS.getters.getSoundsAllowed() && withSound) {
         setTimeout(() => tickSound.play(), soundTimeout)
       }
     }
