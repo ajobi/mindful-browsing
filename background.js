@@ -1,30 +1,13 @@
 // TODO: Migrate to Manifest V3 with service worker
 
 import './src/installation.js'
+import './src/storage.js'
 import { STORE } from './src/store.js'
 import { SETTINGS } from './src/settings.js'
 import { VALIDATORS } from './src/utils/validators.js'
 import { URL } from './src/utils/url.js'
 import { ENFORCING } from './src/enforcing'
 import { MONITORING } from './src/monitoring'
-
-chrome.storage.sync.get(null, storage => {
-  chrome.runtime.sendMessage(storage)
-})
-
-chrome.storage.onChanged.addListener(() => {
-  chrome.storage.sync.get(null, storage => {
-    chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
-  })
-})
-
-chrome.runtime.onMessage.addListener(({ id }) => {
-  if (id === 'STORAGE_UPDATE_REQUEST') {
-    chrome.storage.sync.get(null, storage => {
-      chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
-    })
-  }
-})
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
