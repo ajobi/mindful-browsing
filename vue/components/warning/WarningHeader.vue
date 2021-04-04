@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_VALUE_BLOCKED_TAB_CANCEL } from '../../../utils/message'
+import { MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_VALUE_BLOCKED_TAB_CANCEL } from '../../../messages'
 
 export default {
   methods: {

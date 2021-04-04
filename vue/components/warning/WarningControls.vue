@@ -32,7 +32,7 @@ import {
   MESSAGE_ID_BLOCKED_TAB_ACTION,
   MESSAGE_VALUE_BLOCKED_TAB_PROCEED,
   MESSAGE_VALUE_BLOCKED_TAB_CANCEL
-} from '../../../utils/message'
+} from '../../../messages'
 
 export default {
   computed: {

@@ -7,7 +7,7 @@ import {
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
   MESSAGE_ID_SET_BREATH_COUNT,
   MESSAGE_ID_SET_CHALLENGE_DIFFICULTY, MESSAGE_ID_SET_SOUNDS_ALLOWED, MESSAGE_ID_SET_NOTIFICATION_INTERVAL
-} from '../../../utils/message'
+} from '../../../messages'
 
 // eslint-disable-next-line prefer-regex-literals
 const domainNameRegex = new RegExp(

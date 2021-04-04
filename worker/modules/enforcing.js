@@ -5,7 +5,7 @@ import { removeException } from '../index'
 import { SETTINGS } from './settings'
 import { URL } from '../utils/url'
 import { STORE } from './store'
-import { MESSAGE_ID_INTERRUPT_BREATHING } from '../../utils/message'
+import { MESSAGE_ID_INTERRUPT_BREATHING } from '../../messages'
 
 let countdown
 

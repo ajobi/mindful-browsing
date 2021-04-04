@@ -2,7 +2,7 @@ import {
   MESSAGE_ID_FINISH_BREATHING,
   MESSAGE_ID_INITIATE_BREATHING,
   MESSAGE_ID_INTERRUPT_BREATHING
-} from '../../../utils/message'
+} from '../../../messages'
 
 let breathingTimeout = null
 

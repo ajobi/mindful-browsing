@@ -1,7 +1,7 @@
 import {
   MESSAGE_ID_STORAGE_UPDATED,
   MESSAGE_ID_STORAGE_UPDATE_REQUEST
-} from '../../../utils/message'
+} from '../../../messages'
 
 const state = () => ({
   storage: null
