@@ -1,8 +1,12 @@
 import { SETTINGS } from './settings'
+import { STORE } from './store'
 import {
   MESSAGE_ID_ADD_BLOCKED_DOMAIN,
   MESSAGE_ID_CANCEL_REMOVAL,
   MESSAGE_ID_DELETE_BLOCKED_DOMAIN,
+  MESSAGE_ID_FINISH_BREATHING,
+  MESSAGE_ID_INITIATE_BREATHING,
+  MESSAGE_ID_INTERRUPT_BREATHING,
   MESSAGE_ID_REMOVE_BLOCKED_DOMAIN,
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
   MESSAGE_ID_SET_ACTIVE_TASK,
@@ -76,5 +80,19 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
 
   if (id === MESSAGE_ID_SET_NOTIFICATION_INTERVAL) {
     SETTINGS.mutations.setNotificationInterval(value)
+    return
+  }
+
+  if (id === MESSAGE_ID_INITIATE_BREATHING) {
+    STORE.mutations.initiateBreathing(value)
+  }
+
+  if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
+    STORE.mutations.interruptBreathing(value)
+    return
+  }
+
+  if (id === MESSAGE_ID_FINISH_BREATHING) {
+    STORE.mutations.finishBreathing(value)
   }
 })

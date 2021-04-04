@@ -1,3 +1,9 @@
+import {
+  MESSAGE_ID_FINISH_BREATHING,
+  MESSAGE_ID_INITIATE_BREATHING,
+  MESSAGE_ID_INTERRUPT_BREATHING
+} from '../../../utils/message'
+
 let breathingTimeout = null
 
 const state = () => ({
@@ -52,24 +58,25 @@ const actions = {
         return
       }
 
-      if (id === 'INTERRUPT_BREATHING') { dispatch('interruptBreathing') }
-    }
-    )
+      if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
+        dispatch('interruptBreathing')
+      }
+    })
   },
   initiateBreathing ({ commit, rootState, state }) {
-    rootState.backgroundAPI.backgroundAPI.STORE.mutations.initiateBreathing(state.tabId)
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_INITIATE_BREATHING, value: state.tabId })
     commit('setBreathing', 'initiated')
 
     breathingTimeout = setTimeout(() => {
-      rootState.backgroundAPI.backgroundAPI.STORE.mutations.finishBreathing(state.tabId)
+      chrome.runtime.sendMessage({ id: MESSAGE_ID_FINISH_BREATHING, value: state.tabId })
       commit('setBreathing', 'success')
-    }, 1000 * rootState.backgroundAPI.backgroundAPI.SETTINGS.getters.getBreathCount() * 8)
+    }, 1000 * rootState.storage.storage?.userSettings?.breathCount?.value * 8)
   },
   initiateChallenge ({ commit }) {
     commit('setChallenge', 'initiated')
   },
-  interruptBreathing ({ commit, rootState, state }) {
-    rootState.backgroundAPI.backgroundAPI.STORE.mutations.interruptBreathing(state.tabId)
+  interruptBreathing ({ commit, state }) {
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_INTERRUPT_BREATHING, value: state.tabId })
     commit('setBreathing', 'interrupted')
     clearTimeout(breathingTimeout)
   }

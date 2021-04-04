@@ -5,6 +5,7 @@ import { removeException } from '../index'
 import { SETTINGS } from './settings'
 import { URL } from '../utils/url'
 import { STORE } from './store'
+import { MESSAGE_ID_INTERRUPT_BREATHING } from '../../utils/message'
 
 let countdown
 
@@ -103,7 +104,7 @@ const checkTabsOnRemoved = () => {
 const interruptBreathingTabs = () => {
   for (const tab of STORE.getters.getBreathingTabs()) {
     chrome.tabs.sendMessage(tab.tabId, {
-      id: 'INTERRUPT_BREATHING',
+      id: MESSAGE_ID_INTERRUPT_BREATHING,
       data: null
     })
   }
