@@ -8,12 +8,18 @@ import { URL } from './src/utils/url.js'
 import { ENFORCING } from './src/enforcing'
 import { MONITORING } from './src/monitoring'
 
-// expose modules to the internal pages via global object
-window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
+chrome.storage.sync.get(null, storage => {
+  chrome.runtime.sendMessage(storage)
+})
 
 chrome.storage.onChanged.addListener(() => {
-  chrome.runtime.sendMessage('Hello World')
+  chrome.storage.sync.get(null, storage => {
+    chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
+  })
 })
+
+// expose modules to the internal pages via global object
+window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
 
 chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
 chrome.runtime.onMessage.addListener(onMessage)

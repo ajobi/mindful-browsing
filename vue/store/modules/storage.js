@@ -9,9 +9,12 @@ const mutations = {
 }
 
 const actions = {
-  init () {
-    chrome.runtime.onMessage.addListener(message => {
-      console.log(message)
+  init ({ commit }) {
+    chrome.runtime.onMessage.addListener(({ id, storage }) => {
+      if (id === 'STORAGE_UPDATED') {
+        commit('setStorage', storage)
+        console.log(storage)
+      }
     })
   }
 }
