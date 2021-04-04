@@ -30,7 +30,7 @@ module.exports = {
       patterns: [
         { from: 'vue/pages/newtab/newtab.html', to: 'pages/newtab/newtab.html' },
         { from: 'vue/pages/warning/warning.html', to: 'pages/warning/warning.html' },
-        { from: 'assets', to: 'assets' },
+        { from: 'vue/assets', to: 'assets' },
         { from: 'manifest.json', to: 'manifest.json' }
       ]
     })
