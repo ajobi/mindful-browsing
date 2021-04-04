@@ -1,6 +1,5 @@
 import {
   MESSAGE_ID_SET_ACTIVE_TASK,
-  MESSAGE_ID_CANCEL_REMOVAL,
   MESSAGE_ID_DELETE_BLOCKED_DOMAIN,
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
   MESSAGE_ID_SET_BREATH_COUNT,
@@ -56,7 +55,11 @@ const actions = {
     chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
   },
   cancelRemoval ({ rootState }, domainName) {
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_CANCEL_REMOVAL, value: domainName })
+    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
+    const newValue = [...blockedDomains]
+    const targetDomain = newValue.find(domain => domain.name === domainName)
+    targetDomain.removeTimestamp = null
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
   },
   deleteBlockedDomain ({ rootState }, domainName) {
     chrome.runtime.sendMessage({ id: MESSAGE_ID_DELETE_BLOCKED_DOMAIN, value: domainName })

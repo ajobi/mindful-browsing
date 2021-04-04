@@ -44,14 +44,6 @@ const getters = {
 }
 
 const mutations = {
-  cancelRemoval (blockedDomain) {
-    const mutatedSettings = _getSettings()
-
-    const targetDomain = mutatedSettings.userSettings.blockedDomains.value.find(domain => domain.name === blockedDomain)
-    targetDomain.removeTimestamp = null
-
-    chrome.storage.sync.set(mutatedSettings)
-  },
   deleteBlockedDomain (blockedDomain) {
     const mutatedSettings = _getSettings()
 
