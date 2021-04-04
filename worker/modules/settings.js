@@ -11,8 +11,6 @@ const load = () => new Promise((resolve, reject) =>
     resolve()
   }))
 
-const _getSettings = () => JSON.parse(JSON.stringify(settings))
-
 const getters = {
   areSettingsLoaded () {
     return !!settings
@@ -43,18 +41,6 @@ const getters = {
   }
 }
 
-const mutations = {
-  deleteBlockedDomain (blockedDomain) {
-    const mutatedSettings = _getSettings()
-
-    mutatedSettings.userSettings.blockedDomains.value = mutatedSettings.userSettings.blockedDomains.value.filter(
-      domain => domain.name !== blockedDomain
-    )
-
-    chrome.storage.sync.set(mutatedSettings)
-  }
-}
-
 chrome.storage.onChanged.addListener(load)
 
 // needed in case chrome is opened without newtab
@@ -64,6 +50,5 @@ if (!getters.areSettingsLoaded()) {
 
 export const SETTINGS = {
   load,
-  getters,
-  mutations
+  getters
 }

@@ -1,7 +1,5 @@
-import { SETTINGS } from './settings'
 import { STORE } from './store'
 import {
-  MESSAGE_ID_DELETE_BLOCKED_DOMAIN,
   MESSAGE_ID_FINISH_BREATHING,
   MESSAGE_ID_INITIATE_BREATHING,
   MESSAGE_ID_INTERRUPT_BREATHING,
@@ -44,11 +42,6 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
 
   if (id === MESSAGE_ID_SET_BLOCKED_DOMAINS) {
     updateUserSettings('blockedDomains', value)
-    return
-  }
-
-  if (id === MESSAGE_ID_DELETE_BLOCKED_DOMAIN) {
-    SETTINGS.mutations.deleteBlockedDomain(value)
     return
   }
 
