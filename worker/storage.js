@@ -1,13 +1,15 @@
+import { MESSAGE_ID_STORAGE_UPDATED } from '../utils/message'
+
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(null, storage => {
-    chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })
   })
 })
 
 chrome.runtime.onMessage.addListener(({ id }) => {
-  if (id === 'STORAGE_UPDATE_REQUEST') {
+  if (id === MESSAGE_ID_STORAGE_UPDATED) {
     chrome.storage.sync.get(null, storage => {
-      chrome.runtime.sendMessage({ id: 'STORAGE_UPDATED', storage })
+      chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })
     })
   }
 })
