@@ -1,5 +1,8 @@
 <template>
-  <div id="challenge_task" v-show="challenge && challenge !== 'success'">
+  <div
+    v-show="challenge && challenge !== 'success'"
+    id="challenge_task"
+  >
     <h2>Type in the following text:</h2>
     <div id="challenge_string_wrapper">
       <p id="challenge_string" />

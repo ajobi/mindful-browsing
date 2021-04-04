@@ -1,22 +1,25 @@
 <template>
-  <header id="warning_panel" @click="onCancel">
+  <header
+    id="warning_panel"
+    @click="onCancel"
+  >
     <h1>This domain has been blocked for a good reason.</h1>
     <h2>Please, pause and reconsider whether you really need to visit this site.</h2>
   </header>
 </template>
 
 <script>
-  export default {
-     methods: {
-       onCancel () {
-         // TODO: Solve the duplication between Header and Controls
-         chrome.runtime.sendMessage({
-           id: 'BLOCKED_TAB_ACTION',
-           data: { tabId: this.tabId, action: 'CANCEL' }
-         })
-       }
-     }
+export default {
+  methods: {
+    onCancel () {
+      // TODO: Solve the duplication between Header and Controls
+      chrome.runtime.sendMessage({
+        id: 'BLOCKED_TAB_ACTION',
+        data: { tabId: this.tabId, action: 'CANCEL' }
+      })
+    }
   }
+}
 </script>
 
 <style>

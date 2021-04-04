@@ -1,66 +1,65 @@
 <template>
   <div>
     <button
+      v-show="breathing === null"
       id="visit_button"
       class="button--secondary"
-      v-show="breathing === null"
       @click="onVisit"
     >
       I need to visit this site
     </button>
     <button
+      v-show="breathing === 'success'"
       id="proceed_button"
       class="button--secondary"
       @click="onProceed"
-      v-show="breathing === 'success'"
     >
       I really have to visit this site
     </button>
     <button
+      v-show="breathing === null || breathing === 'success'"
       id="cancel_button"
       class="button--primary"
       @click="onCancel"
-      v-show="breathing === null || breathing === 'success'"
     >
       I have changed my mind
     </button>
   </div>
 </template>
 
-
 <script>
-  export default {
-    computed: {
-      backgroundAPI () {
-        return this.$store.getters['backgroundAPI/getBackgroundAPI']
-      },
-      breathing () {
-        return this.$store.getters['warning/getBreathing']
+export default {
+  computed: {
+    backgroundAPI () {
+      return this.$store.getters['backgroundAPI/getBackgroundAPI']
+    },
+    breathing () {
+      return this.$store.getters['warning/getBreathing']
+    }
+  },
+  methods: {
+    onVisit () {
+      switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
+        case 'breathing':
+          return this.$store.dispatch('warning/initiateBreathing')
+        case 'challenge':
+          return this.$store.dispatch('warning/initiateChallenge')
       }
     },
-    methods: {
-      onVisit () {
-        switch (this.backgroundAPI.SETTINGS.getters.getActiveMechanism()) {
-          case 'breathing':
-            return this.$store.dispatch('warning/initiateBreathing')
-          case 'challenge':
-            return this.$store.dispatch('warning/initiateChallenge')
-        }
-      },
-      onProceed () {
-        chrome.runtime.sendMessage({
-          id: 'BLOCKED_TAB_ACTION',
-          data: { tabId: this.tabId, action: 'PROCEED', targetUrl: this.targetUrl }
-        })
-      },
-      onCancel () {
-        chrome.runtime.sendMessage({
-          id: 'BLOCKED_TAB_ACTION',
-          data: { tabId: this.tabId, action: 'CANCEL' }
-        })
-      },
+    onProceed () {
+      chrome.runtime.sendMessage({
+        id: 'BLOCKED_TAB_ACTION',
+        data: { tabId: this.tabId, action: 'PROCEED', targetUrl: this.targetUrl }
+      })
+    },
+    onCancel () {
+      chrome.runtime.sendMessage({
+        id: 'BLOCKED_TAB_ACTION',
+        data: { tabId: this.tabId, action: 'CANCEL' }
+      })
     }
   }
+}
 </script>
 
 <style>

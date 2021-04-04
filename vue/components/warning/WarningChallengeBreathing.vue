@@ -1,9 +1,16 @@
 <template>
   <div v-show="breathing && breathing !== 'success'">
-    <h3 id="try_again" v-show="breathing === 'interrupted'" @click="onRetry">
+    <h3
+      v-show="breathing === 'interrupted'"
+      id="try_again"
+      @click="onRetry"
+    >
       You did not focus, let's try once again?
     </h3>
-    <h2 id="breath_guide" v-show="breathing === 'initiated'">
+    <h2
+      v-show="breathing === 'initiated'"
+      id="breath_guide"
+    >
       Take a deep breath
     </h2>
   </div>
