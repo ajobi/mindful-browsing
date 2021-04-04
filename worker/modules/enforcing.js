@@ -1,7 +1,7 @@
 import { basicNotification } from '../utils/notifications.js'
 import { format } from '../utils/time.js'
 import { getNamedLogger } from '../utils/logger'
-import { getUserSettings } from './storage'
+import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
 import { STORE } from './store'
 import {
