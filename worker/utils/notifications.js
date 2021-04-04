@@ -1,5 +1,5 @@
 import { getNamedLogger } from './logger'
-import { SETTINGS } from '../modules/settings'
+import { getUserSettings } from '../modules/storage'
 
 const notificationsLog = getNamedLogger('NOTIFICATIONS', 'purple')
 
@@ -13,7 +13,7 @@ export const basicNotification = (title, message, withSound) => {
     () => {
       notificationsLog.log(`Notification created: ${title} ${message}`)
 
-      if (SETTINGS.getters.getSoundsAllowed() && withSound) {
+      if (getUserSettings('soundsAllowed') && withSound) {
         setTimeout(() => tickSound.play(), soundTimeout)
       }
     }

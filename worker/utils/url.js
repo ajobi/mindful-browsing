@@ -1,4 +1,5 @@
 import { SETTINGS } from '../modules/settings'
+import { getUserSettings } from '../modules/storage'
 
 function isNewTab (url) {
   return url === 'chrome://newtab/'
@@ -13,7 +14,7 @@ function isOfDomain (url, domain) {
 }
 
 function isForbidden (url) {
-  for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+  for (const blockedDomain of getUserSettings('blockedDomains')) {
     if (isOfDomain(url, blockedDomain.name)) {
       return true
     }

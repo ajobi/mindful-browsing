@@ -13,8 +13,21 @@ import {
   MESSAGE_ID_STORAGE_UPDATED
 } from '../../messages'
 
+let store = null
+
+export const updateUserSettings = (key, value) => {
+  chrome.storage.sync.get(null, storage => {
+    storage.userSettings[key].value = value
+    chrome.storage.sync.set(storage)
+  })
+}
+
+export const getUserSettings = (key) => store.userSettings[key].value
+
+// TODO: Add load on initial chrome start
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(null, storage => {
+    store = storage
     chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })
   })
 })
@@ -26,13 +39,6 @@ chrome.runtime.onMessage.addListener(({ id }) => {
     })
   }
 })
-
-const updateUserSettings = (key, value) => {
-  chrome.storage.sync.get(null, storage => {
-    storage.userSettings[key].value = value
-    chrome.storage.sync.set(storage)
-  })
-}
 
 chrome.runtime.onMessage.addListener(({ id, value }) => {
   if (id === MESSAGE_ID_SET_ACTIVE_TASK) {

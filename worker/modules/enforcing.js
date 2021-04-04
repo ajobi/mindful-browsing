@@ -1,7 +1,7 @@
 import { basicNotification } from '../utils/notifications.js'
 import { format } from '../utils/time.js'
 import { getNamedLogger } from '../utils/logger'
-import { SETTINGS } from './settings'
+import { getUserSettings } from './storage'
 import { URL } from '../utils/url'
 import { STORE } from './store'
 import {
@@ -20,7 +20,7 @@ const onNotificationClicked = notificationId => {
     const forbiddenIds = []
 
     for (const tab of tabs) {
-      for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+      for (const blockedDomain of getUserSettings('blockedDomains')) {
         if (URL.isOfDomain(tab.url, blockedDomain.name)) {
           forbiddenIds.push(tab.id)
         }
@@ -38,7 +38,7 @@ const redirectToForbiddenTab = () => {
     if (!URL.isForbidden(tabs[0].url)) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
-          for (const blockedDomain of SETTINGS.getters.getBlockedDomains()) {
+          for (const blockedDomain of getUserSettings('blockedDomains')) {
             if (URL.isOfDomain(tab.url, blockedDomain.name)) {
               chrome.tabs.update(tab.id, { selected: true })
               return
@@ -55,7 +55,7 @@ const startDisciplineEnforcement = () => {
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
-  let counter = SETTINGS.getters.getNotificationInterval()
+  let counter = getUserSettings('notificationInterval')
   let secondsSpentOnForbidden = 0
 
   countdown = setInterval(() => {
@@ -70,7 +70,7 @@ const startDisciplineEnforcement = () => {
         `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
         true
       )
-      counter = SETTINGS.getters.getNotificationInterval()
+      counter = getUserSettings('notificationInterval')
     }
   }, 1000)
 }
