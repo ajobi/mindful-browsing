@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import settings from './modules/settings'
 import backgroundAPI from './modules/backgroundAPI'
 import warning from './modules/warning'
 import storage from './modules/storage'
@@ -7,9 +6,8 @@ import storage from './modules/storage'
 const store = createStore({
   modules: {
     backgroundAPI,
-    settings,
-    warning,
-    storage
+    storage,
+    warning
   }
 })
 

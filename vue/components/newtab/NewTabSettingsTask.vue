@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('settings/setActiveTask', this.inputText)
+      this.$store.dispatch('backgroundAPI/setActiveTask', this.inputText)
       this.inputText = ''
     }
   }

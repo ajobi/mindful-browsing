@@ -62,7 +62,7 @@ export default {
             if (timeDifferenceInSeconds > 1) {
               this.removalCountdownText = `in ${format(timeDifferenceInSeconds)}`
             } else {
-              this.$store.dispatch('settings/deleteBlockedDomain', this.domain.name)
+              this.$store.dispatch('backgroundAPI/deleteBlockedDomain', this.domain.name)
             }
           }, 1000)
         }
@@ -74,10 +74,10 @@ export default {
   },
   methods: {
     onRemove () {
-      this.$store.dispatch('settings/removeBlockedDomain', this.domain.name)
+      this.$store.dispatch('backgroundAPI/removeBlockedDomain', this.domain.name)
     },
     onCancelRemove () {
-      this.$store.dispatch('settings/cancelRemoval', this.domain.name)
+      this.$store.dispatch('backgroundAPI/cancelRemoval', this.domain.name)
     }
   }
 }
