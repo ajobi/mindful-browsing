@@ -1,13 +1,13 @@
 // TODO: Migrate to Manifest V3 with service worker
 
-import './src/installation.js'
-import './src/storage.js'
-import { STORE } from './src/store.js'
-import { SETTINGS } from './src/settings.js'
-import { VALIDATORS } from './src/utils/validators.js'
-import { URL } from './src/utils/url.js'
-import { ENFORCING } from './src/enforcing'
-import { MONITORING } from './src/monitoring'
+import './installation.js'
+import './storage.js'
+import { STORE } from './store.js'
+import { SETTINGS } from './settings.js'
+import { VALIDATORS } from './utils/validators.js'
+import { URL } from './utils/url.js'
+import { ENFORCING } from './enforcing'
+import { MONITORING } from './monitoring'
 
 // expose modules to the internal pages via global object
 window.backgroundAPI = { SETTINGS, URL, VALIDATORS, STORE }
