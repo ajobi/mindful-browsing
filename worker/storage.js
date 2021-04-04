@@ -1,5 +1,4 @@
 import { SETTINGS } from './settings'
-import { URL } from './utils/url.js'
 import {
   MESSAGE_ID_ADD_BLOCKED_DOMAIN,
   MESSAGE_ID_CANCEL_REMOVAL,
@@ -36,7 +35,7 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
   }
 
   if (id === MESSAGE_ID_ADD_BLOCKED_DOMAIN) {
-    SETTINGS.mutations.addBlockedDomain(URL.domainNameFromUrl(value))
+    SETTINGS.mutations.addBlockedDomain(value)
     return
   }
 

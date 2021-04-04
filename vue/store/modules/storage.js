@@ -58,12 +58,14 @@ const actions = {
     }
 
     const blockedDomains = state.storage?.userSettings?.blockedDomains?.value
-    if (blockedDomains.find(domain => domain.name === domainNameFromUrl(domainName))) {
-      alert(`It seems like the "${window.backgroundAPI.URL.domainNameFromUrl(domainName)}" is already in the list!`)
+    const pureDomainName = domainNameFromUrl(domainName)
+
+    if (blockedDomains.find(domain => domain.name === pureDomainName)) {
+      alert(`It seems like the "${pureDomainName}" is already in the list!`)
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_ADD_BLOCKED_DOMAIN, value: domainName })
+    chrome.runtime.sendMessage({ id: MESSAGE_ID_ADD_BLOCKED_DOMAIN, value: pureDomainName })
   },
   removeBlockedDomain ({ state }, domainName) {
     chrome.runtime.sendMessage({ id: MESSAGE_ID_REMOVE_BLOCKED_DOMAIN, value: domainName })
