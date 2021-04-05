@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getChallengeString } from '../../utils/utils.string'
+import { getChallengeString } from '../../utils/string'
 
 export default {
   props: {
