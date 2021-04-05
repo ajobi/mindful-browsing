@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getNamedLogger } from '../utils/logger'
 import { URL } from '../utils/url'
 import { MESSAGE_ID_BLOCKED_TAB_TARGET_URL } from '../../messages'

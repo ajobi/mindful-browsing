@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getNamedLogger } from './logger'
 import { getUserSettings } from './storage'
 

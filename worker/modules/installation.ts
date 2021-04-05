@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 // eslint-disable-next-line no-unused-vars
 import { settingsDevelopment, settingsProduction } from '../utils/settings'
 

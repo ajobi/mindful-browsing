@@ -1,3 +1,4 @@
+// @ts-nocheck
 class NamedLogger {
   constructor (name, color) {
     this.name = name

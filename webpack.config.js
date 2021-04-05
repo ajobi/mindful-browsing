@@ -5,8 +5,8 @@ const { VueLoaderPlugin } = require('vue-loader')
 module.exports = {
   entry: {
     worker: './worker/index.ts',
-    'pages/newtab/newtab': './vue/pages/newtab/newtab.js',
-    'pages/warning/warning': './vue/pages/warning/warning.js'
+    'pages/newtab/newtab': './vue/pages/newtab/newtab.ts',
+    'pages/warning/warning': './vue/pages/warning/warning.ts'
   },
   output: {
     filename: '[name].js',
@@ -15,18 +15,25 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        },
+        exclude: /node_modules/
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
       {
         test: /\.css$/i,
         use: ['style-loader', { loader: 'css-loader', options: { url: false } }]
-      },
-      {
-        test: /\.ts$/,
-        use: 'ts-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   },
   plugins: [
     new VueLoaderPlugin(),

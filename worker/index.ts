@@ -1,4 +1,4 @@
-import './modules/installation.js'
-import './modules/storage.js'
-import './modules/monitoring.js'
-import './modules/enforcing.js'
+import './modules/installation.ts'
+import './modules/storage.ts'
+import './modules/monitoring.ts'
+import './modules/enforcing.ts'

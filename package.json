@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production",
+    "build": "webpack --mode=production",
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./"
   },
@@ -10,6 +9,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.134",
     "@vue/compiler-sfc": "^3.0.11",
     "copy-webpack-plugin": "^8.1.0",
     "css-loader": "^5.2.0",

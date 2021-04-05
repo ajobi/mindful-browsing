@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import quotes from '../../assets/quotes.js'
+import quotes from '../../assets/quotes.ts'
 
 export default {
   data () {

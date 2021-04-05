@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { updateUserSettings } from '../utils/storage'
 import {
   MESSAGE_ID_SET_ACTIVE_MECHANISM,

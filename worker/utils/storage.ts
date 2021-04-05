@@ -1,3 +1,4 @@
+// @ts-nocheck
 let store = null
 
 chrome.storage.sync.get(null, storage => {

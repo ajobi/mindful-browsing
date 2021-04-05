@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const format = timeInSeconds => {
   timeInSeconds = Math.floor(timeInSeconds)
 

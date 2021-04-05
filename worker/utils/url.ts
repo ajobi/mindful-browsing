@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getUserSettings } from './storage'
 
 function isNewTab (url) {

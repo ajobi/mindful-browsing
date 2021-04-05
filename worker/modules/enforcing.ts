@@ -1,5 +1,7 @@
-import { basicNotification } from '../utils/notifications.js'
-import { format } from '../utils/time.js'
+// @ts-nocheck
+
+import { basicNotification } from '../utils/notifications'
+import { format } from '../utils/time'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
