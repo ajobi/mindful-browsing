@@ -1,5 +1,4 @@
-// @ts-nocheck
-export const format = timeInSeconds => {
+export const format = (timeInSeconds: number): string => {
   timeInSeconds = Math.floor(timeInSeconds)
 
   const hours = Math.floor(timeInSeconds / 3600)
