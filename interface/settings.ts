@@ -1,5 +1,6 @@
-export const settingsDevelopment = {
-  targetEnv: 'development',
+import { ExtensionSettings } from './settings.interface'
+
+export const settingsDevelopment: ExtensionSettings = {
   extensionSettings: {
     removeDelay: 10,
     validators: {
@@ -23,11 +24,15 @@ export const settingsDevelopment = {
   },
   userSettings: {
     activeTask: {
-      value: null,
+      value: 'to finish this extension!',
       default: 'to finish this extension!'
     },
     blockedDomains: {
-      value: null,
+      value: [
+        { name: 'twitter.com', removeTimestamp: null },
+        { name: 'quora.com', removeTimestamp: null },
+        { name: 'youtube.com', removeTimestamp: null }
+      ],
       default: [
         { name: 'twitter.com', removeTimestamp: null },
         { name: 'quora.com', removeTimestamp: null },
@@ -35,30 +40,29 @@ export const settingsDevelopment = {
       ]
     },
     soundsAllowed: {
-      value: null,
+      value: false,
       default: false
     },
     notificationInterval: {
-      value: null,
+      value: 10,
       default: 10
     },
     activeMechanism: {
-      value: null,
+      value: 'breathing',
       default: 'breathing'
     },
     breathCount: {
-      value: null,
+      value: 1,
       default: 1
     },
     challengeDifficulty: {
-      value: null,
+      value: 10,
       default: 10
     }
   }
 }
 
-export const settingsProduction = {
-  targetEnv: 'production',
+export const settingsProduction: ExtensionSettings = {
   extensionSettings: {
     removeDelay: (60 * 30), // 30 minutes
     validators: {
@@ -82,31 +86,31 @@ export const settingsProduction = {
   },
   userSettings: {
     activeTask: {
-      value: null,
+      value: 'not to procrastinate!',
       default: 'not to procrastinate!'
     },
     blockedDomains: {
-      value: null,
+      value: [],
       default: []
     },
     soundsAllowed: {
-      value: null,
+      value: false,
       default: false
     },
     notificationInterval: {
-      value: null,
+      value: 30,
       default: 30
     },
     activeMechanism: {
-      value: null,
+      value: 'challenge',
       default: 'challenge'
     },
     breathCount: {
-      value: null,
+      value: 3,
       default: 3
     },
     challengeDifficulty: {
-      value: null,
+      value: 50,
       default: 50
     }
   }
