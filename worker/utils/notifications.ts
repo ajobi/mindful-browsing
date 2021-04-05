@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getNamedLogger } from './logger'
 import { getUserSettings } from './storage'
 
@@ -9,7 +8,7 @@ const image = 'assets/logo/logo-128.png'
 // const tickSound = new Audio('assets/sounds/tick.mp3')
 const soundTimeout = 200
 
-export const basicNotification = (title, message, withSound) => {
+export const basicNotification = (title: string, message: string, withSound: boolean): void => {
   chrome.notifications.create(
     { type: 'basic', iconUrl: image, title: title, message: message },
     () => {
