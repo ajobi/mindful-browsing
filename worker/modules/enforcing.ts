@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { basicNotification } from '../utils/notifications'
 import { format } from '../utils/time'
 import { getNamedLogger } from '../utils/logger'
@@ -6,19 +5,21 @@ import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
 import { Message } from '../../interface/messages.interface'
 import { MONITORING } from './monitoring'
+import { BlockedDomain, SettingsKey } from '../../interface/settings.interface'
+import TabChangeInfo = chrome.tabs.TabChangeInfo;
 
-let countdown
+let countdown: NodeJS.Timeout
 
 const enforcingLog = getNamedLogger('ENFORCING', 'green')
 
-const onNotificationClicked = notificationId => {
+const onNotificationClicked = (notificationId: string) => {
   chrome.tabs.query({}, tabs => {
-    const forbiddenIds = []
+    const forbiddenIds: number[] = []
 
     for (const tab of tabs) {
-      for (const blockedDomain of getUserSettings('blockedDomains')) {
-        if (URL.isOfDomain(tab.url, blockedDomain.name)) {
-          forbiddenIds.push(tab.id)
+      for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
+        if (URL.isOfDomain(tab.url ?? '', blockedDomain.name)) {
+          tab.id && forbiddenIds.push(tab.id)
         }
       }
     }
@@ -31,12 +32,12 @@ const onNotificationClicked = notificationId => {
 
 const redirectToForbiddenTab = () => {
   chrome.tabs.query({ active: true }, tabs => {
-    if (!URL.isForbidden(tabs[0].url)) {
+    if (!URL.isForbidden(tabs[0].url ?? '')) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
-          for (const blockedDomain of getUserSettings('blockedDomains')) {
-            if (URL.isOfDomain(tab.url, blockedDomain.name)) {
-              chrome.tabs.update(tab.id, { selected: true })
+          for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
+            if (URL.isOfDomain(tab.url ?? '', blockedDomain.name)) {
+              chrome.tabs.update(tab.id ?? -1, { selected: true })
               return
             }
           }
@@ -51,7 +52,7 @@ const startDisciplineEnforcement = () => {
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
-  let counter = getUserSettings('notificationInterval')
+  let counter = getUserSettings(SettingsKey.NotificationInterval) as number
   let secondsSpentOnForbidden = 0
 
   countdown = setInterval(() => {
@@ -66,7 +67,9 @@ const startDisciplineEnforcement = () => {
         `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
         true
       )
-      counter = getUserSettings('notificationInterval')
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      counter = getUserSettings(SettingsKey.NotificationInterval)
     }
   }, 1000)
 }
@@ -78,7 +81,7 @@ const stopDisciplineEnforcement = () => {
   clearInterval(countdown)
 }
 
-export const checkTabsOnUpdate = (tabId, changeInfo) => {
+export const checkTabsOnUpdate = (tabId: number, changeInfo: TabChangeInfo): void => {
   if (!changeInfo.url) {
     return
   }
@@ -90,7 +93,7 @@ const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
     for (const tab of tabs) {
-      if (URL.isForbidden(tab.url)) {
+      if (URL.isForbidden(tab.url ?? '')) {
         chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
         return
       }
@@ -122,9 +125,7 @@ function removeException () {
   stopDisciplineEnforcement()
 }
 
-chrome.runtime.onMessage.addListener(onMessage)
-
-function onMessage ({ id, data }) {
+chrome.runtime.onMessage.addListener(({ id, data }) => {
   if (id === Message.BlockedTabAction) {
     if (data.action === Message.BlockedTabCancel) {
       chrome.tabs.update(data.tabId, { url: 'chrome://newtab/' })
@@ -133,4 +134,4 @@ function onMessage ({ id, data }) {
       chrome.tabs.update(data.tabId, { url: data.targetUrl })
     }
   }
-}
+})
