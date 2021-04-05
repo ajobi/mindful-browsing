@@ -1,31 +1,23 @@
-// @ts-nocheck
-let store = null
+import { ExtensionSettings, UserSettingsKey, UserSettingsValue } from '../../interface/settings.interface'
+
+let store: ExtensionSettings | null = null
 
 chrome.storage.sync.get(null, storage => {
-  store = storage
+  store = storage as ExtensionSettings
 })
 
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(null, storage => {
-    store = storage
+    store = storage as ExtensionSettings
   })
 })
 
 // TODO: remove repeated storage reads
-export const updateUserSettings = (key, value) => {
+export const updateUserSettings = (key: UserSettingsKey, value: UserSettingsValue): void => {
   chrome.storage.sync.get(null, storage => {
     storage.userSettings[key].value = value
     chrome.storage.sync.set(storage)
   })
 }
 
-export const updateWarningTabs = (value) => {
-  chrome.storage.sync.get(null, storage => {
-    storage.warningTabs = value
-    chrome.storage.sync.set(storage)
-  })
-}
-
-export const getWarningTabs = () => store.warningTabs
-
-export const getUserSettings = (key) => store.userSettings[key].value
+export const getUserSettings = (key: UserSettingsKey): UserSettingsValue => store?.userSettings[key].value
