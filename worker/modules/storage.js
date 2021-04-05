@@ -10,7 +10,10 @@ import {
   MESSAGE_ID_STORAGE_UPDATED
 } from '../../messages'
 
-// TODO: Add load on initial chrome start
+chrome.storage.sync.get(null, storage => {
+  chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })
+})
+
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(null, storage => {
     chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })

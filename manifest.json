@@ -2,12 +2,9 @@
   "name": "Mindful Browsing",
   "version": "1.0.1",
   "description": "Mindful Browsing saves your time and increases your productivity by interrupting your mindless browsing habits.",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "background": {
-    "scripts": [
-      "worker.js"
-    ],
-    "persistent": false
+    "service_worker": "worker.js"
   },
   "chrome_url_overrides": {
     "newtab": "pages/newtab/newtab.html"
@@ -19,8 +16,5 @@
   ],
   "icons": {
     "128": "/assets/logo/logo-128.png"
-  },
-  "browser_action": {
-    "default_icon": "/assets/logo/logo-128.png"
   }
 }
