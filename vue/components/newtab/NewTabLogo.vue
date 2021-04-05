@@ -47,7 +47,7 @@ export default {
     this.interval = setInterval(this.showNextSlide, 16000)
     this.showNextSlide()
   },
-  beforeDestroy () {
+  beforeUnmount () {
     clearInterval(this.interval)
   },
   methods: {

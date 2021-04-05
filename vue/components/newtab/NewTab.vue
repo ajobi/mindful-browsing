@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NewTabTask @click.native="nextView" />
+    <NewTabTask @click="nextView" />
     <NewTabLogo v-if="activeView === 0" />
     <NewTabSettingsTask v-if="activeView === 1" />
     <NewTabSettingsDomains v-if="activeView === 2" />
