@@ -25,8 +25,6 @@ export enum SettingsKey {
   ChallengeDifficulty = 'challengeDifficulty'
 }
 
-export type UserSettingsValue = string | boolean | number | undefined | BlockedDomain[] | MindfulnessMechanism
-
 export interface ExtensionSettings {
   readonly userSettings: {
     readonly [SettingsKey.ActiveTask]: UserSetting<string>,
@@ -47,3 +45,5 @@ export interface ExtensionSettings {
     }
   }
 }
+
+export type SettingsValue<Key extends SettingsKey> = ExtensionSettings['userSettings'][Key]['value']

@@ -17,7 +17,7 @@ const onNotificationClicked = (notificationId: string) => {
     const forbiddenIds: number[] = []
 
     for (const tab of tabs) {
-      for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
+      for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains)) {
         if (isOfDomain(tab.url ?? '', blockedDomain.name)) {
           tab.id && forbiddenIds.push(tab.id)
         }
@@ -35,7 +35,7 @@ const redirectToForbiddenTab = () => {
     if (!isForbidden(tabs[0].url ?? '')) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
-          for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
+          for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains)) {
             if (isOfDomain(tab.url ?? '', blockedDomain.name)) {
               chrome.tabs.update(tab.id ?? -1, { selected: true })
               return
@@ -52,7 +52,7 @@ const startDisciplineEnforcement = () => {
 
   chrome.notifications.onClicked.addListener(onNotificationClicked)
 
-  let counter = getUserSettings(SettingsKey.NotificationInterval) as number
+  let counter = getUserSettings(SettingsKey.NotificationInterval)
   let secondsSpentOnForbidden = 0
 
   countdown = setInterval(() => {
