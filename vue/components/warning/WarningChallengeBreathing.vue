@@ -1,14 +1,14 @@
 <template>
-  <div v-show="breathing && breathing !== 'success'">
+  <div v-show="modelValue.breathing && modelValue.breathing !== 'success'">
     <h3
-      v-show="breathing === 'interrupted'"
+      v-show="modelValue.breathing === 'interrupted'"
       id="try_again"
       @click="onRetry"
     >
       You did not focus, let's try once again?
     </h3>
     <h2
-      v-show="breathing === 'initiated'"
+      v-show="modelValue.breathing === 'initiated'"
       id="breath_guide"
     >
       Take a deep breath
@@ -18,14 +18,15 @@
 
 <script>
 export default {
-  computed: {
-    breathing () {
-      return this.$store.getters['warning/getBreathing']
+  props: {
+    modelValue: {
+      type: Object,
+      required: true
     }
   },
   methods: {
     onRetry () {
-      this.$store.dispatch('warning/initiateBreathing')
+      this.$emit('update:modelValue', { ...this.modelValue, breathing: 'initiated' })
     }
   }
 }

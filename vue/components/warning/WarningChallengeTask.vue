@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="challenge && challenge !== 'success'"
+    v-show="modelValue.challenge && modelValue.challenge !== 'success'"
     id="challenge_task"
   >
     <h2>Type in the following text:</h2>
@@ -21,10 +21,13 @@
 import { getChallengeString } from '../../utils/utils.string'
 
 export default {
+  props: {
+    modelValue: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
-    challenge () {
-      return this.$store.getters['warning/getChallenge']
-    },
     challengeDifficulty () {
       return this.$store.getters['newtab/getChallengeDifficulty']
     }
@@ -41,7 +44,7 @@ export default {
 
         CHALLENGE_INPUT.addEventListener('input', event => {
           if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
-            this.$store.commit('warning/setChallenge', 'success')
+            this.$emit('update:modelValue', { ...this.modelValue, challenge: 'success' })
           } else {
             const input = event.target.value
             let correctInput = ''

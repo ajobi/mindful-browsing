@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      v-show="breathing === null"
+      v-show="modelValue.breathing === null"
       id="visit_button"
       class="button--secondary"
       @click="onVisit"
@@ -9,7 +9,7 @@
       I need to visit this site
     </button>
     <button
-      v-show="breathing === 'success'"
+      v-show="modelValue.breathing === 'success'"
       id="proceed_button"
       class="button--secondary"
       @click="onProceed"
@@ -17,7 +17,7 @@
       I really have to visit this site
     </button>
     <button
-      v-show="breathing === null || breathing === 'success'"
+      v-show="modelValue.breathing === null || modelValue.breathing === 'success'"
       id="cancel_button"
       class="button--primary"
       @click="onCancel"
@@ -35,10 +35,13 @@ import {
 } from '../../../messages'
 
 export default {
+  props: {
+    modelValue: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
-    breathing () {
-      return this.$store.getters['warning/getBreathing']
-    },
     activeMechanism () {
       return this.$store.getters['newtab/getActiveMechanism']
     }
@@ -47,9 +50,9 @@ export default {
     onVisit () {
       switch (this.activeMechanism) {
         case 'breathing':
-          return this.$store.dispatch('warning/initiateBreathing')
+          return this.$emit('update:modelValue', { ...this.modelValue, breathing: 'initiated' })
         case 'challenge':
-          return this.$store.dispatch('warning/initiateChallenge')
+          return this.$emit('update:modelValue', { ...this.modelValue, challenge: 'initiated' })
       }
     },
     onProceed () {
