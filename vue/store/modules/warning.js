@@ -1,10 +1,4 @@
-import {
-  MESSAGE_ID_FINISH_BREATHING,
-  MESSAGE_ID_INITIATE_BREATHING,
-  MESSAGE_ID_INTERRUPT_BREATHING
-} from '../../../messages'
-
-let breathingTimeout = null
+// const breathingTimeout = null
 
 const state = () => ({
   breathing: null,
@@ -46,39 +40,39 @@ const getters = {
 const actions = {
   init ({ commit, dispatch, rootState }) {
     // TODO: Might need a cleanup - test what happens when running longer
-    chrome.runtime.onMessage.addListener(({ id, data }) => {
-      if (id === 'BLOCKED_TAB_FEED') {
-        commit('setTabId', data.tabId)
-        commit('setTargetUrl', data.targetUrl)
+    // chrome.runtime.onMessage.addListener(({ id, data }) => {
+    //   if (id === 'BLOCKED_TAB_FEED') {
+    //     commit('setTabId', data.tabId)
+    //     commit('setTargetUrl', data.targetUrl)
+    //
+    //     if (rootState.backgroundAPI.backgroundAPI.STORE.getters.getBreathingStatus(data.tabId)) {
+    //       rootState.backgroundAPI.backgroundAPI.STORE.mutations.resetBreathing(data.tabId)
+    //     }
+    //
+    //     return
+    //   }
 
-        if (rootState.backgroundAPI.backgroundAPI.STORE.getters.getBreathingStatus(data.tabId)) {
-          rootState.backgroundAPI.backgroundAPI.STORE.mutations.resetBreathing(data.tabId)
-        }
-
-        return
-      }
-
-      if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
-        dispatch('interruptBreathing')
-      }
-    })
+    // if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
+    //   dispatch('interruptBreathing')
+    // }
+    // })
   },
   initiateBreathing ({ commit, rootState, state }) {
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_INITIATE_BREATHING, value: state.tabId })
-    commit('setBreathing', 'initiated')
-
-    breathingTimeout = setTimeout(() => {
-      chrome.runtime.sendMessage({ id: MESSAGE_ID_FINISH_BREATHING, value: state.tabId })
-      commit('setBreathing', 'success')
-    }, 1000 * rootState.storage.storage?.userSettings?.breathCount?.value * 8)
+    // chrome.runtime.sendMessage({ id: MESSAGE_ID_INITIATE_BREATHING, value: state.tabId })
+    // commit('setBreathing', 'initiated')
+    //
+    // breathingTimeout = setTimeout(() => {
+    //   chrome.runtime.sendMessage({ id: MESSAGE_ID_FINISH_BREATHING, value: state.tabId })
+    //   commit('setBreathing', 'success')
+    // }, 1000 * rootState.storage.storage?.userSettings?.breathCount?.value * 8)
   },
   initiateChallenge ({ commit }) {
     commit('setChallenge', 'initiated')
   },
   interruptBreathing ({ commit, state }) {
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_INTERRUPT_BREATHING, value: state.tabId })
-    commit('setBreathing', 'interrupted')
-    clearTimeout(breathingTimeout)
+    // chrome.runtime.sendMessage({ id: MESSAGE_ID_INTERRUPT_BREATHING, value: state.tabId })
+    // commit('setBreathing', 'interrupted')
+    // clearTimeout(breathingTimeout)
   }
 }
 

@@ -1,6 +1,5 @@
 export const settingsDevelopment = {
   targetEnv: 'development',
-  warningTabs: [],
   extensionSettings: {
     removeDelay: 10,
     validators: {
@@ -60,7 +59,6 @@ export const settingsDevelopment = {
 
 export const settingsProduction = {
   targetEnv: 'production',
-  warningTabs: [],
   extensionSettings: {
     removeDelay: (60 * 30), // 30 minutes
     validators: {

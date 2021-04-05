@@ -1,9 +1,5 @@
-import { STORE } from './store'
 import { updateUserSettings } from '../utils/storage'
 import {
-  MESSAGE_ID_FINISH_BREATHING,
-  MESSAGE_ID_INITIATE_BREATHING,
-  MESSAGE_ID_INTERRUPT_BREATHING,
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
   MESSAGE_ID_SET_ACTIVE_TASK, MESSAGE_ID_SET_BLOCKED_DOMAINS,
   MESSAGE_ID_SET_BREATH_COUNT,
@@ -62,19 +58,18 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
 
   if (id === MESSAGE_ID_SET_NOTIFICATION_INTERVAL) {
     updateUserSettings('notificationInterval', value)
-    return
   }
 
-  if (id === MESSAGE_ID_INITIATE_BREATHING) {
-    STORE.mutations.initiateBreathing(value)
-  }
-
-  if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
-    STORE.mutations.interruptBreathing(value)
-    return
-  }
-
-  if (id === MESSAGE_ID_FINISH_BREATHING) {
-    STORE.mutations.finishBreathing(value)
-  }
+  // if (id === MESSAGE_ID_INITIATE_BREATHING) {
+  //   STORE.mutations.initiateBreathing(value)
+  // }
+  //
+  // if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
+  //   STORE.mutations.interruptBreathing(value)
+  //   return
+  // }
+  //
+  // if (id === MESSAGE_ID_FINISH_BREATHING) {
+  //   STORE.mutations.finishBreathing(value)
+  // }
 })

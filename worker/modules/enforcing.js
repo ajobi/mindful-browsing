@@ -3,10 +3,8 @@ import { format } from '../utils/time.js'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
-import { STORE } from './store'
 import {
   MESSAGE_ID_BLOCKED_TAB_ACTION,
-  MESSAGE_ID_INTERRUPT_BREATHING,
   MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
 } from '../../messages'
 import { MONITORING } from './monitoring'
@@ -106,12 +104,12 @@ const checkTabsOnRemoved = () => {
 }
 
 const interruptBreathingTabs = () => {
-  for (const tab of STORE.getters.getBreathingTabs()) {
-    chrome.tabs.sendMessage(tab.tabId, {
-      id: MESSAGE_ID_INTERRUPT_BREATHING,
-      data: null
-    })
-  }
+  // for (const tab of STORE.getters.getBreathingTabs()) {
+  //   chrome.tabs.sendMessage(tab.tabId, {
+  //     id: MESSAGE_ID_INTERRUPT_BREATHING,
+  //     data: null
+  //   })
+  // }
 }
 
 chrome.tabs.onActivated.addListener(interruptBreathingTabs)
