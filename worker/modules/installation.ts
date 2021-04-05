@@ -1,7 +1,7 @@
 
 // @ts-nocheck
 // eslint-disable-next-line no-unused-vars
-import { settingsDevelopment, settingsProduction } from '../utils/settings'
+import { settingsDevelopment, settingsProduction } from '../../interface/settings'
 
 const withDefaults = settings => {
   for (const key of Object.keys(settings.userSettings)) {
