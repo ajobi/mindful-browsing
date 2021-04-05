@@ -2,9 +2,9 @@ import { basicNotification } from '../utils/notifications'
 import { format } from '../utils/time'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
-import { URL } from '../utils/url'
+import { isForbidden, isOfDomain } from '../utils/url'
 import { Message } from '../../interface/messages.interface'
-import { MONITORING } from './monitoring'
+import { checkUrl } from './monitoring'
 import { BlockedDomain, SettingsKey } from '../../interface/settings.interface'
 import TabChangeInfo = chrome.tabs.TabChangeInfo;
 
@@ -18,7 +18,7 @@ const onNotificationClicked = (notificationId: string) => {
 
     for (const tab of tabs) {
       for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
-        if (URL.isOfDomain(tab.url ?? '', blockedDomain.name)) {
+        if (isOfDomain(tab.url ?? '', blockedDomain.name)) {
           tab.id && forbiddenIds.push(tab.id)
         }
       }
@@ -32,11 +32,11 @@ const onNotificationClicked = (notificationId: string) => {
 
 const redirectToForbiddenTab = () => {
   chrome.tabs.query({ active: true }, tabs => {
-    if (!URL.isForbidden(tabs[0].url ?? '')) {
+    if (!isForbidden(tabs[0].url ?? '')) {
       chrome.tabs.query({}, tabs => {
         for (const tab of tabs) {
           for (const blockedDomain of getUserSettings(SettingsKey.BlockedDomains) as BlockedDomain[]) {
-            if (URL.isOfDomain(tab.url ?? '', blockedDomain.name)) {
+            if (isOfDomain(tab.url ?? '', blockedDomain.name)) {
               chrome.tabs.update(tab.id ?? -1, { selected: true })
               return
             }
@@ -93,7 +93,7 @@ const checkTabsOnRemoved = () => {
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   chrome.tabs.query({}, tabs => {
     for (const tab of tabs) {
-      if (URL.isForbidden(tab.url ?? '')) {
+      if (isForbidden(tab.url ?? '')) {
         chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
         return
       }
@@ -112,14 +112,14 @@ chrome.tabs.onActivated.addListener(interruptBreathingTabs)
 chrome.windows.onFocusChanged.addListener(interruptBreathingTabs)
 
 function grantException () {
-  chrome.tabs.onUpdated.removeListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.removeListener(checkUrl)
   chrome.tabs.onUpdated.addListener(checkTabsOnUpdate)
   chrome.tabs.onRemoved.addListener(checkTabsOnRemoved)
   startDisciplineEnforcement()
 }
 
 function removeException () {
-  chrome.tabs.onUpdated.addListener(MONITORING.checkUrl)
+  chrome.tabs.onUpdated.addListener(checkUrl)
   chrome.tabs.onUpdated.removeListener(checkTabsOnUpdate)
   chrome.tabs.onRemoved.removeListener(checkTabsOnRemoved)
   stopDisciplineEnforcement()

@@ -1,5 +1,5 @@
 import { getNamedLogger } from '../utils/logger'
-import { URL } from '../utils/url'
+import { isExtensionUrl, isForbidden, isNewTab } from '../utils/url'
 import { Message } from '../../interface/messages.interface'
 import Tab = chrome.tabs.Tab;
 import TabChangeInfo = chrome.tabs.TabChangeInfo;
@@ -21,22 +21,22 @@ const openWarning = (tab: Tab, targetUrl: string) => {
   })
 }
 
-const checkUrl = (tabId: number, { url }: TabChangeInfo, tab: Tab): void => {
+export const checkUrl = (tabId: number, { url }: TabChangeInfo, tab: Tab): void => {
   if (!url) {
     return
   }
 
-  if (URL.isNewTab(url)) {
+  if (isNewTab(url)) {
     monitoringLog.log(`New URL detected: ${url} (newtab)`)
     return
   }
 
-  if (URL.isExtensionUrl(url)) {
+  if (isExtensionUrl(url)) {
     monitoringLog.log(`New URL detected: ${url} (internal url)`)
     return
   }
 
-  if (URL.isForbidden(url)) {
+  if (isForbidden(url)) {
     monitoringLog.log(`New URL detected: ${url} (forbidden domain)`)
     openWarning(tab, url)
     return
@@ -46,7 +46,3 @@ const checkUrl = (tabId: number, { url }: TabChangeInfo, tab: Tab): void => {
 }
 
 chrome.tabs.onUpdated.addListener(checkUrl)
-
-export const MONITORING = {
-  checkUrl
-}
