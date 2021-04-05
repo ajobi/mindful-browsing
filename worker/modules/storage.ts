@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { updateUserSettings } from '../utils/storage'
 import {
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
@@ -63,17 +62,4 @@ chrome.runtime.onMessage.addListener(({ id, value }) => {
   if (id === MESSAGE_ID_SET_NOTIFICATION_INTERVAL) {
     updateUserSettings('notificationInterval', value)
   }
-
-  // if (id === MESSAGE_ID_INITIATE_BREATHING) {
-  //   STORE.mutations.initiateBreathing(value)
-  // }
-  //
-  // if (id === MESSAGE_ID_INTERRUPT_BREATHING) {
-  //   STORE.mutations.interruptBreathing(value)
-  //   return
-  // }
-  //
-  // if (id === MESSAGE_ID_FINISH_BREATHING) {
-  //   STORE.mutations.finishBreathing(value)
-  // }
 })
