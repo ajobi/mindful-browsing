@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: {
-    worker: './worker/index.js',
+    worker: './worker/index.ts',
     'pages/newtab/newtab': './vue/pages/newtab/newtab.js',
     'pages/warning/warning': './vue/pages/warning/warning.js'
   },
@@ -21,6 +21,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', { loader: 'css-loader', options: { url: false } }]
+      },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader'
       }
     ]
   },
