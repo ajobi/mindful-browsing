@@ -1,6 +1,6 @@
 import { getNamedLogger } from '../utils/logger'
 import { URL } from '../utils/url'
-import { Message } from '../../interface/messages'
+import { Message } from '../../interface/messages.interface'
 import Tab = chrome.tabs.Tab;
 import TabChangeInfo = chrome.tabs.TabChangeInfo;
 

@@ -1,4 +1,4 @@
-import { Message } from '../../../interface/messages'
+import { Message } from '../../../interface/messages.interface'
 
 const state = () => ({
   storage: null

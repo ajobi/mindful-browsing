@@ -1,6 +1,6 @@
 import { updateUserSettings } from '../utils/storage'
 import { SettingsKey } from '../../interface/settings.interface'
-import { Message } from '../../interface/messages'
+import { Message } from '../../interface/messages.interface'
 
 chrome.storage.sync.get(null, storage => {
   chrome.runtime.sendMessage({ id: Message.StorageUpdated, storage })

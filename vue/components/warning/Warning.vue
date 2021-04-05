@@ -21,7 +21,7 @@ import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
 import SupportMe from '../atoms/SupportMe.vue'
-import { Message } from '../../../interface/messages'
+import { Message } from '../../../interface/messages.interface'
 
 export default {
   components: {

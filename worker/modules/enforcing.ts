@@ -4,7 +4,7 @@ import { format } from '../utils/time'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
-import { Message } from '../../interface/messages'
+import { Message } from '../../interface/messages.interface'
 import { MONITORING } from './monitoring'
 
 let countdown

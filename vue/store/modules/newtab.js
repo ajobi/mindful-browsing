@@ -1,4 +1,4 @@
-import { Message } from '../../../interface/messages'
+import { Message } from '../../../interface/messages.interface'
 
 // const _getSettings = (settings) => JSON.parse(JSON.stringify(settings))
 
