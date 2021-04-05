@@ -25,7 +25,7 @@ import {
   MESSAGE_ID_BLOCKED_TAB_ACTION,
   MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
   MESSAGE_ID_BLOCKED_TAB_TARGET_URL, MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
-} from '../../../messages'
+} from '../../../interface/messages'
 
 export default {
   components: {

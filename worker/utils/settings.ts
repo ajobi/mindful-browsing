@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const settingsDevelopment = {
   targetEnv: 'development',
   extensionSettings: {

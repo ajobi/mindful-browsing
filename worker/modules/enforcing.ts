@@ -8,7 +8,7 @@ import { URL } from '../utils/url'
 import {
   MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
   MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
-} from '../../messages'
+} from '../../interface/messages'
 import { MONITORING } from './monitoring'
 
 let countdown

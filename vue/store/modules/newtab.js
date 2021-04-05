@@ -6,7 +6,7 @@ import {
   MESSAGE_ID_SET_SOUNDS_ALLOWED,
   MESSAGE_ID_SET_NOTIFICATION_INTERVAL,
   MESSAGE_ID_SET_BLOCKED_DOMAINS
-} from '../../../messages'
+} from '../../../interface/messages'
 
 // const _getSettings = (settings) => JSON.parse(JSON.stringify(settings))
 

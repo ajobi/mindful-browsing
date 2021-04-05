@@ -9,7 +9,7 @@ import {
   MESSAGE_ID_SET_SOUNDS_ALLOWED,
   MESSAGE_ID_STORAGE_UPDATE_REQUEST,
   MESSAGE_ID_STORAGE_UPDATED
-} from '../../messages'
+} from '../../interface/messages'
 
 chrome.storage.sync.get(null, storage => {
   chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATED, storage })
