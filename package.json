@@ -6,6 +6,7 @@
     "lint:fix": "eslint --fix ./"
   },
   "dependencies": {
+    "typescript": "^4.2.3",
     "vue": "3.0.11",
     "vuex": "^4.0.0"
   },
