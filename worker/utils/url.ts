@@ -1,20 +1,15 @@
-// @ts-nocheck
 import { getUserSettings } from './storage'
+import { BlockedDomain, SETTINGS_KEY_BLOCKED_DOMAINS } from '../../interface/settings.interface'
 
-function isNewTab (url) {
-  return url === 'chrome://newtab/'
-}
+const isNewTab = (url: string): boolean => url === 'chrome://newtab/'
 
-function isExtensionUrl (url) {
-  return url.startsWith('chrome-extension://')
-}
+const isExtensionUrl = (url: string): boolean => url.startsWith('chrome-extension://')
 
-function isOfDomain (url, domain) {
-  return new RegExp(`^((?:http(?:s)?:\\/\\/)?(?:www\\.)?)(?:([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])\\.)*${domain}(\\/.*)?`).test(url)
-}
+const isOfDomain = (url: string, domain: string): boolean =>
+  new RegExp(`^((?:http(?:s)?:\\/\\/)?(?:www\\.)?)(?:([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])\\.)*${domain}(\\/.*)?`).test(url)
 
-function isForbidden (url) {
-  for (const blockedDomain of getUserSettings('blockedDomains')) {
+function isForbidden (url: string): boolean {
+  for (const blockedDomain of (getUserSettings(SETTINGS_KEY_BLOCKED_DOMAINS) as BlockedDomain[])) {
     if (isOfDomain(url, blockedDomain.name)) {
       return true
     }

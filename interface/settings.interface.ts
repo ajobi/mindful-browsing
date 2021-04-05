@@ -1,11 +1,11 @@
-type BlockedDomain = {
+export interface BlockedDomain {
   name: string,
   removeTimestamp: string | null
 }
 
-type MindfulnessMechanism = 'breathing' | 'challenge'
+export type MindfulnessMechanism = 'breathing' | 'challenge'
 
-type Validator = {
+export interface Validator {
   readonly minValue: number
   readonly maxValue: number
 }
@@ -15,13 +15,13 @@ type UserSetting<Type> = {
   readonly default: Type
 }
 
-const SETTINGS_KEY_ACTIVE_TASK = 'activeTask'
-const SETTINGS_KEY_BLOCKED_DOMAINS = 'blockedDomains'
-const SETTINGS_KEY_SOUNDS_ALLOWED = 'soundsAllowed'
-const SETTINGS_KEY_NOTIFICATION_INTERVAL = 'notificationInterval'
-const SETTINGS_KEY_ACTIVE_MECHANISM = 'activeMechanism'
-const SETTINGS_KEY_BREATH_COUNT = 'breathCount'
-const SETTINGS_KEY_CHALLENGE_DIFFICULTY = 'challengeDifficulty'
+export const SETTINGS_KEY_ACTIVE_TASK = 'activeTask'
+export const SETTINGS_KEY_BLOCKED_DOMAINS = 'blockedDomains'
+export const SETTINGS_KEY_SOUNDS_ALLOWED = 'soundsAllowed'
+export const SETTINGS_KEY_NOTIFICATION_INTERVAL = 'notificationInterval'
+export const SETTINGS_KEY_ACTIVE_MECHANISM = 'activeMechanism'
+export const SETTINGS_KEY_BREATH_COUNT = 'breathCount'
+export const SETTINGS_KEY_CHALLENGE_DIFFICULTY = 'challengeDifficulty'
 
 export type UserSettingsKey =
   typeof SETTINGS_KEY_ACTIVE_TASK |
