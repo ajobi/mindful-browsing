@@ -4,7 +4,7 @@ import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
 import {
-  MESSAGE_ID_BLOCKED_TAB_ACTION,
+  MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
   MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
 } from '../../messages'
 import { MONITORING } from './monitoring'
@@ -104,12 +104,7 @@ const checkTabsOnRemoved = () => {
 }
 
 const interruptBreathingTabs = () => {
-  // for (const tab of STORE.getters.getBreathingTabs()) {
-  //   chrome.tabs.sendMessage(tab.tabId, {
-  //     id: MESSAGE_ID_INTERRUPT_BREATHING,
-  //     data: null
-  //   })
-  // }
+  chrome.runtime.sendMessage({ id: MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED })
 }
 
 chrome.tabs.onActivated.addListener(interruptBreathingTabs)

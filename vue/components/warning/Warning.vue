@@ -14,7 +14,10 @@ import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
 import SupportMe from '../atoms/SupportMe.vue'
-import { MESSAGE_ID_BLOCKED_TAB_TARGET_URL } from '../../../messages'
+import {
+  MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
+  MESSAGE_ID_BLOCKED_TAB_TARGET_URL
+} from '../../../messages'
 
 export default {
   components: {
@@ -37,6 +40,12 @@ export default {
     chrome.runtime.onMessage.addListener(({ id, data }) => {
       if (id === MESSAGE_ID_BLOCKED_TAB_TARGET_URL) {
         this.state.targetUrl = data.targetUrl
+      }
+    })
+
+    chrome.runtime.onMessage.addListener(({ id }) => {
+      if (id === MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED) {
+        this.state.breathing = 'interrupted'
       }
     })
   }
