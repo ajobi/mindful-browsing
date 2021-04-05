@@ -1,12 +1,4 @@
-import {
-  MESSAGE_ID_SET_ACTIVE_TASK,
-  MESSAGE_ID_SET_ACTIVE_MECHANISM,
-  MESSAGE_ID_SET_BREATH_COUNT,
-  MESSAGE_ID_SET_CHALLENGE_DIFFICULTY,
-  MESSAGE_ID_SET_SOUNDS_ALLOWED,
-  MESSAGE_ID_SET_NOTIFICATION_INTERVAL,
-  MESSAGE_ID_SET_BLOCKED_DOMAINS
-} from '../../../interface/messages'
+import { Message } from '../../../interface/messages'
 
 // const _getSettings = (settings) => JSON.parse(JSON.stringify(settings))
 
@@ -29,7 +21,7 @@ const actions = {
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_ACTIVE_TASK, value: activeTask })
+    chrome.runtime.sendMessage({ id: Message.SetActiveTask, value: activeTask })
   },
   addBlockedDomain ({ rootState }, domainName) {
     if (!domainNameRegex.test(domainName)) {
@@ -46,29 +38,29 @@ const actions = {
     }
 
     const newValue = [...blockedDomains, { name: pureDomainName, removeTimestamp: null }]
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
+    chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   removeBlockedDomain ({ rootState }, domainName) {
     const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
     const newValue = [...blockedDomains]
     const targetDomain = newValue.find(domain => domain.name === domainName)
     targetDomain.removeTimestamp = (new Date()).valueOf() + (rootState.storage.storage?.extensionSettings.removeDelay * 1000)
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
+    chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   cancelRemoval ({ rootState }, domainName) {
     const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
     const newValue = [...blockedDomains]
     const targetDomain = newValue.find(domain => domain.name === domainName)
     targetDomain.removeTimestamp = null
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
+    chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   deleteBlockedDomain ({ rootState }, domainName) {
     const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
     const newValue = [...blockedDomains].filter(domain => domain.name !== domainName)
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BLOCKED_DOMAINS, value: newValue })
+    chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   setActiveMechanism ({ rootState }, activeMechanism) {
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_ACTIVE_MECHANISM, value: activeMechanism })
+    chrome.runtime.sendMessage({ id: Message.SetActiveMechanism, value: activeMechanism })
   },
   setBreathCount ({ rootState }, breathCount) {
     const { minValue, maxValue } = rootState.storage.storage?.extensionSettings?.validators?.breathCount
@@ -78,7 +70,7 @@ const actions = {
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_BREATH_COUNT, value: breathCount })
+    chrome.runtime.sendMessage({ id: Message.SetBreathCount, value: breathCount })
   },
   setChallengeDifficulty ({ rootState }, challengeDifficulty) {
     const { minValue, maxValue } = rootState.storage.storage?.extensionSettings?.validators?.challengeDifficulty
@@ -88,10 +80,10 @@ const actions = {
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_CHALLENGE_DIFFICULTY, value: challengeDifficulty })
+    chrome.runtime.sendMessage({ id: Message.SetChallengeDifficulty, value: challengeDifficulty })
   },
   setSoundsAllowed ({ rootState }, soundsAllowed) {
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_SOUNDS_ALLOWED, value: soundsAllowed })
+    chrome.runtime.sendMessage({ id: Message.SetSoundsAllowed, value: soundsAllowed })
   },
   setNotificationInterval ({ rootState }, notificationInterval) {
     const { minValue, maxValue } = rootState.storage.storage?.extensionSettings?.validators?.notificationInterval
@@ -101,7 +93,7 @@ const actions = {
       return
     }
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_SET_NOTIFICATION_INTERVAL, value: notificationInterval })
+    chrome.runtime.sendMessage({ id: Message.SetNotificationInterval, value: notificationInterval })
   }
 }
 

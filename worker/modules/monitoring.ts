@@ -1,6 +1,6 @@
 import { getNamedLogger } from '../utils/logger'
 import { URL } from '../utils/url'
-import { MESSAGE_ID_BLOCKED_TAB_TARGET_URL } from '../../interface/messages'
+import { Message } from '../../interface/messages'
 import Tab = chrome.tabs.Tab;
 import TabChangeInfo = chrome.tabs.TabChangeInfo;
 
@@ -11,7 +11,7 @@ const openWarning = (tab: Tab, targetUrl: string) => {
     chrome.tabs.onUpdated.addListener(function warningLoaded (tabId, changeInfo) {
       if (tabId === tab.id && changeInfo.status === 'complete') {
         chrome.tabs.sendMessage(tabId, {
-          id: MESSAGE_ID_BLOCKED_TAB_TARGET_URL,
+          id: Message.BlockedTabTargetUrl,
           data: { targetUrl }
         })
 

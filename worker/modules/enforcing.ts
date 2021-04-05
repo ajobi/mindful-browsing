@@ -1,14 +1,10 @@
 // @ts-nocheck
-
 import { basicNotification } from '../utils/notifications'
 import { format } from '../utils/time'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
 import { URL } from '../utils/url'
-import {
-  MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
-  MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
-} from '../../interface/messages'
+import { Message } from '../../interface/messages'
 import { MONITORING } from './monitoring'
 
 let countdown
@@ -106,7 +102,7 @@ const checkTabsOnRemoved = () => {
 }
 
 const interruptBreathingTabs = () => {
-  chrome.runtime.sendMessage({ id: MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED })
+  chrome.runtime.sendMessage({ id: Message.BlockedTabBreathingInterrupted })
 }
 
 chrome.tabs.onActivated.addListener(interruptBreathingTabs)
@@ -129,10 +125,10 @@ function removeException () {
 chrome.runtime.onMessage.addListener(onMessage)
 
 function onMessage ({ id, data }) {
-  if (id === MESSAGE_ID_BLOCKED_TAB_ACTION) {
-    if (data.action === MESSAGE_VALUE_BLOCKED_TAB_CANCEL) {
+  if (id === Message.BlockedTabAction) {
+    if (data.action === Message.BlockedTabCancel) {
       chrome.tabs.update(data.tabId, { url: 'chrome://newtab/' })
-    } else if (data.action === MESSAGE_VALUE_BLOCKED_TAB_PROCEED && data.targetUrl) {
+    } else if (data.action === Message.BlockedTabProceed && data.targetUrl) {
       grantException()
       chrome.tabs.update(data.tabId, { url: data.targetUrl })
     }

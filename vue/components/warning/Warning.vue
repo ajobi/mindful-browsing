@@ -21,11 +21,7 @@ import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
 import WarningControls from './WarningControls.vue'
 import SupportMe from '../atoms/SupportMe.vue'
-import {
-  MESSAGE_ID_BLOCKED_TAB_ACTION,
-  MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED,
-  MESSAGE_ID_BLOCKED_TAB_TARGET_URL, MESSAGE_VALUE_BLOCKED_TAB_CANCEL, MESSAGE_VALUE_BLOCKED_TAB_PROCEED
-} from '../../../interface/messages'
+import { Message } from '../../../interface/messages'
 
 export default {
   components: {
@@ -46,13 +42,13 @@ export default {
   },
   created () {
     chrome.runtime.onMessage.addListener(({ id, data }) => {
-      if (id === MESSAGE_ID_BLOCKED_TAB_TARGET_URL) {
+      if (id === Message.BlockedTabTargetUrl) {
         this.state.targetUrl = data.targetUrl
       }
     })
 
     chrome.runtime.onMessage.addListener(({ id }) => {
-      if (id === MESSAGE_ID_BLOCKED_TAB_BREATHING_INTERRUPTED) {
+      if (id === Message.BlockedTabBreathingInterrupted) {
         this.state.breathing = 'interrupted'
       }
     })
@@ -60,14 +56,14 @@ export default {
   methods: {
     onProceed () {
       chrome.runtime.sendMessage({
-        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
-        data: { action: MESSAGE_VALUE_BLOCKED_TAB_PROCEED, targetUrl: this.state.targetUrl }
+        id: Message.BlockedTabAction,
+        data: { action: Message.BlockedTabProceed, targetUrl: this.state.targetUrl }
       })
     },
     onCancel () {
       chrome.runtime.sendMessage({
-        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
-        data: { action: MESSAGE_VALUE_BLOCKED_TAB_CANCEL }
+        id: Message.BlockedTabAction,
+        data: { action: Message.BlockedTabCancel }
       })
     }
   }

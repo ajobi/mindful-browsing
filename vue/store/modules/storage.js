@@ -1,7 +1,4 @@
-import {
-  MESSAGE_ID_STORAGE_UPDATED,
-  MESSAGE_ID_STORAGE_UPDATE_REQUEST
-} from '../../../interface/messages'
+import { Message } from '../../../interface/messages'
 
 const state = () => ({
   storage: null
@@ -16,13 +13,13 @@ const mutations = {
 const actions = {
   init ({ commit }) {
     chrome.runtime.onMessage.addListener(({ id, storage }) => {
-      if (id === MESSAGE_ID_STORAGE_UPDATED) {
+      if (id === Message.StorageUpdated) {
         commit('setStorage', storage)
         console.log(storage)
       }
     })
 
-    chrome.runtime.sendMessage({ id: MESSAGE_ID_STORAGE_UPDATE_REQUEST })
+    chrome.runtime.sendMessage({ id: Message.StorageUpdateRequest })
   }
 }
 
