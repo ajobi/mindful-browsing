@@ -1,12 +1,13 @@
-// @ts-nocheck
 import { getNamedLogger } from '../utils/logger'
 import { URL } from '../utils/url'
 import { MESSAGE_ID_BLOCKED_TAB_TARGET_URL } from '../../interface/messages'
+import Tab = chrome.tabs.Tab;
+import TabChangeInfo = chrome.tabs.TabChangeInfo;
 
 const monitoringLog = getNamedLogger('MONITORING', 'indianred')
 
-const openWarning = (tab, targetUrl) => {
-  chrome.tabs.update(tab.id, { url: 'pages/warning/warning.html' }, () => {
+const openWarning = (tab: Tab, targetUrl: string) => {
+  chrome.tabs.update(tab.id ?? -1, { url: 'pages/warning/warning.html' }, () => {
     chrome.tabs.onUpdated.addListener(function warningLoaded (tabId, changeInfo) {
       if (tabId === tab.id && changeInfo.status === 'complete') {
         chrome.tabs.sendMessage(tabId, {
@@ -20,7 +21,7 @@ const openWarning = (tab, targetUrl) => {
   })
 }
 
-const checkUrl = (tabId, { url }, tab) => {
+const checkUrl = (tabId: number, { url }: TabChangeInfo, tab: Tab): void => {
   if (!url) {
     return
   }
