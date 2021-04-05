@@ -1,7 +1,9 @@
 import { updateUserSettings } from '../utils/storage'
+import { SettingsKey } from '../../interface/settings.interface'
 import {
   MESSAGE_ID_SET_ACTIVE_MECHANISM,
-  MESSAGE_ID_SET_ACTIVE_TASK, MESSAGE_ID_SET_BLOCKED_DOMAINS,
+  MESSAGE_ID_SET_ACTIVE_TASK,
+  MESSAGE_ID_SET_BLOCKED_DOMAINS,
   MESSAGE_ID_SET_BREATH_COUNT,
   MESSAGE_ID_SET_CHALLENGE_DIFFICULTY,
   MESSAGE_ID_SET_NOTIFICATION_INTERVAL,
@@ -30,36 +32,36 @@ chrome.runtime.onMessage.addListener(({ id }) => {
 
 chrome.runtime.onMessage.addListener(({ id, value }) => {
   if (id === MESSAGE_ID_SET_ACTIVE_TASK) {
-    updateUserSettings('activeTask', value)
+    updateUserSettings(SettingsKey.ActiveTask, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_BLOCKED_DOMAINS) {
-    updateUserSettings('blockedDomains', value)
+    updateUserSettings(SettingsKey.BlockedDomains, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_ACTIVE_MECHANISM) {
-    updateUserSettings('activeMechanism', value)
+    updateUserSettings(SettingsKey.ActiveMechanism, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_BREATH_COUNT) {
-    updateUserSettings('breathCount', value)
+    updateUserSettings(SettingsKey.BreathCount, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_CHALLENGE_DIFFICULTY) {
-    updateUserSettings('challengeDifficulty', value)
+    updateUserSettings(SettingsKey.ChallengeDifficulty, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_SOUNDS_ALLOWED) {
-    updateUserSettings('soundsAllowed', value)
+    updateUserSettings(SettingsKey.SoundsAllowed, value)
     return
   }
 
   if (id === MESSAGE_ID_SET_NOTIFICATION_INTERVAL) {
-    updateUserSettings('notificationInterval', value)
+    updateUserSettings(SettingsKey.NotificationInterval, value)
   }
 })

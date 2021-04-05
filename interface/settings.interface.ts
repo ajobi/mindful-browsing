@@ -15,42 +15,35 @@ type UserSetting<Type> = {
   readonly default: Type
 }
 
-export const SETTINGS_KEY_ACTIVE_TASK = 'activeTask'
-export const SETTINGS_KEY_BLOCKED_DOMAINS = 'blockedDomains'
-export const SETTINGS_KEY_SOUNDS_ALLOWED = 'soundsAllowed'
-export const SETTINGS_KEY_NOTIFICATION_INTERVAL = 'notificationInterval'
-export const SETTINGS_KEY_ACTIVE_MECHANISM = 'activeMechanism'
-export const SETTINGS_KEY_BREATH_COUNT = 'breathCount'
-export const SETTINGS_KEY_CHALLENGE_DIFFICULTY = 'challengeDifficulty'
-
-export type UserSettingsKey =
-  typeof SETTINGS_KEY_ACTIVE_TASK |
-  typeof SETTINGS_KEY_BLOCKED_DOMAINS |
-  typeof SETTINGS_KEY_SOUNDS_ALLOWED |
-  typeof SETTINGS_KEY_NOTIFICATION_INTERVAL |
-  typeof SETTINGS_KEY_ACTIVE_MECHANISM |
-  typeof SETTINGS_KEY_BREATH_COUNT |
-  typeof SETTINGS_KEY_CHALLENGE_DIFFICULTY
+export enum SettingsKey {
+  ActiveTask = 'activeTask',
+  BlockedDomains = 'blockedDomains',
+  SoundsAllowed = 'soundsAllowed',
+  NotificationInterval = 'notificationInterval',
+  ActiveMechanism = 'activeMechanism',
+  BreathCount = 'breathCount',
+  ChallengeDifficulty = 'challengeDifficulty'
+}
 
 export type UserSettingsValue = string | boolean | number | undefined | BlockedDomain[] | MindfulnessMechanism
 
 export interface ExtensionSettings {
   readonly userSettings: {
-    readonly [SETTINGS_KEY_ACTIVE_TASK]: UserSetting<string>,
-    readonly [SETTINGS_KEY_BLOCKED_DOMAINS]: UserSetting<BlockedDomain[]>,
-    readonly [SETTINGS_KEY_SOUNDS_ALLOWED]: UserSetting<boolean>,
-    readonly [SETTINGS_KEY_NOTIFICATION_INTERVAL]: UserSetting<number>,
-    readonly [SETTINGS_KEY_ACTIVE_MECHANISM]: UserSetting<MindfulnessMechanism>
-    readonly [SETTINGS_KEY_BREATH_COUNT]: UserSetting<number>
-    readonly [SETTINGS_KEY_CHALLENGE_DIFFICULTY]: UserSetting<number>
+    readonly [SettingsKey.ActiveTask]: UserSetting<string>,
+    readonly [SettingsKey.BlockedDomains]: UserSetting<BlockedDomain[]>,
+    readonly [SettingsKey.SoundsAllowed]: UserSetting<boolean>,
+    readonly [SettingsKey.NotificationInterval]: UserSetting<number>,
+    readonly [SettingsKey.ActiveMechanism]: UserSetting<MindfulnessMechanism>
+    readonly [SettingsKey.BreathCount]: UserSetting<number>
+    readonly [SettingsKey.ChallengeDifficulty]: UserSetting<number>
   },
   readonly extensionSettings: {
     readonly removeDelay: number,
     readonly validators: {
-      readonly activeTask: Validator
-      readonly notificationInterval: Validator
-      readonly breathCount: Validator
-      readonly challengeDifficulty: Validator
+      readonly [SettingsKey.ActiveTask]: Validator
+      readonly [SettingsKey.NotificationInterval]: Validator
+      readonly [SettingsKey.BreathCount]: Validator
+      readonly [SettingsKey.ChallengeDifficulty]: Validator
     }
   }
 }
