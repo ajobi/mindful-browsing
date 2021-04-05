@@ -1,4 +1,4 @@
-// import { basicNotification } from '../utils/notifications.js'
+import { basicNotification } from '../utils/notifications.js'
 import { format } from '../utils/time.js'
 import { getNamedLogger } from '../utils/logger'
 import { getUserSettings } from '../utils/storage'
@@ -63,11 +63,11 @@ const startDisciplineEnforcement = () => {
 
     if (--counter === 0) {
       redirectToForbiddenTab()
-      // basicNotification(
-      //   'Mindful Browsing',
-      //   `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
-      //   true
-      // )
+      basicNotification(
+        'Mindful Browsing',
+        `You have already spent ${format(secondsSpentOnForbidden)} on distracting websites!`,
+        true
+      )
       counter = getUserSettings('notificationInterval')
     }
   }, 1000)
@@ -98,7 +98,7 @@ const checkTabsOnRemoved = () => {
       }
     }
 
-    // basicNotification('Mindful Browsing', 'Congratulations! All distracting pages closed!', false)
+    basicNotification('Mindful Browsing', 'Congratulations! All distracting pages closed!', false)
     removeException()
   })
 }

@@ -4,7 +4,8 @@ import { getUserSettings } from './storage'
 const notificationsLog = getNamedLogger('NOTIFICATIONS', 'purple')
 
 const image = 'assets/logo/logo-128.png'
-const tickSound = new Audio('assets/sounds/tick.mp3')
+// TODO: Fix problems with Audio in Service Worker
+// const tickSound = new Audio('assets/sounds/tick.mp3')
 const soundTimeout = 200
 
 export const basicNotification = (title, message, withSound) => {
@@ -14,7 +15,7 @@ export const basicNotification = (title, message, withSound) => {
       notificationsLog.log(`Notification created: ${title} ${message}`)
 
       if (getUserSettings('soundsAllowed') && withSound) {
-        setTimeout(() => tickSound.play(), soundTimeout)
+        // setTimeout(() => tickSound.play(), soundTimeout)
       }
     }
   )
