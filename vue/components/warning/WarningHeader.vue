@@ -1,28 +1,12 @@
 <template>
   <header
     id="warning_panel"
-    @click="onCancel"
+    @click="$emit('cancel')"
   >
     <h1>This domain has been blocked for a good reason.</h1>
     <h2>Please, pause and reconsider whether you really need to visit this site.</h2>
   </header>
 </template>
-
-<script>
-import { MESSAGE_ID_BLOCKED_TAB_ACTION, MESSAGE_VALUE_BLOCKED_TAB_CANCEL } from '../../../messages'
-
-export default {
-  methods: {
-    onCancel () {
-      // TODO: Solve the duplication between Header and Controls
-      chrome.runtime.sendMessage({
-        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
-        data: { tabId: this.tabId, action: MESSAGE_VALUE_BLOCKED_TAB_CANCEL }
-      })
-    }
-  }
-}
-</script>
 
 <style>
 #warning_panel {

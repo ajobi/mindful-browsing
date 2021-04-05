@@ -12,7 +12,7 @@
       v-show="modelValue.breathing === 'success'"
       id="proceed_button"
       class="button--secondary"
-      @click="onProceed"
+      @click="$emit('proceed')"
     >
       I really have to visit this site
     </button>
@@ -20,7 +20,7 @@
       v-show="modelValue.breathing === null || modelValue.breathing === 'success'"
       id="cancel_button"
       class="button--primary"
-      @click="onCancel"
+      @click="$emit('cancel')"
     >
       I have changed my mind
     </button>
@@ -28,12 +28,6 @@
 </template>
 
 <script>
-import {
-  MESSAGE_ID_BLOCKED_TAB_ACTION,
-  MESSAGE_VALUE_BLOCKED_TAB_PROCEED,
-  MESSAGE_VALUE_BLOCKED_TAB_CANCEL
-} from '../../../messages'
-
 export default {
   props: {
     modelValue: {
@@ -54,18 +48,6 @@ export default {
         case 'challenge':
           return this.$emit('update:modelValue', { ...this.modelValue, challenge: 'initiated' })
       }
-    },
-    onProceed () {
-      chrome.runtime.sendMessage({
-        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
-        data: { tabId: this.tabId, action: MESSAGE_VALUE_BLOCKED_TAB_PROCEED, targetUrl: this.targetUrl }
-      })
-    },
-    onCancel () {
-      chrome.runtime.sendMessage({
-        id: MESSAGE_ID_BLOCKED_TAB_ACTION,
-        data: { tabId: this.tabId, action: MESSAGE_VALUE_BLOCKED_TAB_CANCEL }
-      })
     }
   }
 }
