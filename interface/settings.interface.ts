@@ -10,11 +10,6 @@ export interface Validator {
   readonly maxValue: number
 }
 
-type UserSetting<Type> = {
-  value: Type,
-  readonly default: Type
-}
-
 export enum SettingsKey {
   ActiveTask = 'activeTask',
   BlockedDomains = 'blockedDomains',
@@ -27,13 +22,13 @@ export enum SettingsKey {
 
 export interface ExtensionSettings {
   readonly userSettings: {
-    readonly [SettingsKey.ActiveTask]: UserSetting<string>,
-    readonly [SettingsKey.BlockedDomains]: UserSetting<BlockedDomain[]>,
-    readonly [SettingsKey.SoundsAllowed]: UserSetting<boolean>,
-    readonly [SettingsKey.NotificationInterval]: UserSetting<number>,
-    readonly [SettingsKey.ActiveMechanism]: UserSetting<MindfulnessMechanism>
-    readonly [SettingsKey.BreathCount]: UserSetting<number>
-    readonly [SettingsKey.ChallengeDifficulty]: UserSetting<number>
+    [SettingsKey.ActiveTask]: string,
+    [SettingsKey.BlockedDomains]: BlockedDomain[],
+    [SettingsKey.SoundsAllowed]: boolean,
+    [SettingsKey.NotificationInterval]: number,
+    [SettingsKey.ActiveMechanism]: MindfulnessMechanism
+    [SettingsKey.BreathCount]: number
+    [SettingsKey.ChallengeDifficulty]: number
   },
   readonly extensionSettings: {
     readonly removeDelay: number,
@@ -46,4 +41,4 @@ export interface ExtensionSettings {
   }
 }
 
-export type SettingsValue<Key extends SettingsKey> = ExtensionSettings['userSettings'][Key]['value']
+export type SettingsValue<Key extends SettingsKey> = ExtensionSettings['userSettings'][Key]

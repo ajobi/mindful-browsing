@@ -23,42 +23,17 @@ export const settingsDevelopment: ExtensionSettings = {
     }
   },
   userSettings: {
-    activeTask: {
-      value: 'to finish this extension!',
-      default: 'to finish this extension!'
-    },
-    blockedDomains: {
-      value: [
-        { name: 'twitter.com', removeTimestamp: null },
-        { name: 'quora.com', removeTimestamp: null },
-        { name: 'youtube.com', removeTimestamp: null }
-      ],
-      default: [
-        { name: 'twitter.com', removeTimestamp: null },
-        { name: 'quora.com', removeTimestamp: null },
-        { name: 'youtube.com', removeTimestamp: null }
-      ]
-    },
-    soundsAllowed: {
-      value: false,
-      default: false
-    },
-    notificationInterval: {
-      value: 10,
-      default: 10
-    },
-    activeMechanism: {
-      value: 'breathing',
-      default: 'breathing'
-    },
-    breathCount: {
-      value: 1,
-      default: 1
-    },
-    challengeDifficulty: {
-      value: 10,
-      default: 10
-    }
+    activeTask: 'to finish this extension!',
+    blockedDomains: [
+      { name: 'twitter.com', removeTimestamp: null },
+      { name: 'quora.com', removeTimestamp: null },
+      { name: 'youtube.com', removeTimestamp: null }
+    ],
+    soundsAllowed: false,
+    notificationInterval: 10,
+    activeMechanism: 'breathing',
+    breathCount: 1,
+    challengeDifficulty: 10
   }
 }
 
@@ -85,33 +60,12 @@ export const settingsProduction: ExtensionSettings = {
     }
   },
   userSettings: {
-    activeTask: {
-      value: 'not to procrastinate!',
-      default: 'not to procrastinate!'
-    },
-    blockedDomains: {
-      value: [],
-      default: []
-    },
-    soundsAllowed: {
-      value: false,
-      default: false
-    },
-    notificationInterval: {
-      value: 30,
-      default: 30
-    },
-    activeMechanism: {
-      value: 'challenge',
-      default: 'challenge'
-    },
-    breathCount: {
-      value: 3,
-      default: 3
-    },
-    challengeDifficulty: {
-      value: 50,
-      default: 50
-    }
+    activeTask: 'not to procrastinate!',
+    blockedDomains: [],
+    soundsAllowed: false,
+    notificationInterval: 30,
+    activeMechanism: 'challenge',
+    breathCount: 3,
+    challengeDifficulty: 50
   }
 }

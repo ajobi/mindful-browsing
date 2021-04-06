@@ -15,9 +15,9 @@ chrome.storage.onChanged.addListener(() => {
 // TODO: remove repeated storage reads
 export const updateUserSettings = <K extends SettingsKey>(key: K, value: SettingsValue<K>): void => {
   chrome.storage.sync.get(null, storage => {
-    storage.userSettings[key].value = value
+    storage.userSettings[key] = value
     chrome.storage.sync.set(storage)
   })
 }
 
-export const getUserSettings = <K extends SettingsKey>(key: K): SettingsValue<K> => store.userSettings[key].value
+export const getUserSettings = <K extends SettingsKey>(key: K): SettingsValue<K> => store.userSettings[key]

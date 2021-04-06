@@ -29,7 +29,7 @@ const actions = {
       return
     }
 
-    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
+    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains
     const pureDomainName = domainNameFromUrl(domainName)
 
     if (blockedDomains.find(domain => domain.name === pureDomainName)) {
@@ -41,21 +41,21 @@ const actions = {
     chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   removeBlockedDomain ({ rootState }, domainName) {
-    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
+    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains
     const newValue = [...blockedDomains]
     const targetDomain = newValue.find(domain => domain.name === domainName)
     targetDomain.removeTimestamp = (new Date()).valueOf() + (rootState.storage.storage?.extensionSettings.removeDelay * 1000)
     chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   cancelRemoval ({ rootState }, domainName) {
-    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
+    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains
     const newValue = [...blockedDomains]
     const targetDomain = newValue.find(domain => domain.name === domainName)
     targetDomain.removeTimestamp = null
     chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
   deleteBlockedDomain ({ rootState }, domainName) {
-    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains?.value
+    const blockedDomains = rootState.storage.storage?.userSettings?.blockedDomains
     const newValue = [...blockedDomains].filter(domain => domain.name !== domainName)
     chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
@@ -98,13 +98,13 @@ const actions = {
 }
 
 const getters = {
-  getActiveTask: (state, getters, rootState) => rootState.storage.storage?.userSettings?.activeTask?.value,
-  getBlockedDomains: (state, getters, rootState) => rootState.storage.storage?.userSettings?.blockedDomains?.value,
-  getActiveMechanism: (state, getters, rootState) => rootState.storage.storage?.userSettings?.activeMechanism?.value,
-  getBreathCount: (state, getters, rootState) => rootState.storage.storage?.userSettings?.breathCount?.value,
-  getChallengeDifficulty: (state, getters, rootState) => rootState.storage.storage?.userSettings?.challengeDifficulty?.value,
-  getNotificationInterval: (state, getters, rootState) => rootState.storage.storage?.userSettings?.notificationInterval?.value,
-  getSoundsAllowed: (state, getters, rootState) => rootState.storage.storage?.userSettings?.soundsAllowed?.value
+  getActiveTask: (state, getters, rootState) => rootState.storage.storage?.userSettings?.activeTask,
+  getBlockedDomains: (state, getters, rootState) => rootState.storage.storage?.userSettings?.blockedDomains,
+  getActiveMechanism: (state, getters, rootState) => rootState.storage.storage?.userSettings?.activeMechanism,
+  getBreathCount: (state, getters, rootState) => rootState.storage.storage?.userSettings?.breathCount,
+  getChallengeDifficulty: (state, getters, rootState) => rootState.storage.storage?.userSettings?.challengeDifficulty,
+  getNotificationInterval: (state, getters, rootState) => rootState.storage.storage?.userSettings?.notificationInterval,
+  getSoundsAllowed: (state, getters, rootState) => rootState.storage.storage?.userSettings?.soundsAllowed
 }
 
 export default {
