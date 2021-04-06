@@ -4,6 +4,7 @@
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./"
   },
+  "private": true,
   "dependencies": {
     "vue": "3.0.11",
     "vuex": "^4.0.0"
