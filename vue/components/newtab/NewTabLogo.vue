@@ -30,25 +30,27 @@
   </div>
 </template>
 
-<script>
-import quotes from '../../assets/quotes.ts'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import quotes from '../../assets/quotes'
 
-export default {
+export default defineComponent({
   data () {
     return {
       displayed: 'quote',
       quote: {
         text: '',
         author: ''
-      }
+      },
+      interval: undefined as number | undefined
     }
   },
   mounted () {
-    this.interval = setInterval(this.showNextSlide, 16000)
+    this.interval = window.setInterval(this.showNextSlide, 16000)
     this.showNextSlide()
   },
   beforeUnmount () {
-    clearInterval(this.interval)
+    window.clearInterval(this.interval)
   },
   methods: {
     showNextSlide () {
@@ -60,7 +62,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style>

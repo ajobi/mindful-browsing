@@ -14,7 +14,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import NewTabTask from './NewTabTask.vue'
 import NewTabLogo from './NewTabLogo.vue'
 import NewTabSettingsTask from './NewTabSettingsTask.vue'
@@ -23,7 +24,7 @@ import NewTabSettingsMechanism from './NewTabSettingsMechanism.vue'
 import NewTabSettingsNotifications from './NewTabSettingsNotifications.vue'
 import SupportMe from '../atoms/SupportMe.vue'
 
-export default {
+export default defineComponent({
   components: {
     NewTabTask,
     NewTabLogo,
@@ -51,7 +52,7 @@ export default {
     startView () {
       this.activeView = 0
     },
-    onKeyDown (event) {
+    onKeyDown (event: KeyboardEvent) {
       const { keyCode } = event
 
       const keyCodeTab = 9
@@ -68,7 +69,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style>
