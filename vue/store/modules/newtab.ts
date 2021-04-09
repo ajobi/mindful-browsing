@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Message } from '../../../interface/messages.interface'
 
 // const _getSettings = (settings) => JSON.parse(JSON.stringify(settings))

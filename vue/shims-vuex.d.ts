@@ -1,13 +1,5 @@
 import { Store } from 'vuex'
-import { ExtensionSettings } from '../interface/settings.interface'
-
-type StateStorage = {
-  storage: ExtensionSettings
-}
-
-type State = {
-  storage: StateStorage,
-}
+import { State } from './store'
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
