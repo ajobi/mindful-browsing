@@ -8,6 +8,10 @@
   </header>
 </template>
 
+<script lang="ts">
+export default {}
+</script>
+
 <style>
 #warning_panel {
   padding: 16vh 0 13vh;

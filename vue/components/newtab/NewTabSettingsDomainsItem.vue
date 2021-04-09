@@ -22,10 +22,11 @@
   </li>
 </template>
 
-<script>
-import { format } from '../../../worker/utils/time.ts'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { format } from '../../../worker/utils/time'
 
-export default {
+export default defineComponent({
   props: {
     domain: {
       type: Object,
@@ -34,7 +35,7 @@ export default {
   },
   data () {
     return {
-      removeInterval: null,
+      removeInterval: undefined as number | undefined,
       removalCountdownText: ''
     }
   },
@@ -43,14 +44,14 @@ export default {
       immediate: true,
       deep: true,
       handler (newValue) {
-        clearInterval(this.removeInterval)
+        window.clearInterval(this.removeInterval)
 
         if (newValue.removeTimestamp) {
           const currentTime = new Date().valueOf()
           const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
           this.removalCountdownText = `in ${format(timeDifferenceInSeconds)}`
 
-          this.removeInterval = setInterval(() => {
+          this.removeInterval = window.setInterval(() => {
             const currentTime = new Date().valueOf()
             const timeDifferenceInSeconds = (this.domain.removeTimestamp - currentTime) / 1000
 
@@ -65,7 +66,7 @@ export default {
     }
   },
   beforeUnmount () {
-    clearInterval(this.removeInterval)
+    window.clearInterval(this.removeInterval)
   },
   methods: {
     onRemove () {
@@ -75,7 +76,7 @@ export default {
       this.$store.dispatch('newtab/cancelRemoval', this.domain.name)
     }
   }
-}
+})
 </script>
 
 <style>

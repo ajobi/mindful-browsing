@@ -17,10 +17,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { getChallengeString } from '../../utils/string'
 
-export default {
+export default defineComponent({
   props: {
     modelValue: {
       type: Object,
@@ -28,7 +29,7 @@ export default {
     }
   },
   computed: {
-    challengeDifficulty () {
+    challengeDifficulty (): number {
       return this.$store.getters['newtab/getChallengeDifficulty']
     }
   },
@@ -36,33 +37,36 @@ export default {
     challenge (newValue) {
       const CHALLENGE_STRING = document.getElementById('challenge_string')
       const CORRECT_INPUT = document.getElementById('correct_input')
-      const CHALLENGE_INPUT = document.getElementById('challenge_input')
+      const CHALLENGE_INPUT = document.getElementById('challenge_input') as HTMLInputElement
 
       if (newValue === 'initiated') {
-        CHALLENGE_STRING.innerText = getChallengeString(this.challengeDifficulty)
-        CHALLENGE_INPUT.focus()
+        if (CHALLENGE_INPUT && CHALLENGE_STRING && CORRECT_INPUT) {
+          CHALLENGE_STRING.innerText = getChallengeString(this.challengeDifficulty)
+          CHALLENGE_INPUT.focus()
 
-        CHALLENGE_INPUT.addEventListener('input', event => {
-          if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
-            this.$emit('update:modelValue', { ...this.modelValue, challenge: 'success' })
-          } else {
-            const input = event.target.value
-            let correctInput = ''
-            for (let i = 0; i < input.length; i++) {
-              if (input[i] === CHALLENGE_STRING.innerText[i]) {
-                correctInput += input[i]
-              } else {
-                break
+          CHALLENGE_INPUT.addEventListener('input', (event: Event) => {
+            if (CHALLENGE_STRING.innerText === CHALLENGE_INPUT.value) {
+              this.$emit('update:modelValue', { ...this.modelValue, challenge: 'success' })
+            } else {
+              const target = event?.target as HTMLInputElement
+              const input = target?.value
+              let correctInput = ''
+              for (let i = 0; i < input.length; i++) {
+                if (input[i] === CHALLENGE_STRING.innerText[i]) {
+                  correctInput += input[i]
+                } else {
+                  break
+                }
               }
-            }
 
-            CORRECT_INPUT.innerText = correctInput
-          }
-        })
+              CORRECT_INPUT.innerText = correctInput
+            }
+          })
+        }
       }
     }
   }
-}
+})
 </script>
 
 <style>

@@ -36,8 +36,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   computed: {
     activeMechanism () {
       return this.$store.getters['newtab/getActiveMechanism']
@@ -79,7 +81,7 @@ export default {
       this.$store.dispatch('newtab/setChallengeDifficulty', challengeDifficulty)
     }
   }
-}
+})
 </script>
 
 <style>

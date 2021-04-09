@@ -30,10 +30,11 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
 
-export default {
+export default defineComponent({
   components: {
     NewTabSettingsDomainsItem
   },
@@ -48,7 +49,8 @@ export default {
     }
   },
   mounted () {
-    this.$refs.input.focus()
+    const input = this.$refs.input as HTMLInputElement
+    input.focus()
   },
   methods: {
     onSubmit () {
@@ -56,7 +58,7 @@ export default {
       this.inputText = ''
     }
   }
-}
+})
 </script>
 
 <style>

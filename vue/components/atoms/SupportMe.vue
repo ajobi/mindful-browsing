@@ -8,6 +8,10 @@
   </p>
 </template>
 
+<script lang="ts">
+export default {}
+</script>
+
 <style>
 #support_me {
   position: fixed;

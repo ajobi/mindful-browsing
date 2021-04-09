@@ -16,15 +16,18 @@
   </form>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   data () {
     return {
       inputText: ''
     }
   },
   mounted () {
-    this.$refs.input.focus()
+    const input = this.$refs.input as HTMLInputElement
+    input.focus()
   },
   methods: {
     onSubmit () {
@@ -32,7 +35,7 @@ export default {
       this.inputText = ''
     }
   }
-}
+})
 </script>
 
 <style>

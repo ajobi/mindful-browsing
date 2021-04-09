@@ -16,8 +16,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   props: {
     modelValue: {
       type: Object,
@@ -29,7 +31,7 @@ export default {
       this.$emit('update:modelValue', { ...this.modelValue, breathing: 'initiated' })
     }
   }
-}
+})
 </script>
 
 <style>

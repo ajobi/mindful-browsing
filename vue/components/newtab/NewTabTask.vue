@@ -7,14 +7,16 @@
   </h1>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   computed: {
     activeTask () {
       return this.$store.getters['newtab/getActiveTask']
     }
   }
-}
+})
 </script>
 
 <style>

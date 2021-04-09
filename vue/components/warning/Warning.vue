@@ -15,7 +15,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import WarningHeader from './WarningHeader.vue'
 import WarningChallengeTask from './WarningChallengeTask.vue'
 import WarningChallengeBreathing from './WarningChallengeBreathing.vue'
@@ -23,7 +24,7 @@ import WarningControls from './WarningControls.vue'
 import SupportMe from '../atoms/SupportMe.vue'
 import { Message } from '../../../interface/messages.interface'
 
-export default {
+export default defineComponent({
   components: {
     WarningControls,
     WarningChallengeBreathing,
@@ -35,8 +36,8 @@ export default {
     return {
       state: {
         targetUrl: null,
-        challenge: null,
-        breathing: null
+        challenge: null as string | null,
+        breathing: null as string | null
       }
     }
   },
@@ -67,5 +68,5 @@ export default {
       })
     }
   }
-}
+})
 </script>

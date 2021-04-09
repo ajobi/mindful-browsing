@@ -27,8 +27,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   props: {
     modelValue: {
       type: Object,
@@ -36,7 +38,7 @@ export default {
     }
   },
   computed: {
-    activeMechanism () {
+    activeMechanism (): string {
       return this.$store.getters['newtab/getActiveMechanism']
     }
   },
@@ -50,7 +52,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style>

@@ -20,8 +20,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   computed: {
     notificationInterval () {
       return this.$store.getters['newtab/getNotificationInterval']
@@ -44,7 +46,7 @@ export default {
       this.$store.dispatch('newtab/setNotificationInterval', interval)
     }
   }
-}
+})
 </script>
 
 <style>
