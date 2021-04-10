@@ -14,8 +14,8 @@ export enum ActionTypes {
   INIT = 'INIT'
 }
 
-export interface Mutations<S = StateStorage> {
-  [MutationTypes.SET_STORAGE](state: S, payload: ExtensionSettings): void
+export interface Mutations {
+  [MutationTypes.SET_STORAGE](state: StateStorage, payload: ExtensionSettings): void
 }
 
 // TODO: get rid of this once proper type support is added
