@@ -1,5 +1,5 @@
 import { Message } from '../../../interface/messages.interface'
-import { ActionTree, GetterTree, Module } from 'vuex'
+import { ActionContext, ActionTree, GetterTree, Module } from 'vuex'
 import { State } from '../index'
 import { domainNameRegex, domainNameFromUrl } from '../../utils/domain'
 
@@ -16,8 +16,21 @@ export enum ActionTypes {
   SET_NOTIFICATION_INTERVAL = 'SET_NOTIFICATION_INTERVAL',
 }
 
-const actions: ActionTree<void, State> = {
-  [ActionTypes.SET_ACTIVE_TASK] ({ rootState }, activeTask: string) {
+export type Actions = {
+  [ActionTypes.SET_ACTIVE_TASK]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.ADD_BLOCKED_DOMAIN]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.REMOVE_BLOCKED_DOMAIN]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.CANCEL_REMOVAL]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.DELETE_BLOCKED_DOMAIN]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.SET_ACTIVE_MECHANISM]: (context: ActionContext<void, State>, payload: string) => void,
+  [ActionTypes.SET_BREATH_COUNT]: (context: ActionContext<void, State>, payload: number) => void,
+  [ActionTypes.SET_CHALLENGE_DIFFICULTY]: (context: ActionContext<void, State>, payload: number) => void,
+  [ActionTypes.SET_SOUNDS_ALLOWED]: (context: ActionContext<void, State>, payload: boolean) => void,
+  [ActionTypes.SET_NOTIFICATION_INTERVAL]: (context: ActionContext<void, State>, payload: number) => void,
+}
+
+const actions: ActionTree<void, State> & Actions = {
+  [ActionTypes.SET_ACTIVE_TASK] ({ rootState }, activeTask) {
     if (!rootState.storage.storage) {
       return
     }
@@ -89,7 +102,7 @@ const actions: ActionTree<void, State> = {
     const newValue = [...blockedDomains].filter(domain => domain.name !== domainName)
     chrome.runtime.sendMessage({ id: Message.SetBlockedDomains, value: newValue })
   },
-  [ActionTypes.SET_ACTIVE_MECHANISM] ({ rootState }, activeMechanism) {
+  [ActionTypes.SET_ACTIVE_MECHANISM] (context, activeMechanism) {
     chrome.runtime.sendMessage({ id: Message.SetActiveMechanism, value: activeMechanism })
   },
   [ActionTypes.SET_BREATH_COUNT] ({ rootState }, breathCount) {
@@ -120,7 +133,7 @@ const actions: ActionTree<void, State> = {
 
     chrome.runtime.sendMessage({ id: Message.SetChallengeDifficulty, value: challengeDifficulty })
   },
-  [ActionTypes.SET_SOUNDS_ALLOWED] ({ rootState }, soundsAllowed) {
+  [ActionTypes.SET_SOUNDS_ALLOWED] (context, soundsAllowed) {
     chrome.runtime.sendMessage({ id: Message.SetSoundsAllowed, value: soundsAllowed })
   },
   [ActionTypes.SET_NOTIFICATION_INTERVAL] ({ rootState }, notificationInterval) {
