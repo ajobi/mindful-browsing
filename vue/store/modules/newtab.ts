@@ -1,16 +1,7 @@
 import { Message } from '../../../interface/messages.interface'
 import { ActionTree, GetterTree, Module } from 'vuex'
 import { State } from '../index'
-
-// eslint-disable-next-line prefer-regex-literals
-const domainNameRegex = new RegExp(
-  '^((?:http(?:s)?:\\/\\/)?(?:www\\.)?)(?:([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])\\.)*([A-Za-z0-9]{2,20})'
-)
-
-function domainNameFromUrl (url: string) {
-  const match = domainNameRegex.exec(url)
-  return match ? `${match[2]}.${match[3]}` : null
-}
+import { domainNameRegex, domainNameFromUrl } from '../../utils/domain'
 
 export enum ActionTypes {
   SET_ACTIVE_TASK = 'SET_ACTIVE_TASK',
