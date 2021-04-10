@@ -1,3 +1,4 @@
+// TODO: Implement proper store typing
 import { createStore } from 'vuex'
 import { ActionTypes as StorageActions, StateStorage } from './modules/storage/interface'
 import newtab from './modules/newtab/newtab'
