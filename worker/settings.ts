@@ -1,4 +1,4 @@
-import { ExtensionSettings } from './settings.interface'
+import { ExtensionSettings } from '../interface/settings.interface'
 
 export const settingsDevelopment: ExtensionSettings = {
   extensionSettings: {
