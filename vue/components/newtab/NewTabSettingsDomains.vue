@@ -32,6 +32,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
 
 export default defineComponent({
@@ -54,7 +55,7 @@ export default defineComponent({
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('newtab/addBlockedDomain', this.inputText)
+      this.$store.dispatch(NewtabActions.ADD_BLOCKED_DOMAIN, this.inputText)
       this.inputText = ''
     }
   }

@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
 
 export default defineComponent({
   computed: {
@@ -34,7 +35,7 @@ export default defineComponent({
   },
   methods: {
     onSoundsAllowedClicked () {
-      this.$store.dispatch('newtab/setSoundsAllowed', !this.soundsAllowed)
+      this.$store.dispatch(NewtabActions.SET_SOUNDS_ALLOWED, !this.soundsAllowed)
     },
     onEnterIntervalClicked () {
       const interval = prompt('Enter the notification interval:')
@@ -43,7 +44,7 @@ export default defineComponent({
         return
       }
 
-      this.$store.dispatch('newtab/setNotificationInterval', interval)
+      this.$store.dispatch(NewtabActions.SET_NOTIFICATION_INTERVAL, interval)
     }
   }
 })

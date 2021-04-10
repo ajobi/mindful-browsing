@@ -1,9 +1,10 @@
-import { createStore, Module } from 'vuex'
-import storage, { ActionTypes, StateStorage } from './modules/storage'
+import { createStore } from 'vuex'
+import storage, { ActionTypes as StorageActions, StateStorage } from './modules/storage'
 import newtab from './modules/newtab'
 
 export type State = {
-  storage: Module<StateStorage, State>,
+  storage: StateStorage,
+  newtab: never
 }
 
 const store = createStore<State>({
@@ -13,6 +14,6 @@ const store = createStore<State>({
   }
 })
 
-store.dispatch(ActionTypes.INIT)
+store.dispatch(StorageActions.INIT)
 
 export default store

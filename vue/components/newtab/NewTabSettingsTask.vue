@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
 
 export default defineComponent({
   data () {
@@ -31,7 +32,7 @@ export default defineComponent({
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('newtab/setActiveTask', this.inputText)
+      this.$store.dispatch(NewtabActions.SET_ACTIVE_TASK, this.inputText)
       this.inputText = ''
     }
   }

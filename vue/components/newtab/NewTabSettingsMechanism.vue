@@ -38,6 +38,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
 
 export default defineComponent({
   computed: {
@@ -54,12 +55,12 @@ export default defineComponent({
   methods: {
     onBreathingSelected () {
       if (this.activeMechanism !== 'breathing') {
-        this.$store.dispatch('newtab/setActiveMechanism', 'breathing')
+        this.$store.dispatch(NewtabActions.SET_ACTIVE_MECHANISM, 'breathing')
       }
     },
     onChallengeSelected () {
       if (this.activeMechanism !== 'challenge') {
-        this.$store.dispatch('newtab/setActiveMechanism', 'challenge')
+        this.$store.dispatch(NewtabActions.SET_ACTIVE_MECHANISM, 'challenge')
       }
     },
     onBreathCountClicked () {
@@ -69,7 +70,7 @@ export default defineComponent({
         return
       }
 
-      this.$store.dispatch('newtab/setBreathCount', breathCount)
+      this.$store.dispatch(NewtabActions.SET_BREATH_COUNT, breathCount)
     },
     onChallengeDifficultyClicked () {
       const challengeDifficulty = prompt('Enter the number of characters:')
@@ -78,7 +79,7 @@ export default defineComponent({
         return
       }
 
-      this.$store.dispatch('newtab/setChallengeDifficulty', challengeDifficulty)
+      this.$store.dispatch(NewtabActions.SET_CHALLENGE_DIFFICULTY, challengeDifficulty)
     }
   }
 })

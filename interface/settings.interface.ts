@@ -1,6 +1,6 @@
 export interface BlockedDomain {
   name: string,
-  removeTimestamp: string | null
+  removeTimestamp: number | null
 }
 
 export type MindfulnessMechanism = 'breathing' | 'challenge'
