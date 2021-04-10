@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab/interface'
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
 
 export default defineComponent({

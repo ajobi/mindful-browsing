@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { format } from '../../../worker/utils/time'
-import { ActionTypes as NewtabActions } from '../../store/modules/newtab'
+import { ActionTypes as NewtabActions } from '../../store/modules/newtab/interface'
 
 export default defineComponent({
   props: {

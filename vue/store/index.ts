@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
-import storage, { ActionTypes as StorageActions, StateStorage } from './modules/storage'
-import newtab from './modules/newtab'
+import { ActionTypes as StorageActions, StateStorage } from './modules/storage/interface'
+import newtab from './modules/newtab/newtab'
+import storage from './modules/storage/storage'
 
 export type State = {
   storage: StateStorage,
