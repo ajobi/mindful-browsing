@@ -16,6 +16,6 @@ const store = createStore<State>({
   }
 })
 
-store.dispatch(StorageActions.INIT)
+store.dispatch(`storage/${StorageActions.INIT}`)
 
 export default store
