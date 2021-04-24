@@ -3,6 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: {
     worker: './worker/index.ts',
     'pages/newtab/newtab': './vue/pages/newtab/newtab.ts',
