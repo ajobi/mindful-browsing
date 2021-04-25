@@ -1,6 +1,6 @@
 // TODO: Implement proper store typing
 import { createStore } from 'vuex'
-import { ActionTypes as StorageActions, StateStorage } from './modules/storage/interface'
+import { ActionTypes as StorageActions, MODULE_STORAGE, StateStorage } from './modules/storage/interface'
 import newtab from './modules/newtab/newtab'
 import storage from './modules/storage/storage'
 
@@ -16,6 +16,6 @@ const store = createStore<State>({
   }
 })
 
-store.dispatch(`storage/${StorageActions.INIT}`)
+store.dispatch(`${MODULE_STORAGE}/${StorageActions.INIT}`)
 
 export default store

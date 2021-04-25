@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { format } from '../../../worker/utils/time'
-import { ActionTypes as NewtabActions } from '../../store/modules/newtab/interface'
+import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 
 export default defineComponent({
   props: {
@@ -59,7 +59,7 @@ export default defineComponent({
             if (timeDifferenceInSeconds > 1) {
               this.removalCountdownText = `in ${format(timeDifferenceInSeconds)}`
             } else {
-              this.$store.dispatch(NewtabActions.DELETE_BLOCKED_DOMAIN, this.domain.name)
+              this.$store.dispatch(`${MODULE_NEWTAB}/${NewtabActions.DELETE_BLOCKED_DOMAIN}`, this.domain.name)
             }
           }, 1000)
         }
@@ -71,10 +71,10 @@ export default defineComponent({
   },
   methods: {
     onRemove () {
-      this.$store.dispatch(NewtabActions.REMOVE_BLOCKED_DOMAIN, this.domain.name)
+      this.$store.dispatch(`${MODULE_NEWTAB}/${NewtabActions.REMOVE_BLOCKED_DOMAIN}`, this.domain.name)
     },
     onCancelRemove () {
-      this.$store.dispatch(NewtabActions.CANCEL_REMOVAL, this.domain.name)
+      this.$store.dispatch(`${MODULE_NEWTAB}/${NewtabActions.CANCEL_REMOVAL}`, this.domain.name)
     }
   }
 })

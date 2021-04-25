@@ -2,6 +2,8 @@ import { ExtensionSettings } from '../../../../interface/settings.interface'
 import { ActionContext } from 'vuex'
 import { State } from '../../index'
 
+export const MODULE_STORAGE = 'storage'
+
 export type StateStorage = {
   storage: ExtensionSettings | null
 }

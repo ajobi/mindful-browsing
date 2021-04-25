@@ -1,6 +1,8 @@
 import { ActionContext } from 'vuex'
 import { State } from '../../index'
 
+export const MODULE_NEWTAB = 'newtab'
+
 export enum ActionTypes {
   SET_ACTIVE_TASK = 'SET_ACTIVE_TASK',
   ADD_BLOCKED_DOMAIN = 'ADD_BLOCKED_DOMAIN',
