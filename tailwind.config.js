@@ -20,12 +20,18 @@ module.exports = {
     fontSize: {
       xxs: '12px',
       xs: '14px',
-      sm: '16px',
-      base: '18px',
-      l: '20px',
-      xl: '24px',
-      '2xl': '32px',
-      '3xl': '36px'
+      base: '16px',
+      l: '18px',
+      xl: '20px',
+      '2xl': '24px',
+      '3xl': '32px',
+      '4xl': '36px'
+    },
+    fontWeight: {
+      thin: 200,
+      light: 300,
+      normal: 400,
+      medium: 500
     }
   },
   variants: {
