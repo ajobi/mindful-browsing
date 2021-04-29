@@ -8,13 +8,12 @@
       class="button--secondary"
       @click="onRemove"
     >
-    <input
+    <ButtonPrimary
       v-else
-      type="button"
-      value="cancel"
-      class="button--primary"
       @click="onCancelRemove"
     >
+      Cancel
+    </ButtonPrimary>
     <span
       v-if="domain.removeTimestamp"
       class="removal-countdown"
@@ -26,8 +25,10 @@
 import { defineComponent } from 'vue'
 import { format } from '../../../worker/utils/time'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
+import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 
 export default defineComponent({
+  components: { ButtonPrimary },
   props: {
     domain: {
       type: Object,
@@ -93,7 +94,8 @@ export default defineComponent({
     font-size: var(--font-16);
   }
 
-  input[type="button"] {
+  .domains-list button,
+  .domains-list input {
     margin-left: 24px;
     width: 160px;
   }
