@@ -1,5 +1,9 @@
+// TODO: fix purging
 module.exports = {
-  purge: [],
+  purge: [
+    './vue/**/*.js',
+    './vue/**/*.vue'
+  ],
   darkMode: false,
   theme: {
     extend: {}
