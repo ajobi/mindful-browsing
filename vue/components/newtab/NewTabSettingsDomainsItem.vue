@@ -1,13 +1,12 @@
 <template>
   <li>
     <span>{{ domain.name }}</span>
-    <input
+    <ButtonSecondary
       v-if="!domain.removeTimestamp"
-      type="button"
-      value="remove"
-      class="button--secondary"
       @click="onRemove"
     >
+      Remove
+    </ButtonSecondary>
     <ButtonPrimary
       v-else
       @click="onCancelRemove"
@@ -26,9 +25,10 @@ import { defineComponent } from 'vue'
 import { format } from '../../../worker/utils/time'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
+import ButtonSecondary from '../atoms/ButtonSecondary.vue'
 
 export default defineComponent({
-  components: { ButtonPrimary },
+  components: { ButtonSecondary, ButtonPrimary },
   props: {
     domain: {
       type: Object,
@@ -94,8 +94,7 @@ export default defineComponent({
     font-size: var(--font-16);
   }
 
-  .domains-list button,
-  .domains-list input {
+  .domains-list button {
     margin-left: 24px;
     width: 160px;
   }
