@@ -70,3 +70,7 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+@import "../../css/main.css";
+</style>

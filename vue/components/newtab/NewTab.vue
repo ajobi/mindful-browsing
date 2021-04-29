@@ -73,7 +73,7 @@ export default defineComponent({
 </script>
 
 <style>
-  @import "../../assets/css/main.css";
+  @import "../../css/main.css";
 
   h2 {
     text-transform: uppercase;

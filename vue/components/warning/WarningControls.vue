@@ -56,8 +56,6 @@ export default defineComponent({
 </script>
 
 <style>
-@import "../../assets/css/main.css";
-
 #proceed_button {
   /*display: none;*/
 }

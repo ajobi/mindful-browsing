@@ -35,8 +35,6 @@ export default defineComponent({
 </script>
 
 <style>
-@import "../../assets/css/main.css";
-
 @keyframes fontbulger {
   0%,
   100% {
