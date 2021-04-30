@@ -104,7 +104,7 @@ export default defineComponent({
     margin: 0 15px;
     user-select: none;
     border-radius: 8px;
-    border: 1px solid var(--col-primary-20);
+    @apply border border-primary-100;
     padding: 40px 25px 30px 25px;
     display: flex;
     flex-direction: column;
@@ -149,7 +149,7 @@ export default defineComponent({
     font-weight: 500;
     display: block;
     position: absolute;
-    color: var(--col-primary-100);
+    @apply text-primary-600;
     background-color: white;
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
     width: 130px;

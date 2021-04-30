@@ -1,10 +1,4 @@
 :root {
-  --col-primary-100: rgba(71, 72, 129, 1);
-  --col-primary-90: rgba(71, 72, 129, 0.9);
-  --col-primary-80: rgba(71, 72, 129, 0.8);
-  --col-primary-70: rgba(71, 72, 129, 0.7);
-  --col-primary-50: rgba(71, 72, 129, 0.5);
-  --col-primary-20: rgba(71, 72, 129, 0.2);
 
   /* font sizes */
   --font-12: 12px;

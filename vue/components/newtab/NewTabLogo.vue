@@ -90,7 +90,7 @@ export default defineComponent({
 
   #quote p {
     font-size: var(--font-18);
-    color: var(--col-primary-80);
+    @apply text-primary-400;
     font-style: italic;
     font-weight: 200;
     max-width: 500px;

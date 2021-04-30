@@ -16,7 +16,7 @@ body {
 }
 
 label:hover {
-  color: var(--col-primary-80);
+  @apply text-primary-400;
 }
 
 button:focus {
@@ -48,7 +48,7 @@ input[type='checkbox']:before {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: var(--col-primary-20);
+  @apply bg-primary-100;
   border-radius: 22px;
   cursor: pointer;
 }
@@ -68,7 +68,7 @@ input[type='checkbox']:after {
 
 input[type='checkbox']:checked:after {
   left: 26px;
-  background-color: var(--col-primary-80);
+  @apply bg-primary-400;
 }
 
 a:focus {
@@ -79,28 +79,26 @@ a:focus {
 .button--primary {
   height: 35px;
   border-radius: 35px;
-  background-color: var(--col-primary-80);
-  @apply text-white;
+  @apply text-white bg-primary-400;
   border: none;
   transition: background-color 0.2s;
 }
 
 .button--primary:hover,
 .button--primary:active {
-   background-color: var(--col-primary-90);
+  @apply bg-primary-500;
 }
 
 .button--secondary {
   @apply bg-white;
   height: 35px;
   border-radius: 35px;
-  color: var(--col-primary-100);
-  border: 1px solid var(--col-primary-70);
+  @apply text-primary-600 border border-primary-300;
   font-weight: 200;
   transition: border 0.2s;
 }
 
 .button--secondary:hover,
 .button--secondary:active {
-  border: 1px solid var(--col-primary-100);
+  @apply border border-primary-600;
 }

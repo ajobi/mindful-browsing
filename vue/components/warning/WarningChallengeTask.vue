@@ -79,7 +79,7 @@ export default defineComponent({
 
 #challenge_string {
   user-select: none;
-  color: var(--col-primary-50);
+  @apply text-primary-200;
   margin-bottom: 15px;
   font-size: var(--font-18);
 }
