@@ -37,10 +37,6 @@ input[type='submit'] {
   font-family: 'Poppins', sans-serif;
 }
 
-strong {
-  font-weight: 400;
-}
-
 input[type='checkbox'] {
   -webkit-appearance: none;
   position: relative;

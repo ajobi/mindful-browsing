@@ -11,7 +11,7 @@
         @click="onBreathingSelected"
       >
         <h3>Mindful breathing</h3>
-        <p>You will be asked to take <strong> {{ breathCount }} breaths</strong> before you will be allowed to visit distracting content. </p>
+        <p>You will be asked to take <strong class="font-normal"> {{ breathCount }} breaths</strong> before you will be allowed to visit distracting content. </p>
         <ButtonPrimary
           @click="onBreathCountClicked"
         >
@@ -25,7 +25,7 @@
         @click="onChallengeSelected"
       >
         <h3>Small challenge</h3>
-        <p>You will be asked to re-type <strong> {{ challengeDifficulty }} characters </strong> of random text before you will be allowed to visit distracting content. </p>
+        <p>You will be asked to re-type <strong class="font-normal"> {{ challengeDifficulty }} characters </strong> of random text before you will be allowed to visit distracting content. </p>
         <ButtonPrimary
           @click="onChallengeDifficultyClicked"
         >

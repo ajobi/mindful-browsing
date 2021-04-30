@@ -3,7 +3,7 @@
     <HeadingSettings>
       Notifications:
     </HeadingSettings>
-    <p>If you end up on a distracting website anyways, you will be reminded <strong>every {{ notificationInterval }} seconds</strong>. </p>
+    <p>If you end up on a distracting website anyways, you will be reminded <strong class="font-normal">every {{ notificationInterval }} seconds</strong>. </p>
 
     <label @click="onSoundsAllowedClicked">
       notification sounds <input
