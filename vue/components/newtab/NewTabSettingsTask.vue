@@ -3,7 +3,9 @@
     id="settings_task"
     @submit.prevent="onSubmit"
   >
-    <h2> Current task: </h2>
+    <HeadingSettings>
+      Current task:
+    </HeadingSettings>
     <label>In the following time frame, you would like <br>
       <input
         ref="input"
@@ -19,8 +21,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
+import HeadingSettings from '../atoms/HeadingSettings.vue'
 
 export default defineComponent({
+  components: { HeadingSettings },
   data () {
     return {
       inputText: ''

@@ -1,6 +1,8 @@
 <template>
   <div id="settings_mechanism">
-    <h2> Your mindfulness approach: </h2>
+    <HeadingSettings>
+      Your mindfulness approach:
+    </HeadingSettings>
     <div class="available-mechanisms">
       <div
         id="mechanism_breathing"
@@ -38,9 +40,10 @@
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
+import HeadingSettings from '../atoms/HeadingSettings.vue'
 
 export default defineComponent({
-  components: { ButtonPrimary },
+  components: { HeadingSettings, ButtonPrimary },
   computed: {
     activeMechanism (): string {
       return this.$store.getters['newtab/getActiveMechanism']

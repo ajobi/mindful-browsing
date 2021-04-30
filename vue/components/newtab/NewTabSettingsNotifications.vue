@@ -1,7 +1,8 @@
 <template>
   <div id="settings_notifications">
-    <h2> Notifications: </h2>
-
+    <HeadingSettings>
+      Notifications:
+    </HeadingSettings>
     <p>If you end up on a distracting website anyways, you will be reminded <strong>every {{ notificationInterval }} seconds</strong>. </p>
 
     <label @click="onSoundsAllowedClicked">
@@ -20,9 +21,11 @@
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
+import HeadingSettings from '../atoms/HeadingSettings.vue'
 
 export default defineComponent({
   components: {
+    HeadingSettings,
     ButtonPrimary
   },
   computed: {

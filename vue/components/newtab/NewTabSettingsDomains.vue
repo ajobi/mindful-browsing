@@ -3,7 +3,9 @@
     id="settings_domains"
     @submit.prevent="onSubmit"
   >
-    <h2> Distracting domains: </h2>
+    <HeadingSettings>
+      Distracting domains:
+    </HeadingSettings>
     <input
       ref="input"
       v-model="inputText"
@@ -34,9 +36,11 @@
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
+import HeadingSettings from '../atoms/HeadingSettings.vue'
 
 export default defineComponent({
   components: {
+    HeadingSettings,
     NewTabSettingsDomainsItem
   },
   data () {
@@ -45,7 +49,7 @@ export default defineComponent({
     }
   },
   computed: {
-    blockedDomains () {
+    blockedDomains (): [] {
       return this.$store.getters['newtab/getBlockedDomains']
     }
   },
