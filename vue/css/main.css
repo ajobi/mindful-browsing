@@ -9,12 +9,14 @@ body {
   @apply text-primary-600 text-center text-base font-thin font-poppins;
 }
 
-label:hover {
-  color: var(--col-primary-80);
+@layer utilities {
+  .caret-primary-300 {
+    caret-color: #7F7FA7;
+  }
 }
 
-input {
-  outline: none;
+label:hover {
+  color: var(--col-primary-80);
 }
 
 button:focus {
@@ -101,14 +103,4 @@ a:focus {
 .button--secondary:hover,
 .button--secondary:active {
   border: 1px solid var(--col-primary-100);
-}
-
-.input-text {
-  border: 0;
-  color: var(--col-primary-100);
-  font-size: var(--font-20);
-  font-weight: 200;
-  text-align: center;
-  caret-color: var(--col-primary-70);
-  font-family: 'Poppins', sans-serif;
 }

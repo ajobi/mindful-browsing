@@ -4,7 +4,7 @@
     :value="value"
     type="text"
     :size="size"
-    class="input-text"
+    class="text-primary-600 font-thin text-xl text-center caret-primary-300 border-0 focus:outline-none"
     @input="$emit('update:modelValue')"
   >
 </template>
