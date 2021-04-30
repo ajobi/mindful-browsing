@@ -10,12 +10,11 @@
       >
         <h3>Mindful breathing</h3>
         <p>You will be asked to take <strong> {{ breathCount }} breaths</strong> before you will be allowed to visit distracting content. </p>
-        <button
-          class="button--primary"
+        <ButtonPrimary
           @click="onBreathCountClicked"
         >
           Customize
-        </button>
+        </ButtonPrimary>
       </div>
       <div
         id="mechanism_challenge"
@@ -25,12 +24,11 @@
       >
         <h3>Small challenge</h3>
         <p>You will be asked to re-type <strong> {{ challengeDifficulty }} characters </strong> of random text before you will be allowed to visit distracting content. </p>
-        <button
-          class="button--primary"
+        <ButtonPrimary
           @click="onChallengeDifficultyClicked"
         >
           Customize
-        </button>
+        </ButtonPrimary>
       </div>
     </div>
   </div>
@@ -39,16 +37,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
+import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 
 export default defineComponent({
+  components: { ButtonPrimary },
   computed: {
-    activeMechanism () {
+    activeMechanism (): string {
       return this.$store.getters['newtab/getActiveMechanism']
     },
-    breathCount () {
+    breathCount (): number {
       return this.$store.getters['newtab/getBreathCount']
     },
-    challengeDifficulty () {
+    challengeDifficulty (): number {
       return this.$store.getters['newtab/getChallengeDifficulty']
     }
   },
