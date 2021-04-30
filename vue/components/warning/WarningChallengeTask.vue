@@ -3,7 +3,9 @@
     v-show="modelValue.challenge && modelValue.challenge !== 'success'"
     id="challenge_task"
   >
-    <h2>Type in the following text:</h2>
+    <h2 class="text-2xl mb-5">
+      Type in the following text:
+    </h2>
     <div id="challenge_string_wrapper">
       <p id="challenge_string" />
       <p id="correct_input" />
@@ -70,14 +72,6 @@ export default defineComponent({
 </script>
 
 <style>
-#challenge_task {
-  /*display: none;*/
-}
-
-#challenge_task h2 {
-  margin-bottom: 25px;
-}
-
 #challenge_string_wrapper {
   position: relative;
   display: inline-block;

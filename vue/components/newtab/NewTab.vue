@@ -73,11 +73,6 @@ export default defineComponent({
 </script>
 
 <style>
-  h2 {
-    text-transform: uppercase;
-    margin-bottom: 25px;
-  }
-
   @keyframes textgrowth {
     0% {
       transform: scale(1);

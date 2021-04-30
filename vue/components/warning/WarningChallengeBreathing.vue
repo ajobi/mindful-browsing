@@ -10,6 +10,7 @@
     <h2
       v-show="modelValue.breathing === 'initiated'"
       id="breath_guide"
+      class="text-2xl"
     >
       Take a deep breath
     </h2>

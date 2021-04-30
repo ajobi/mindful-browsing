@@ -3,8 +3,12 @@
     id="warning_panel"
     @click="$emit('cancel')"
   >
-    <h1>This domain has been blocked for a good reason.</h1>
-    <h2>Please, pause and reconsider whether you really need to visit this site.</h2>
+    <h1 class="mb-3">
+      This domain has been blocked for a good reason.
+    </h1>
+    <h2 class="text-xl">
+      Please, pause and reconsider whether you really need to visit this site.
+    </h2>
   </header>
 </template>
 
@@ -19,13 +23,5 @@ export default {}
   cursor: pointer;
   user-select: none;
   position: relative;
-}
-
-#warning_panel h1 {
-  margin-bottom: 10px;
-}
-
-#warning_panel h2 {
-  font-size: var(--font-20);
 }
 </style>
