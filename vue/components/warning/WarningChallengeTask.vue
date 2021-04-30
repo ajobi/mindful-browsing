@@ -10,20 +10,20 @@
       <p id="challenge_string" />
       <p id="correct_input" />
     </div> <br>
-    <input
+    <InputText
       id="challenge_input"
-      class="input-text"
-      type="text"
-      size="80"
-    >
+      :size="80"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { getChallengeString } from '../../utils/string'
+import InputText from '../atoms/InputText.vue'
 
 export default defineComponent({
+  components: { InputText },
   props: {
     modelValue: {
       type: Object,

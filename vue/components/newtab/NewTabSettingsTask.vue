@@ -7,13 +7,10 @@
       Current task:
     </HeadingSettings>
     <label>In the following time frame, you would like <br>
-      <input
+      <InputText
         ref="input"
         v-model="inputText"
-        type="text"
-        size="50"
-        class="input-text"
-      >
+      />
     </label>
   </form>
 </template>
@@ -22,9 +19,10 @@
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import HeadingSettings from '../atoms/HeadingSettings.vue'
+import InputText from '../atoms/InputText.vue'
 
 export default defineComponent({
-  components: { HeadingSettings },
+  components: { InputText, HeadingSettings },
   data () {
     return {
       inputText: ''

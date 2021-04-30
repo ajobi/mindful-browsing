@@ -6,13 +6,11 @@
     <HeadingSettings>
       Distracting domains:
     </HeadingSettings>
-    <input
+    <InputText
       ref="input"
       v-model="inputText"
-      type="text"
-      size="40"
-      class="input-text"
-    >
+      :size="40"
+    />
     <ul
       v-if="blockedDomains.length > 0"
       class="domains-list"
@@ -37,9 +35,11 @@ import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import NewTabSettingsDomainsItem from './NewTabSettingsDomainsItem.vue'
 import HeadingSettings from '../atoms/HeadingSettings.vue'
+import InputText from '../atoms/InputText.vue'
 
 export default defineComponent({
   components: {
+    InputText,
     HeadingSettings,
     NewTabSettingsDomainsItem
   },
