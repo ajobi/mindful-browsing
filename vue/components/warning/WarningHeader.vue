@@ -3,7 +3,7 @@
     id="warning_panel"
     @click="$emit('cancel')"
   >
-    <h1 class="mb-3">
+    <h1 class="mb-3 text-3xl">
       This domain has been blocked for a good reason.
     </h1>
     <h2 class="text-xl">

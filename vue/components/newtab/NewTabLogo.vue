@@ -81,16 +81,15 @@ export default defineComponent({
 
   #logo h4 {
     margin-top: 6px;
-    font-size: var(--font-24);
+    @apply text-2xl;
   }
 
   #logo p {
-    font-size: var(--font-14);
+    @apply text-xs;
   }
 
   #quote p {
-    font-size: var(--font-18);
-    @apply text-primary-400;
+    @apply text-primary-400 text-l;
     font-style: italic;
     font-weight: 200;
     max-width: 500px;

@@ -15,7 +15,7 @@ export default {}
 <style>
 #support_me {
   position: fixed;
-  font-size: var(--font-12);
+  @apply text-xxs;
   bottom: 15px;
   right: 20px;
   cursor: pointer;

@@ -1,5 +1,4 @@
 @import "fonts.css";
-@import "vars.css";
 
 @tailwind base;
 @tailwind components;
@@ -28,7 +27,7 @@ input[type='button'],
 input[type='submit'] {
   text-transform: uppercase;
   letter-spacing: 0.2px;
-  font-size: var(--font-16);
+  @apply text-base;
   padding: 0 35px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;

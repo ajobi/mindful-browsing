@@ -86,12 +86,12 @@ export default defineComponent({
     margin-top: 10px;
     text-align: right;
     position: relative;
-    font-size: var(--font-18);
+    @apply text-l;
     margin-right: 80px;
   }
 
   .domains-list p {
-    font-size: var(--font-16);
+    @apply text-base;
   }
 
   .domains-list button {

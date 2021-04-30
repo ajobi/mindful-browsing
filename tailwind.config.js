@@ -31,8 +31,7 @@ module.exports = {
       l: '18px',
       xl: '20px',
       '2xl': '24px',
-      '3xl': '32px',
-      '4xl': '36px'
+      '3xl': '32px'
     },
     fontWeight: {
       thin: 200,

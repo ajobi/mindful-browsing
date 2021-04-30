@@ -47,6 +47,6 @@ export default defineComponent({
   }
 
   #settings_task label {
-    font-size: var(--font-18);
+    @apply text-l;
   }
 </style>

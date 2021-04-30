@@ -79,9 +79,8 @@ export default defineComponent({
 
 #challenge_string {
   user-select: none;
-  @apply text-primary-200;
+  @apply text-primary-200 text-l;
   margin-bottom: 15px;
-  font-size: var(--font-18);
 }
 
 #correct_input {
@@ -89,7 +88,7 @@ export default defineComponent({
   position: absolute;
   left: 0;
   top: 0;
-  font-size: var(--font-18);
+  @apply text-l;
 }
 
 #challenge_input {

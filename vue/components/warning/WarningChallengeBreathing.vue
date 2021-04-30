@@ -53,7 +53,7 @@ export default defineComponent({
 #breath_guide {
   line-height: 30px;
   user-select: none;
-  font-size: var(--font-32);
+  @apply text-3xl;
   animation: fontbulger 8s infinite;
 }
 </style>

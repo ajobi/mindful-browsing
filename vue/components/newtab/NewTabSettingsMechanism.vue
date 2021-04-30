@@ -99,7 +99,7 @@ export default defineComponent({
     position: relative;
     cursor: pointer;
     width: 250px;
-    font-size: var(--font-14);
+    @apply text-xs;
     height: 280px;
     margin: 0 15px;
     user-select: none;
@@ -133,7 +133,7 @@ export default defineComponent({
 
   .mechanism h3 {
     font-weight: 300;
-    font-size: var(--font-18);
+    @apply text-l;
     margin-bottom: 15px;
   }
 
@@ -145,11 +145,10 @@ export default defineComponent({
 
   .mechanism--recommended::before {
     content: 'recommended';
-    font-size: var(--font-12);
     font-weight: 500;
     display: block;
     position: absolute;
-    @apply text-primary-600;
+    @apply text-primary-600 text-xxs;
     background-color: white;
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
     width: 130px;
