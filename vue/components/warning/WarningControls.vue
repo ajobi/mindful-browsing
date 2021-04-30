@@ -1,21 +1,19 @@
 <template>
   <div>
-    <button
+    <ButtonSecondary
       v-show="modelValue.breathing === null"
       id="visit_button"
-      class="button--secondary"
       @click="onVisit"
     >
       I need to visit this site
-    </button>
-    <button
+    </ButtonSecondary>
+    <ButtonSecondary
       v-show="modelValue.breathing === 'success'"
       id="proceed_button"
-      class="button--secondary"
       @click="$emit('proceed')"
     >
       I really have to visit this site
-    </button>
+    </ButtonSecondary>
     <ButtonPrimary
       v-show="modelValue.breathing === null || modelValue.breathing === 'success'"
       id="cancel_button"
@@ -29,9 +27,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
+import ButtonSecondary from '../atoms/ButtonSecondary.vue'
 
 export default defineComponent({
-  components: { ButtonPrimary },
+  components: { ButtonSecondary, ButtonPrimary },
   props: {
     modelValue: {
       type: Object,
