@@ -2,6 +2,7 @@
   <h1
     v-if="activeTask"
     id="task_reminder"
+    class="text-3xl"
   >
     {{ `You have promised ${activeTask}` }}
   </h1>
