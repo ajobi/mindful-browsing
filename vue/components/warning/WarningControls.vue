@@ -16,21 +16,22 @@
     >
       I really have to visit this site
     </button>
-    <button
+    <ButtonPrimary
       v-show="modelValue.breathing === null || modelValue.breathing === 'success'"
       id="cancel_button"
-      class="button--primary"
       @click="$emit('cancel')"
     >
       I have changed my mind
-    </button>
+    </ButtonPrimary>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 
 export default defineComponent({
+  components: { ButtonPrimary },
   props: {
     modelValue: {
       type: Object,
