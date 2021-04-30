@@ -10,26 +10,26 @@
         :checked="soundsAllowed"
       >
     </label>
-
-    <button
-      class="button--primary"
-      @click="onEnterIntervalClicked"
-    >
+    <ButtonPrimary @click="onEnterIntervalClicked">
       Change Interval
-    </button>
+    </ButtonPrimary>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
+import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 
 export default defineComponent({
+  components: {
+    ButtonPrimary
+  },
   computed: {
-    notificationInterval () {
+    notificationInterval (): number {
       return this.$store.getters['newtab/getNotificationInterval']
     },
-    soundsAllowed () {
+    soundsAllowed (): boolean {
       return this.$store.getters['newtab/getSoundsAllowed']
     }
   },
