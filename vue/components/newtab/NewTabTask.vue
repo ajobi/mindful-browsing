@@ -1,8 +1,8 @@
 <template>
   <h1
     v-if="activeTask"
-    id="task_reminder"
-    class="text-3xl"
+    class="text-3xl select-none cursor-pointer"
+    :style="{ padding: '13vh 40px 12vh'}"
   >
     {{ `You have promised ${activeTask}` }}
   </h1>
@@ -19,11 +19,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-#task_reminder {
-  user-select: none;
-  cursor: pointer;
-  padding: 13vh 40px 12vh;
-}
-</style>
