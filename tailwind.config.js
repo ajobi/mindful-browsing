@@ -1,3 +1,7 @@
+/*
+  Default configuration:
+  https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js
+ */
 // TODO: fix purging
 module.exports = {
   purge: [
@@ -16,6 +20,9 @@ module.exports = {
         600: '#474881'
       },
       white: '#FFFFFF'
+    },
+    fontFamily: {
+      poppins: ['Poppins', 'sans-serif']
     },
     fontSize: {
       xxs: '12px',

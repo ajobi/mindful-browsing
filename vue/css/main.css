@@ -6,8 +6,7 @@
 @tailwind utilities;
 
 body {
-  @apply text-primary-600 text-center text-base font-thin;
-  font-family: 'Poppins', sans-serif;
+  @apply text-primary-600 text-center text-base font-thin font-poppins;
 }
 
 label:hover {
