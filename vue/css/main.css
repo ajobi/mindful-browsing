@@ -80,7 +80,7 @@ a:focus {
   height: 35px;
   border-radius: 35px;
   background-color: var(--col-primary-80);
-  color: var(--col-white);
+  @apply text-white;
   border: none;
   transition: background-color 0.2s;
 }
@@ -91,10 +91,10 @@ a:focus {
 }
 
 .button--secondary {
+  @apply bg-white;
   height: 35px;
   border-radius: 35px;
   color: var(--col-primary-100);
-  background-color: var(--col-white);
   border: 1px solid var(--col-primary-70);
   font-weight: 200;
   transition: border 0.2s;
