@@ -38,6 +38,10 @@ module.exports = {
       light: 300,
       normal: 400,
       medium: 500
+    },
+    letterSpacing: {
+      tight: '-0.2px',
+      normal: '0'
     }
   },
   variants: {

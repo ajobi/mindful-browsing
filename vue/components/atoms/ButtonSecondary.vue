@@ -1,5 +1,5 @@
 <template>
-  <button class="button--secondary">
+  <button class="button--secondary focus:outline-none uppercase tracking-tight text-base">
     <slot />
   </button>
 </template>

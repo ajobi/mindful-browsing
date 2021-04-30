@@ -18,19 +18,10 @@ label:hover {
   @apply text-primary-400;
 }
 
-button:focus {
-  outline: none;
-}
-
 button,
 input[type='button'],
 input[type='submit'] {
-  text-transform: uppercase;
-  letter-spacing: 0.2px;
-  @apply text-base;
   padding: 0 35px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
 }
 
 input[type='checkbox'] {
