@@ -56,17 +56,3 @@ input[type='checkbox']:checked:after {
   left: 26px;
   @apply bg-primary-400;
 }
-
-.button--secondary {
-  @apply bg-white;
-  height: 35px;
-  border-radius: 35px;
-  @apply text-primary-600 border border-primary-300;
-  font-weight: 200;
-  transition: border 0.2s;
-}
-
-.button--secondary:hover,
-.button--secondary:active {
-  @apply border border-primary-600;
-}
