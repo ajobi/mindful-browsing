@@ -6,12 +6,13 @@
     <HeadingSettings>
       Current task:
     </HeadingSettings>
-    <label>In the following time frame, you would like <br>
+    <InputLabel>
+      In the following time frame, you would like <br>
       <InputText
         ref="input"
         v-model="inputText"
       />
-    </label>
+    </InputLabel>
   </form>
 </template>
 
@@ -20,9 +21,10 @@ import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import HeadingSettings from '../atoms/HeadingSettings.vue'
 import InputText from '../atoms/InputText.vue'
+import InputLabel from '../atoms/InputLabel.vue'
 
 export default defineComponent({
-  components: { InputText, HeadingSettings },
+  components: { InputLabel, InputText, HeadingSettings },
   data () {
     return {
       inputText: ''

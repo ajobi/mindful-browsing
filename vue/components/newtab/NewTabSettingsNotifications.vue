@@ -5,12 +5,13 @@
     </HeadingSettings>
     <p>If you end up on a distracting website anyways, you will be reminded <strong class="font-normal">every {{ notificationInterval }} seconds</strong>. </p>
 
-    <label @click="onSoundsAllowedClicked">
-      notification sounds <input
+    <InputLabel @click="onSoundsAllowedClicked">
+      notification sounds
+      <input
         type="checkbox"
         :checked="soundsAllowed"
       >
-    </label>
+    </InputLabel>
     <ButtonPrimary @click="onEnterIntervalClicked">
       Change Interval
     </ButtonPrimary>
@@ -22,9 +23,11 @@ import { defineComponent } from 'vue'
 import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules/newtab/interface'
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 import HeadingSettings from '../atoms/HeadingSettings.vue'
+import InputLabel from '../atoms/InputLabel.vue'
 
 export default defineComponent({
   components: {
+    InputLabel,
     HeadingSettings,
     ButtonPrimary
   },
