@@ -57,10 +57,6 @@ input[type='checkbox']:checked:after {
   @apply bg-primary-400;
 }
 
-a:focus {
-  outline: none;
-}
-
 /* global classes */
 .button--primary {
   height: 35px;
