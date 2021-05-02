@@ -57,20 +57,6 @@ input[type='checkbox']:checked:after {
   @apply bg-primary-400;
 }
 
-/* global classes */
-.button--primary {
-  height: 35px;
-  border-radius: 35px;
-  @apply text-white bg-primary-400;
-  border: none;
-  transition: background-color 0.2s;
-}
-
-.button--primary:hover,
-.button--primary:active {
-  @apply bg-primary-500;
-}
-
 .button--secondary {
   @apply bg-white;
   height: 35px;
