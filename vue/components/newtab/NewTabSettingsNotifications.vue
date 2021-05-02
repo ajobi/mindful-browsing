@@ -7,10 +7,7 @@
 
     <InputLabel @click="onSoundsAllowedClicked">
       notification sounds
-      <input
-        type="checkbox"
-        :checked="soundsAllowed"
-      >
+      <InputCheckbox v-model="soundsAllowed" />
     </InputLabel>
     <ButtonPrimary @click="onEnterIntervalClicked">
       Change Interval
@@ -24,9 +21,11 @@ import { ActionTypes as NewtabActions, MODULE_NEWTAB } from '../../store/modules
 import ButtonPrimary from '../atoms/ButtonPrimary.vue'
 import HeadingSettings from '../atoms/HeadingSettings.vue'
 import InputLabel from '../atoms/InputLabel.vue'
+import InputCheckbox from '../atoms/InputCheckbox.vue'
 
 export default defineComponent({
   components: {
+    InputCheckbox,
     InputLabel,
     HeadingSettings,
     ButtonPrimary
