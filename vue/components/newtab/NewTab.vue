@@ -7,10 +7,7 @@
     <NewTabSettingsMechanism v-if="activeView === 3" />
     <NewTabSettingsNotifications v-if="activeView === 4" />
     <SupportMe />
-    <span
-      id="focus_anchor"
-      tabindex="1"
-    />
+    <span tabindex="1" />
   </div>
 </template>
 
@@ -71,14 +68,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-  @keyframes textgrowth {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.12);
-    }
-  }
-</style>

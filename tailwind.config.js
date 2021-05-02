@@ -42,6 +42,16 @@ module.exports = {
     letterSpacing: {
       tight: '-0.2px',
       normal: '0'
+    },
+    keyframes: {
+      textgrowth: {
+        from: {
+          transform: 'scale(1)'
+        },
+        to: {
+          transform: 'scale(1.12)'
+        }
+      }
     }
   },
   variants: {
