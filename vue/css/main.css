@@ -14,12 +14,6 @@ body {
   }
 }
 
-button,
-input[type='button'],
-input[type='submit'] {
-  padding: 0 35px;
-}
-
 input[type='checkbox'] {
   -webkit-appearance: none;
   position: relative;
