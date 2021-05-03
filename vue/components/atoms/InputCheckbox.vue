@@ -2,8 +2,8 @@
   <input
     :checked="value"
     type="checkbox"
-    class="appearance-none relative"
-    :style="{ height: '22px', width: '45px' }"
+    class="appearance-none relative h-6"
+    :style="{ width: '45px' }"
     @input="$emit('update:modelValue')"
   >
 </template>
@@ -23,19 +23,13 @@ export default defineComponent({
 
 <style>
 input[type='checkbox']:before {
-  @apply bg-primary-100 absolute inset-0 cursor-pointer;
+  @apply bg-primary-100 absolute inset-0 cursor-pointer rounded-full;
   content: "";
-  border-radius: 22px;
 }
 
 input[type='checkbox']:after {
-  @apply absolute transition-all duration-200 bg-white cursor-pointer rounded-full;
+  @apply absolute transition-all duration-200 bg-white cursor-pointer rounded-full left-1 top-1 h-4 w-4;
   content: "";
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
-  border-radius: 16px;
 }
 
 input[type='checkbox']:checked:after {
