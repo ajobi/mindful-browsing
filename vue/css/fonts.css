@@ -2,33 +2,33 @@
   font-family: 'Poppins';
   font-weight: 200;
   font-style: normal;
-  src: url('/assets/fonts/poppins/200.ttf') format('truetype')
+  src: url('/assets/fonts/poppins-200.ttf') format('truetype')
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 200;
   font-style: italic;
-  src: url('/assets/fonts/poppins/200i.ttf') format('truetype')
+  src: url('/assets/fonts/poppins-200i.ttf') format('truetype')
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 300;
   font-style: normal;
-  src: url('/assets/fonts/poppins/300.ttf') format('truetype')
+  src: url('/assets/fonts/poppins-300.ttf') format('truetype')
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 400;
   font-style: normal;
-  src: url('/assets/fonts/poppins/400.ttf') format('truetype')
+  src: url('/assets/fonts/poppins-400.ttf') format('truetype')
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 500;
   font-style: normal;
-  src: url('/assets/fonts/poppins/500.ttf') format('truetype')
+  src: url('/assets/fonts/poppins-500.ttf') format('truetype')
 }
