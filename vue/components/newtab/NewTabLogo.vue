@@ -101,19 +101,4 @@ export default defineComponent({
   .animated {
     animation: 8s linear infinite alternate emerge;
   }
-
-  @keyframes emerge {
-    0% {
-      opacity: 0;
-    }
-    10% {
-      opacity: 0;
-    }
-    25% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 </style>
