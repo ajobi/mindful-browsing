@@ -8,6 +8,7 @@ module.exports = {
     './vue/**/*.js',
     './vue/**/*.vue'
   ],
+  screens: {},
   darkMode: false,
   theme: {
     colors: {
