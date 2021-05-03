@@ -7,7 +7,7 @@
       :checked="modelValue"
       type="checkbox"
       class="appearance-none "
-      @input="$emit('update:modelValue')"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     <span
       class="absolute transition-all duration-200 cursor-pointer rounded-full left-1 top-1 h-4 w-4"
